@@ -1,0 +1,615 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Gradients ──────────────────────────────────────────────────────────── */
+:root {
+  --caj-gradient-default:  linear-gradient(135deg, hsl(215 60% 12%) 0%, hsl(250 45% 16%) 50%, hsl(195 55% 14%) 100%);
+  --caj-gradient-warm:     linear-gradient(135deg, hsl(220 40% 12%) 0%, hsl(340 45% 16%) 50%, hsl(25 50% 14%) 100%);
+  --caj-gradient-cool:     linear-gradient(135deg, hsl(220 50% 12%) 0%, hsl(220 60% 18%) 50%, hsl(190 60% 14%) 100%);
+  --caj-gradient-midnight: linear-gradient(135deg, hsl(240 15% 5%) 0%, hsl(240 20% 8%) 50%, hsl(240 15% 5%) 100%);
+}
+
+/* ─── Seed tokens (color channels for Tailwind opacity modifier) ─────────── */
+:root,
+[data-cajui-theme="cajui"] {
+  --caj-primary:       22 163 74;
+  --caj-primary-hover: 21 128 61;
+  --caj-primary-light: 220 252 231;
+  --caj-danger:        220 38 38;
+  --caj-danger-hover:  185 28 28;
+  --caj-warning:       217 119 6;
+  --caj-success:       22 163 74;
+  --caj-info:          14 165 233;
+
+  /* ─── Glass tokens ─────────────────────────────────────────────────── */
+  --caj-glass-bg:        rgba(255, 255, 255, 0.08);
+  --caj-glass-bg-hover:  rgba(255, 255, 255, 0.15);
+  --caj-glass-bg-active: rgba(255, 255, 255, 0.22);
+  --caj-glass-border:    rgba(255, 255, 255, 0.18);
+  --caj-glass-shadow:    0 8px 32px rgba(0, 0, 0, 0.14);
+  --caj-glass-inset:     inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  --caj-glass-blur:      blur(24px) saturate(180%);
+  --caj-glass-radius:    16px;
+
+  /* ─── Semantic (kept for compat) ──────────────────────────────────── */
+  --caj-surface:    255 255 255;
+  --caj-border:     229 231 235;
+  --caj-text:       17 24 39;
+  --caj-text-muted: 107 114 128;
+}
+
+/* ─── Base layer ─────────────────────────────────────────────────────────── */
+@layer base {
+  [data-cajui-root] {
+    font-family: 'Inter', system-ui, sans-serif;
+    color: white;
+    min-height: 100dvh;
+  }
+
+  /* Accessibility: disable blur for users who prefer reduced motion/transparency */
+  @media (prefers-reduced-transparency: reduce) {
+    [data-cajui-root] {
+      --caj-glass-bg:       rgba(30, 30, 50, 0.92);
+      --caj-glass-bg-hover: rgba(40, 40, 60, 0.96);
+      --caj-glass-blur:     none;
+      --caj-glass-border:   rgba(255, 255, 255, 0.25);
+    }
+  }
+}
+
+/* ─── Component layer ────────────────────────────────────────────────────── */
+@layer components {
+
+  /* ── Glass surface (the core building block) ── */
+  .caj-glass {
+    background: var(--caj-glass-bg);
+    backdrop-filter: var(--caj-glass-blur);
+    -webkit-backdrop-filter: var(--caj-glass-blur);
+    border: 1px solid var(--caj-glass-border);
+    box-shadow: var(--caj-glass-shadow), var(--caj-glass-inset);
+  }
+
+  .caj-glass-strong {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(32px) saturate(200%);
+    -webkit-backdrop-filter: blur(32px) saturate(200%);
+    border: 1px solid rgba(255, 255, 255, 0.30);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  }
+
+  .caj-glass-subtle {
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.10);
+  }
+
+  /* ── Card ── */
+  .caj-card {
+    @apply caj-glass;
+    border-radius: var(--caj-glass-radius);
+  }
+
+  /* ── Buttons ── */
+  .caj-btn {
+    @apply inline-flex items-center justify-center font-semibold
+           transition-all duration-150 focus-visible:outline-none
+           focus-visible:ring-2 focus-visible:ring-white/40 focus-visible:ring-offset-1 focus-visible:ring-offset-transparent
+           disabled:pointer-events-none disabled:opacity-40
+           active:scale-[0.97];
+    border-radius: 12px;
+  }
+
+  /* Default button (soft, glass border) */
+  .caj-btn-default {
+    @apply caj-btn text-white/90 border border-white/10 hover:border-white/20 hover:text-white;
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(8px);
+  }
+  .caj-btn-default:hover {
+    background: rgba(255, 255, 255, 0.12);
+  }
+
+  .caj-btn-primary {
+    @apply caj-btn text-white;
+    background: rgb(var(--caj-primary) / 0.8);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgb(var(--caj-primary) / 0.5);
+    box-shadow: 0 4px 16px rgb(var(--caj-primary) / 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  }
+  .caj-btn-primary:hover {
+    background: rgb(var(--caj-primary) / 0.9);
+    box-shadow: 0 6px 20px rgb(var(--caj-primary) / 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  }
+
+  .caj-btn-success {
+    @apply caj-btn text-white;
+    background: rgb(var(--caj-success) / 0.8);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgb(var(--caj-success) / 0.5);
+    box-shadow: 0 4px 16px rgb(var(--caj-success) / 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  }
+  .caj-btn-success:hover {
+    background: rgb(var(--caj-success) / 0.95);
+  }
+
+  .caj-btn-danger {
+    @apply caj-btn text-white;
+    background: rgb(var(--caj-danger) / 0.8);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgb(var(--caj-danger) / 0.5);
+    box-shadow: 0 4px 16px rgb(var(--caj-danger) / 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  }
+  .caj-btn-danger:hover {
+    background: rgb(var(--caj-danger) / 0.9);
+  }
+
+  .caj-btn-warning {
+    @apply caj-btn text-white;
+    background: rgb(var(--caj-warning) / 0.8);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgb(var(--caj-warning) / 0.5);
+    box-shadow: 0 4px 16px rgb(var(--caj-warning) / 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  }
+  .caj-btn-warning:hover {
+    background: rgb(var(--caj-warning) / 0.9);
+  }
+
+  .caj-btn-info {
+    @apply caj-btn text-white;
+    background: rgb(var(--caj-info) / 0.8);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgb(var(--caj-info) / 0.5);
+    box-shadow: 0 4px 16px rgb(var(--caj-info) / 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  }
+  .caj-btn-info:hover {
+    background: rgb(var(--caj-info) / 0.9);
+  }
+
+  .caj-btn-ghost {
+    @apply caj-btn caj-glass text-white/80 hover:text-white;
+    background: var(--caj-glass-bg);
+  }
+  .caj-btn-ghost:hover {
+    background: var(--caj-glass-bg-hover);
+  }
+
+  .caj-btn-text {
+    @apply inline-flex items-center justify-center font-semibold text-caj-primary hover:text-caj-primary-hover focus-visible:outline-none transition-all duration-150 disabled:opacity-40 disabled:pointer-events-none active:scale-[0.98];
+    background: transparent;
+    border: none;
+    padding: 0;
+  }
+
+  /* ── Input ── */
+  .caj-input {
+    @apply block w-full text-sm text-white placeholder-white/40
+           transition-all duration-150
+           focus:outline-none
+           disabled:cursor-not-allowed disabled:opacity-40;
+    background: var(--caj-glass-bg);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid var(--caj-glass-border);
+    border-radius: 10px;
+    padding: 10px 12px;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.08);
+  }
+  .caj-input:focus {
+    border-color: rgba(255, 255, 255, 0.45);
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.08), inset 0 2px 4px rgba(0, 0, 0, 0.08);
+  }
+
+  /* ── NumPad keys ── */
+  .caj-numkey {
+    @apply caj-glass flex h-14 w-full items-center justify-center
+           text-lg font-semibold text-white
+           transition-all duration-100 cursor-pointer select-none;
+    border-radius: 12px;
+  }
+  .caj-numkey:hover {
+    background: var(--caj-glass-bg-hover);
+  }
+  .caj-numkey:active {
+    background: var(--caj-glass-bg-active);
+    transform: scale(0.95);
+  }
+
+  .caj-numkey-action {
+    @apply caj-numkey text-white/70;
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  .caj-numkey-enter {
+    @apply caj-numkey;
+    background: rgb(var(--caj-primary) / 0.75);
+    border-color: rgb(var(--caj-primary) / 0.45);
+    box-shadow: 0 4px 16px rgb(var(--caj-primary) / 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  }
+  .caj-numkey-enter:hover {
+    background: rgb(var(--caj-primary) / 0.85);
+  }
+}
+
+/* ─── cajuiOS Theme (Frosted White, Old Apple Aqua Gloss Style) ─────────── */
+[data-cajui-theme="cajuiOS"] {
+  color: #1e293b;
+
+  --caj-primary:       0 122 255;      /* Apple Aqua Blue */
+  --caj-primary-hover: 0 95 204;
+  --caj-text:          30 41 59;
+  --caj-text-muted:    100 116 139;
+  --caj-border:        148 163 184;
+
+  /* Glossy Apple Frosted White Glass tokens */
+  --caj-glass-bg:        rgba(255, 255, 255, 0.45);
+  --caj-glass-bg-hover:  rgba(255, 255, 255, 0.65);
+  --caj-glass-bg-active: rgba(255, 255, 255, 0.80);
+  --caj-glass-border:    rgba(15, 23, 42, 0.15);
+  --caj-glass-shadow:    0 8px 32px rgba(15, 23, 42, 0.08);
+  --caj-glass-inset:     inset 0 1px 0 rgba(255, 255, 255, 0.8), inset 0 -10px 20px rgba(255, 255, 255, 0.25);
+  --caj-glass-blur:      blur(24px) saturate(180%);
+  --caj-glass-radius:    14px;
+}
+
+/* cajuiOS specific element overrides (gloss gradients, shiny shadows) */
+[data-cajui-theme="cajuiOS"] .caj-glass {
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.4) 50%, rgba(240, 240, 240, 0.45) 50.1%, rgba(255, 255, 255, 0.6) 100%);
+  border-color: rgba(0, 0, 0, 0.16);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8), 0 4px 16px rgba(0, 0, 0, 0.06);
+}
+
+[data-cajui-theme="cajuiOS"] .caj-glass-strong {
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.5) 50%, rgba(230, 230, 230, 0.5) 50.1%, rgba(255, 255, 255, 0.7) 100%);
+  border-color: rgba(0, 0, 0, 0.22);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+[data-cajui-theme="cajuiOS"] .caj-glass-subtle {
+  background: rgba(255, 255, 255, 0.35);
+  border-color: rgba(0, 0, 0, 0.10);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+/* cajuiOS Buttons */
+[data-cajui-theme="cajuiOS"] .caj-btn-default {
+  background: linear-gradient(to bottom, #ffffff 0%, #eaeaea 50%, #d8d8d8 50.1%, #ededed 100%);
+  border: 1px solid rgba(0, 0, 0, 0.22);
+  box-shadow: inset 0 1px 0 #ffffff, 0 1px 3px rgba(0,0,0,0.12);
+  color: #1e293b;
+}
+[data-cajui-theme="cajuiOS"] .caj-btn-default:hover {
+  background: linear-gradient(to bottom, #ffffff 0%, #d5d5d5 50%, #c4c4c4 50.1%, #e0e0e0 100%);
+  color: #000000;
+}
+
+[data-cajui-theme="cajuiOS"] .caj-btn-primary {
+  background: linear-gradient(to bottom, #5ac8fa 0%, #007aff 50%, #0062d1 50.1%, #249dff 100%);
+  border: 1px solid #0056b3;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 2px 5px rgba(0, 0, 0, 0.15);
+  color: white !important;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.35);
+}
+[data-cajui-theme="cajuiOS"] .caj-btn-primary:hover {
+  background: linear-gradient(to bottom, #7cd0ff 0%, #1e8aff 50%, #0054b8 50.1%, #4cbaff 100%);
+}
+
+[data-cajui-theme="cajuiOS"] .caj-btn-ghost {
+  background: rgba(255, 255, 255, 0.40);
+  border-color: rgba(15, 23, 42, 0.12);
+  color: #1e293b;
+}
+[data-cajui-theme="cajuiOS"] .caj-btn-ghost:hover {
+  background: rgba(255, 255, 255, 0.60);
+  color: #000000;
+}
+
+/* cajuiOS Input */
+[data-cajui-theme="cajuiOS"] .caj-input {
+  background: #ffffff;
+  border-color: rgba(0, 0, 0, 0.20);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.08);
+  color: #1e293b;
+}
+[data-cajui-theme="cajuiOS"] .caj-input::placeholder {
+  color: rgba(15, 23, 42, 0.45);
+}
+
+/* cajuiOS NumPad Keys */
+[data-cajui-theme="cajuiOS"] .caj-numkey {
+  background: linear-gradient(to bottom, #ffffff 0%, #f2f2f2 50%, #e1e1e1 50.1%, #f7f7f7 100%);
+  border: 1px solid rgba(0, 0, 0, 0.18);
+  box-shadow: inset 0 1px 0 #ffffff, 0 1px 2px rgba(0,0,0,0.1);
+  color: #1e293b;
+}
+[data-cajui-theme="cajuiOS"] .caj-numkey:hover {
+  background: linear-gradient(to bottom, #ffffff 0%, #e6e6e6 50%, #d5d5d5 50.1%, #f0f0f0 100%);
+}
+[data-cajui-theme="cajuiOS"] .caj-numkey-action {
+  background: linear-gradient(to bottom, #f2f2f2 0%, #e1e1e1 50%, #d0d0d0 50.1%, #e6e6e6 100%);
+  color: #475569;
+}
+[data-cajui-theme="cajuiOS"] .caj-numkey-enter {
+  background: linear-gradient(to bottom, #34c759 0%, #28cd41 50%, #1e9d2a 50.1%, #32d74b 100%);
+  border-color: #1b8523;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 2px 4px rgba(0,0,0,0.15);
+  color: white !important;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.2);
+}
+[data-cajui-theme="cajuiOS"] .caj-numkey-enter:hover {
+  background: linear-gradient(to bottom, #44d769 0%, #30de4c 50%, #22ab2f 50.1%, #42e75c 100%);
+}
+
+/* cajuiOS Redirections (white -> dark slate) */
+[data-cajui-theme="cajuiOS"] .text-white { color: #1e293b !important; }
+[data-cajui-theme="cajuiOS"] .text-white\/90 { color: rgba(30, 41, 59, 0.9) !important; }
+[data-cajui-theme="cajuiOS"] .text-white\/80 { color: rgba(30, 41, 59, 0.8) !important; }
+[data-cajui-theme="cajuiOS"] .text-white\/70 { color: rgba(30, 41, 59, 0.7) !important; }
+[data-cajui-theme="cajuiOS"] .text-white\/60 { color: rgba(30, 41, 59, 0.6) !important; }
+[data-cajui-theme="cajuiOS"] .text-white\/50 { color: rgba(30, 41, 59, 0.5) !important; }
+[data-cajui-theme="cajuiOS"] .text-white\/40 { color: rgba(30, 41, 59, 0.4) !important; }
+[data-cajui-theme="cajuiOS"] .text-white\/30 { color: rgba(30, 41, 59, 0.3) !important; }
+[data-cajui-theme="cajuiOS"] .text-white\/20 { color: rgba(30, 41, 59, 0.2) !important; }
+
+[data-cajui-theme="cajuiOS"] .border-white\/10 { border-color: rgba(30, 41, 59, 0.1) !important; }
+[data-cajui-theme="cajuiOS"] .border-white\/20 { border-color: rgba(30, 41, 59, 0.2) !important; }
+[data-cajui-theme="cajuiOS"] .border-white\/30 { border-color: rgba(30, 41, 59, 0.3) !important; }
+[data-cajui-theme="cajuiOS"] .border-white\/5  { border-color: rgba(30, 41, 59, 0.05) !important; }
+[data-cajui-theme="cajuiOS"] .border-white\/18 { border-color: rgba(30, 41, 59, 0.18) !important; }
+
+
+/* ─── Accessible Themes (High-Contrast, Flat, Extra Large & Senior Friendly) ─── */
+
+/* Shared Layout and Font-scaling sizing rules for all accessible themes (starts-with selector) */
+[data-cajui-theme^="accessible"] [data-cajui-root],
+[data-cajui-theme^="accessible"] {
+  font-size: 1.18rem; /* Increase base font size by ~18% */
+}
+
+[data-cajui-theme^="accessible"] .text-xs  { font-size: 1.05rem !important; font-weight: 800 !important; }
+[data-cajui-theme^="accessible"] .text-sm  { font-size: 1.15rem !important; font-weight: 800 !important; }
+[data-cajui-theme^="accessible"] .text-base { font-size: 1.25rem !important; font-weight: 800 !important; }
+[data-cajui-theme^="accessible"] .text-lg  { font-size: 1.40rem !important; font-weight: 850 !important; }
+[data-cajui-theme^="accessible"] .text-xl  { font-size: 1.65rem !important; font-weight: 900 !important; }
+[data-cajui-theme^="accessible"] .text-2xl { font-size: 1.90rem !important; font-weight: 900 !important; }
+[data-cajui-theme^="accessible"] .text-3xl { font-size: 2.30rem !important; font-weight: 950 !important; }
+
+/* Flat solid surfaces shared rules */
+[data-cajui-theme^="accessible"] .caj-glass,
+[data-cajui-theme^="accessible"] .caj-glass-strong,
+[data-cajui-theme^="accessible"] .caj-glass-subtle {
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+/* Accessible flat buttons (Larger size and ultra contrast) */
+[data-cajui-theme^="accessible"] .caj-btn {
+  font-weight: 900 !important;
+  border-radius: 8px;
+  padding: 12px 24px !important;
+  min-height: 48px;
+  font-size: 1.15rem;
+}
+
+/* Accessible Input shared sizing */
+[data-cajui-theme^="accessible"] .caj-input {
+  font-size: 1.2rem;
+  padding: 14px;
+  border-radius: 8px;
+}
+
+/* Accessible NumPad Keys (Extra large) */
+[data-cajui-theme^="accessible"] .caj-numkey {
+  height: 4.8rem;
+  font-size: 1.7rem !important;
+  font-weight: 950;
+  border-radius: 8px;
+}
+
+
+/* --- VARIATION 1: accessible (B&W Light) --- */
+[data-cajui-theme="accessible"] {
+  color: #000000;
+  background: #ffffff !important;
+
+  --caj-primary:       0 0 0;
+  --caj-primary-hover: 50 50 50;
+  --caj-danger:        220 38 38;
+  --caj-warning:       217 119 6;
+  --caj-success:       22 163 74;
+
+  --caj-text:          0 0 0;
+  --caj-text-muted:    0 0 0;
+  --caj-border:        0 0 0;
+
+  --caj-glass-bg:        #ffffff;
+  --caj-glass-bg-hover:  #f1f5f9;
+  --caj-glass-bg-active: #cbd5e1;
+  --caj-glass-border:    #000000;
+  --caj-glass-radius:    8px;
+}
+[data-cajui-theme="accessible"] .caj-glass,
+[data-cajui-theme="accessible"] .caj-glass-strong,
+[data-cajui-theme="accessible"] .caj-glass-subtle {
+  background: #ffffff !important;
+  border: 3px solid #000000 !important;
+}
+[data-cajui-theme="accessible"] .caj-btn { border: 3px solid #000000 !important; }
+[data-cajui-theme="accessible"] .caj-btn-default { background: #ffffff; color: #000000; }
+[data-cajui-theme="accessible"] .caj-btn-default:hover { background: #000000; color: #ffffff; }
+[data-cajui-theme="accessible"] .caj-btn-primary { background: #000000; color: #ffffff !important; }
+[data-cajui-theme="accessible"] .caj-btn-primary:hover { background: #404040; }
+[data-cajui-theme="accessible"] .caj-btn-success { background: #ffffff; color: #000000; border-color: #16a34a !important; border-width: 4px !important; }
+[data-cajui-theme="accessible"] .caj-btn-success:hover { background: #16a34a; color: #ffffff; }
+[data-cajui-theme="accessible"] .caj-btn-danger { background: #ffffff; color: #000000; border-color: #dc2626 !important; border-width: 4px !important; }
+[data-cajui-theme="accessible"] .caj-btn-danger:hover { background: #dc2626; color: #ffffff; }
+[data-cajui-theme="accessible"] .caj-btn-ghost { background: transparent; color: #000000; border: 3px dashed #000000 !important; }
+[data-cajui-theme="accessible"] .caj-btn-ghost:hover { background: #f1f5f9; }
+[data-cajui-theme="accessible"] .caj-input { background: #ffffff; border: 3px solid #000000; color: #000000; }
+[data-cajui-theme="accessible"] .caj-input:focus { border-color: #000000; box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.2); }
+[data-cajui-theme="accessible"] .caj-numkey { background: #ffffff; border: 3px solid #000000; color: #000000; }
+[data-cajui-theme="accessible"] .caj-numkey:hover { background: #000000; color: #ffffff !important; }
+[data-cajui-theme="accessible"] .caj-numkey-action { background: #e2e8f0; color: #000000; border: 3px solid #000000; }
+[data-cajui-theme="accessible"] .caj-numkey-action:hover { background: #000000; color: #ffffff !important; }
+[data-cajui-theme="accessible"] .caj-numkey-enter { background: #000000; color: #ffffff !important; border-color: #000000; }
+[data-cajui-theme="accessible"] .caj-numkey-enter:hover { background: #404040; }
+
+[data-cajui-theme="accessible"] .text-white,
+[data-cajui-theme="accessible"] .text-white\/90,
+[data-cajui-theme="accessible"] .text-white\/80,
+[data-cajui-theme="accessible"] .text-white\/70,
+[data-cajui-theme="accessible"] .text-white\/60,
+[data-cajui-theme="accessible"] .text-white\/50,
+[data-cajui-theme="accessible"] .text-white\/40,
+[data-cajui-theme="accessible"] .text-white\/30,
+[data-cajui-theme="accessible"] .text-white\/20 {
+  color: #000000 !important;
+}
+[data-cajui-theme="accessible"] .border-white\/10,
+[data-cajui-theme="accessible"] .border-white\/20,
+[data-cajui-theme="accessible"] .border-white\/30,
+[data-cajui-theme="accessible"] .border-white\/5,
+[data-cajui-theme="accessible"] .border-white\/18 {
+  border-color: #000000 !important;
+  border-width: 3px !important;
+}
+
+
+/* --- VARIATION 2: accessible-blue (B&W Flat Royal Blue) --- */
+[data-cajui-theme="accessible-blue"] {
+  color: #ffffff;
+  background: #1e3a8a !important;
+
+  --caj-primary:       255 255 255;
+  --caj-primary-hover: 230 230 230;
+  --caj-danger:        ef 44 44;
+  --caj-warning:       f5 9e 0b;
+  --caj-success:       10 b9 81;
+
+  --caj-text:          255 255 255;
+  --caj-text-muted:    230 230 230;
+  --caj-border:        255 255 255;
+
+  --caj-glass-bg:        #1e3a8a;
+  --caj-glass-bg-hover:  #2563eb;
+  --caj-glass-bg-active: #1d4ed8;
+  --caj-glass-border:    #ffffff;
+  --caj-glass-radius:    8px;
+}
+[data-cajui-theme="accessible-blue"] .caj-glass,
+[data-cajui-theme="accessible-blue"] .caj-glass-strong,
+[data-cajui-theme="accessible-blue"] .caj-glass-subtle {
+  background: #1e3a8a !important;
+  border: 3px solid #ffffff !important;
+}
+[data-cajui-theme="accessible-blue"] .caj-btn { border: 3px solid #ffffff !important; }
+[data-cajui-theme="accessible-blue"] .caj-btn-default { background: #1e3a8a; color: #ffffff; }
+[data-cajui-theme="accessible-blue"] .caj-btn-default:hover { background: #ffffff; color: #1e3a8a; }
+[data-cajui-theme="accessible-blue"] .caj-btn-primary { background: #ffffff; color: #000000 !important; }
+[data-cajui-theme="accessible-blue"] .caj-btn-primary:hover { background: #e2e8f0; }
+[data-cajui-theme="accessible-blue"] .caj-btn-success { background: #10b981; color: #ffffff; border-color: #ffffff !important; }
+[data-cajui-theme="accessible-blue"] .caj-btn-success:hover { background: #059669; }
+[data-cajui-theme="accessible-blue"] .caj-btn-danger { background: #ef4444; color: #ffffff; border-color: #ffffff !important; }
+[data-cajui-theme="accessible-blue"] .caj-btn-danger:hover { background: #dc2626; }
+[data-cajui-theme="accessible-blue"] .caj-btn-ghost { background: transparent; color: #ffffff; border: 3px dashed #ffffff !important; }
+[data-cajui-theme="accessible-blue"] .caj-btn-ghost:hover { background: rgba(255,255,255,0.1); }
+[data-cajui-theme="accessible-blue"] .caj-input { background: #1e3a8a; border: 3px solid #ffffff; color: #ffffff; }
+[data-cajui-theme="accessible-blue"] .caj-input:focus { border-color: #ffffff; box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.2); }
+[data-cajui-theme="accessible-blue"] .caj-input::placeholder { color: rgba(255,255,255,0.6); }
+[data-cajui-theme="accessible-blue"] .caj-numkey { background: #1e3a8a; border: 3px solid #ffffff; color: #ffffff; }
+[data-cajui-theme="accessible-blue"] .caj-numkey:hover { background: #ffffff; color: #1e3a8a !important; }
+[data-cajui-theme="accessible-blue"] .caj-numkey-action { background: #1d4ed8; color: #ffffff; border: 3px solid #ffffff; }
+[data-cajui-theme="accessible-blue"] .caj-numkey-action:hover { background: #ffffff; color: #1e3a8a !important; }
+[data-cajui-theme="accessible-blue"] .caj-numkey-enter { background: #ffffff; color: #000000 !important; border-color: #ffffff; }
+[data-cajui-theme="accessible-blue"] .caj-numkey-enter:hover { background: #e2e8f0; }
+
+[data-cajui-theme="accessible-blue"] .text-white,
+[data-cajui-theme="accessible-blue"] .text-white\/90,
+[data-cajui-theme="accessible-blue"] .text-white\/80,
+[data-cajui-theme="accessible-blue"] .text-white\/70,
+[data-cajui-theme="accessible-blue"] .text-white\/60,
+[data-cajui-theme="accessible-blue"] .text-white\/50,
+[data-cajui-theme="accessible-blue"] .text-white\/40,
+[data-cajui-theme="accessible-blue"] .text-white\/30,
+[data-cajui-theme="accessible-blue"] .text-white\/20 {
+  color: #ffffff !important;
+}
+[data-cajui-theme="accessible-blue"] .border-white\/10,
+[data-cajui-theme="accessible-blue"] .border-white\/20,
+[data-cajui-theme="accessible-blue"] .border-white\/30,
+[data-cajui-theme="accessible-blue"] .border-white\/5,
+[data-cajui-theme="accessible-blue"] .border-white\/18 {
+  border-color: #ffffff !important;
+  border-width: 3px !important;
+}
+
+
+/* --- VARIATION 3: accessible-dark (B&W Flat Senior Dark with Yellow contrast keys) --- */
+[data-cajui-theme="accessible-dark"] {
+  color: #ffffff;
+  background: #000000 !important;
+
+  --caj-primary:       250 204 21;     /* Contrast yellow */
+  --caj-primary-hover: 234 179 8;
+  --caj-danger:        ef 44 44;
+  --caj-warning:       f5 9e 0b;
+  --caj-success:       10 b9 81;
+
+  --caj-text:          255 255 255;
+  --caj-text-muted:    244 244 245;
+  --caj-border:        255 255 255;
+
+  --caj-glass-bg:        #000000;
+  --caj-glass-bg-hover:  #27272a;
+  --caj-glass-bg-active: #3f3f46;
+  --caj-glass-border:    #ffffff;
+  --caj-glass-radius:    8px;
+}
+[data-cajui-theme="accessible-dark"] .caj-glass,
+[data-cajui-theme="accessible-dark"] .caj-glass-strong,
+[data-cajui-theme="accessible-dark"] .caj-glass-subtle {
+  background: #000000 !important;
+  border: 3px solid #ffffff !important;
+}
+[data-cajui-theme="accessible-dark"] .caj-btn { border: 3px solid #ffffff !important; }
+[data-cajui-theme="accessible-dark"] .caj-btn-default { background: #000000; color: #ffffff; }
+[data-cajui-theme="accessible-dark"] .caj-btn-default:hover { background: #ffffff; color: #000000; }
+[data-cajui-theme="accessible-dark"] .caj-btn-primary { background: #facc15; color: #000000 !important; border-color: #facc15 !important; }
+[data-cajui-theme="accessible-dark"] .caj-btn-primary:hover { background: #eab308; }
+[data-cajui-theme="accessible-dark"] .caj-btn-success { background: #10b981; color: #ffffff; border-color: #ffffff !important; }
+[data-cajui-theme="accessible-dark"] .caj-btn-success:hover { background: #059669; }
+[data-cajui-theme="accessible-dark"] .caj-btn-danger { background: #ef4444; color: #ffffff; border-color: #ffffff !important; }
+[data-cajui-theme="accessible-dark"] .caj-btn-danger:hover { background: #dc2626; }
+[data-cajui-theme="accessible-dark"] .caj-btn-ghost { background: transparent; color: #ffffff; border: 3px dashed #ffffff !important; }
+[data-cajui-theme="accessible-dark"] .caj-btn-ghost:hover { background: rgba(255,255,255,0.15); }
+[data-cajui-theme="accessible-dark"] .caj-input { background: #000000; border: 3px solid #ffffff; color: #ffffff; }
+[data-cajui-theme="accessible-dark"] .caj-input:focus { border-color: #ffffff; box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.25); }
+[data-cajui-theme="accessible-dark"] .caj-input::placeholder { color: rgba(255,255,255,0.7); }
+[data-cajui-theme="accessible-dark"] .caj-numkey { background: #000000; border: 3px solid #ffffff; color: #ffffff; }
+[data-cajui-theme="accessible-dark"] .caj-numkey:hover { background: #ffffff; color: #000000 !important; }
+[data-cajui-theme="accessible-dark"] .caj-numkey-action { background: #27272a; color: #ffffff; border: 3px solid #ffffff; }
+[data-cajui-theme="accessible-dark"] .caj-numkey-action:hover { background: #ffffff; color: #000000 !important; }
+[data-cajui-theme="accessible-dark"] .caj-numkey-enter { background: #facc15; color: #000000 !important; border-color: #facc15; }
+[data-cajui-theme="accessible-dark"] .caj-numkey-enter:hover { background: #eab308; }
+
+[data-cajui-theme="accessible-dark"] .text-white,
+[data-cajui-theme="accessible-dark"] .text-white\/90,
+[data-cajui-theme="accessible-dark"] .text-white\/80,
+[data-cajui-theme="accessible-dark"] .text-white\/70,
+[data-cajui-theme="accessible-dark"] .text-white\/60,
+[data-cajui-theme="accessible-dark"] .text-white\/50,
+[data-cajui-theme="accessible-dark"] .text-white\/40,
+[data-cajui-theme="accessible-dark"] .text-white\/30,
+[data-cajui-theme="accessible-dark"] .text-white\/20 {
+  color: #ffffff !important;
+}
+[data-cajui-theme="accessible-dark"] .border-white\/10,
+[data-cajui-theme="accessible-dark"] .border-white\/20,
+[data-cajui-theme="accessible-dark"] .border-white\/30,
+[data-cajui-theme="accessible-dark"] .border-white\/5,
+[data-cajui-theme="accessible-dark"] .border-white\/18 {
+  border-color: #ffffff !important;
+  border-width: 3px !important;
+}
