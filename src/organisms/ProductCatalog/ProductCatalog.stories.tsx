@@ -10,7 +10,8 @@ const MOCK_PRODUCTS: Product[] = [
 		price: 280,
 		sku: "PER-ENR-BSC",
 		category: "Enrollables",
-		description: "Persiana enrollable ideal para oficinas y recámaras. Control de luz estándar.",
+		description:
+			"Persiana enrollable ideal para oficinas y recámaras. Control de luz estándar.",
 		stock: 20,
 		variants: [
 			{ id: "v1-1", name: "Gris Claro", colorHex: "#D3D3D3", price: 280 },
@@ -24,7 +25,8 @@ const MOCK_PRODUCTS: Product[] = [
 		price: 450,
 		sku: "PER-ENR-BO",
 		category: "Enrollables",
-		description: "Bloqueo total de luz 100% blackout. Ideal para recámaras y salas de proyección.",
+		description:
+			"Bloqueo total de luz 100% blackout. Ideal para recámaras y salas de proyección.",
 		stock: 15,
 		variants: [
 			{ id: "v2-1", name: "Negro Absoluto", colorHex: "#0D0D0D", price: 450 },
@@ -38,7 +40,8 @@ const MOCK_PRODUCTS: Product[] = [
 		price: 650,
 		sku: "PER-SHR-ELG",
 		category: "Sheer Elegance",
-		description: "Doble tejido con franjas translúcidas y opacas para un control de luz dinámico.",
+		description:
+			"Doble tejido con franjas translúcidas y opacas para un control de luz dinámico.",
 		stock: 8,
 		variants: [
 			{ id: "v3-1", name: "Chocolate Swatch", colorHex: "#5C4033", price: 650 },
@@ -52,7 +55,8 @@ const MOCK_PRODUCTS: Product[] = [
 		price: 520,
 		sku: "PER-ROM-TXT",
 		category: "Romanas",
-		description: "Persiana romana con pliegues suaves de tela texturizada premium.",
+		description:
+			"Persiana romana con pliegues suaves de tela texturizada premium.",
 		stock: 12,
 		variants: [
 			{ id: "v4-1", name: "Lino Gris", colorHex: "#B0C4DE", price: 520 },
@@ -69,7 +73,12 @@ const MOCK_PRODUCTS: Product[] = [
 		stock: 50,
 		variants: [
 			{ id: "v5-1", name: "Chocolate Belga", colorHex: "#7B3F00", price: 790 },
-			{ id: "v5-2", name: "Vainilla Francesa", colorHex: "#F3E5AB", price: 790 },
+			{
+				id: "v5-2",
+				name: "Vainilla Francesa",
+				colorHex: "#F3E5AB",
+				price: 790,
+			},
 			{ id: "v5-3", name: "Fresa Silvestre", colorHex: "#DE5D83", price: 810 },
 		],
 	},
@@ -79,7 +88,8 @@ const MOCK_PRODUCTS: Product[] = [
 		price: 450,
 		sku: "SP-CRT-500",
 		category: "Suplementos",
-		description: "Creatina monohidratada 100% pura micronizada para fuerza y volumen.",
+		description:
+			"Creatina monohidratada 100% pura micronizada para fuerza y volumen.",
 		stock: 35,
 	},
 ];

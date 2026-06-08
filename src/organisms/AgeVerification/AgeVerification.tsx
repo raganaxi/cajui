@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Button } from "@/atoms/Button";
+import { Icon } from "@/atoms/Icon";
 import { cn } from "@/lib/utils";
 
 export interface AgeVerificationProps {
@@ -57,20 +58,7 @@ export function AgeVerification({
 			{requireStaff ? (
 				<div className="flex flex-col items-center gap-3 w-full">
 					<div className="caj-age-verification-staff-alert flex items-center gap-2 rounded-xl border border-caj-warning/30 bg-caj-warning/15 px-4 py-3">
-						<svg
-							className="h-5 w-5 text-caj-warning"
-							fill="none"
-							viewBox="0 0 24 24"
-							stroke="currentColor"
-							aria-hidden="true"
-						>
-							<path
-								strokeLinecap="round"
-								strokeLinejoin="round"
-								strokeWidth={2}
-								d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-							/>
-						</svg>
+						<Icon name="user" size="md" className="text-caj-warning" />
 						<p className="text-sm font-semibold text-caj-warning">
 							Un empleado verificará tu identificación
 						</p>

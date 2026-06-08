@@ -2,6 +2,7 @@ import { useState } from "react";
 import { BarcodeInput } from "@/atoms/BarcodeInput/BarcodeInput";
 import { Button } from "@/atoms/Button";
 import { GlassPanel } from "@/atoms/GlassPanel";
+import { Icon } from "@/atoms/Icon";
 import { NumPad } from "@/atoms/NumPad/NumPad";
 import {
 	PaymentMethodGroup,
@@ -120,20 +121,7 @@ export function POSLayout({
 						<div className="flex-1 overflow-y-auto flex flex-col gap-2 p-3">
 							{cart.isEmpty ? (
 								<div className="flex flex-1 flex-col items-center justify-center text-center text-white/40">
-									<svg
-										className="mb-2 h-12 w-12 opacity-30"
-										fill="none"
-										viewBox="0 0 24 24"
-										stroke="currentColor"
-										aria-hidden="true"
-									>
-										<path
-											strokeLinecap="round"
-											strokeLinejoin="round"
-											strokeWidth={1}
-											d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
-										/>
-									</svg>
+									<Icon name="cart" className="mb-2 h-12 w-12 opacity-30" />
 									<p className="text-sm">Agrega productos al carrito</p>
 								</div>
 							) : (
@@ -170,22 +158,7 @@ export function POSLayout({
 								size="sm"
 								onClick={() => setStep("cart")}
 								className="rounded-full flex items-center justify-center w-8 h-8 p-0"
-								icon={
-									<svg
-										className="h-5 w-5"
-										fill="none"
-										viewBox="0 0 24 24"
-										stroke="currentColor"
-										aria-hidden="true"
-									>
-										<path
-											strokeLinecap="round"
-											strokeLinejoin="round"
-											strokeWidth={2}
-											d="M10 19l-7-7m0 0l7-7m-7 7h18"
-										/>
-									</svg>
-								}
+								icon={<Icon name="back" size="md" />}
 							/>
 							<p className="font-semibold text-white">Forma de pago</p>
 						</div>
@@ -237,20 +210,7 @@ export function POSLayout({
 				{step === "done" && (
 					<div className="flex flex-1 flex-col items-center justify-center gap-3 p-4 text-center">
 						<div className="flex h-16 w-16 items-center justify-center rounded-full bg-green-500/20 border border-green-500/30">
-							<svg
-								className="h-8 w-8 text-green-400"
-								fill="none"
-								viewBox="0 0 24 24"
-								stroke="currentColor"
-								aria-hidden="true"
-							>
-								<path
-									strokeLinecap="round"
-									strokeLinejoin="round"
-									strokeWidth={2}
-									d="M5 13l4 4L19 7"
-								/>
-							</svg>
+							<Icon name="check" size="lg" className="text-green-400" />
 						</div>
 						<p className="text-xl font-bold text-green-400">
 							¡Venta completada!

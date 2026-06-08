@@ -1,2 +1,2 @@
-export * from "./OnlineCheckout";
 export * from "./interface";
+export * from "./OnlineCheckout";

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Button } from "@/atoms/Button";
 import { GlassPanel } from "@/atoms/GlassPanel";
+import { Icon } from "@/atoms/Icon";
 import { cn, formatCurrency } from "@/lib/utils";
 import type {
 	KioskPaymentOption,
@@ -14,20 +15,7 @@ const DEFAULT_OPTIONS: KioskPaymentOption[] = [
 		label: "Tarjeta Bancaria",
 		description: "Crédito o Débito (Visa, Mastercard, AMEX)",
 		icon: (
-			<svg
-				className="h-10 w-10 text-white"
-				fill="none"
-				viewBox="0 0 24 24"
-				stroke="currentColor"
-				aria-hidden="true"
-			>
-				<path
-					strokeLinecap="round"
-					strokeLinejoin="round"
-					strokeWidth={1.2}
-					d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"
-				/>
-			</svg>
+			<Icon name="card" size={40} className="text-white" strokeWidth={1.2} />
 		),
 	},
 	{
@@ -35,26 +23,7 @@ const DEFAULT_OPTIONS: KioskPaymentOption[] = [
 		label: "Pago Móvil / Contactless",
 		description: "Apple Pay, Google Wallet o tarjetas de aproximación",
 		icon: (
-			<svg
-				className="h-10 w-10 text-white"
-				fill="none"
-				viewBox="0 0 24 24"
-				stroke="currentColor"
-				aria-hidden="true"
-			>
-				<path
-					strokeLinecap="round"
-					strokeLinejoin="round"
-					strokeWidth={1.2}
-					d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"
-				/>
-				<path
-					strokeLinecap="round"
-					strokeLinejoin="round"
-					strokeWidth={1.5}
-					d="M12 12a2 2 0 100-4 2 2 0 000 4z"
-				/>
-			</svg>
+			<Icon name="nfc" size={40} className="text-white" strokeWidth={1.2} />
 		),
 	},
 	{
@@ -62,20 +31,7 @@ const DEFAULT_OPTIONS: KioskPaymentOption[] = [
 		label: "Membresía / Puntos",
 		description: "Paga con tus puntos acumulados de lealtad",
 		icon: (
-			<svg
-				className="h-10 w-10 text-white"
-				fill="none"
-				viewBox="0 0 24 24"
-				stroke="currentColor"
-				aria-hidden="true"
-			>
-				<path
-					strokeLinecap="round"
-					strokeLinejoin="round"
-					strokeWidth={1.2}
-					d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.907c.961 0 1.36 1.246.582 1.81l-3.97 2.883a1 1 0 00-.364 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.971-2.883a1 1 0 00-1.175 0l-3.97 2.883c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.364-1.118l-3.97-2.883c-.779-.564-.38-1.81.582-1.81h4.907a1 1 0 00.95-.69l1.519-4.674z"
-				/>
-			</svg>
+			<Icon name="star" size={40} className="text-white" strokeWidth={1.2} />
 		),
 	},
 ];
@@ -199,20 +155,12 @@ export function KioskPayment({
 								style={{ animationDuration: "3s" }}
 							/>
 
-							<svg
-								className="h-14 w-14 text-caj-primary"
-								fill="none"
-								viewBox="0 0 24 24"
-								stroke="currentColor"
-								aria-hidden="true"
-							>
-								<path
-									strokeLinecap="round"
-									strokeLinejoin="round"
-									strokeWidth={1.2}
-									d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"
-								/>
-							</svg>
+							<Icon
+								name={selectedMethod === "nfc" ? "nfc" : "card"}
+								size={56}
+								className="text-caj-primary"
+								strokeWidth={1.2}
+							/>
 						</div>
 
 						<div className="space-y-2">
@@ -253,20 +201,12 @@ export function KioskPayment({
 					<div className="flex flex-col items-center text-center gap-5 animate-fade-in">
 						{/* Green glowing check */}
 						<div className="flex items-center justify-center h-24 w-24 rounded-full bg-green-500/20 border border-green-500/40 [box-shadow:0_0_30px_rgba(34,197,94,0.3)]">
-							<svg
-								className="h-12 w-12 text-green-400"
-								fill="none"
-								viewBox="0 0 24 24"
-								stroke="currentColor"
-								aria-hidden="true"
-							>
-								<path
-									strokeLinecap="round"
-									strokeLinejoin="round"
-									strokeWidth={2.5}
-									d="M5 13l4 4L19 7"
-								/>
-							</svg>
+							<Icon
+								name="check"
+								size={48}
+								className="text-green-400"
+								strokeWidth={2.5}
+							/>
 						</div>
 
 						<div className="space-y-1">
@@ -284,20 +224,12 @@ export function KioskPayment({
 				{status === "error" && (
 					<div className="flex flex-col items-center text-center gap-5 animate-fade-in">
 						<div className="flex items-center justify-center h-24 w-24 rounded-full bg-red-500/20 border border-red-500/40 [box-shadow:0_0_30px_rgba(239,68,68,0.3)]">
-							<svg
-								className="h-12 w-12 text-red-400"
-								fill="none"
-								viewBox="0 0 24 24"
-								stroke="currentColor"
-								aria-hidden="true"
-							>
-								<path
-									strokeLinecap="round"
-									strokeLinejoin="round"
-									strokeWidth={2.5}
-									d="M6 18L18 6M6 6l12 12"
-								/>
-							</svg>
+							<Icon
+								name="close"
+								size={48}
+								className="text-red-400"
+								strokeWidth={2.5}
+							/>
 						</div>
 
 						<div className="space-y-1.5 max-w-xs">
@@ -326,22 +258,7 @@ export function KioskPayment({
 							<Button
 								variant="ghost"
 								onClick={() => setStatus("select")}
-								icon={
-									<svg
-										className="h-4 w-4"
-										fill="none"
-										viewBox="0 0 24 24"
-										stroke="currentColor"
-										aria-hidden="true"
-									>
-										<path
-											strokeLinecap="round"
-											strokeLinejoin="round"
-											strokeWidth={2}
-											d="M10 19l-7-7m0 0l7-7m-7 7h18"
-										/>
-									</svg>
-								}
+								icon={<Icon name="back" size="sm" />}
 							>
 								Volver a métodos de pago
 							</Button>

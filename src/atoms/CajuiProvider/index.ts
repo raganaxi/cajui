@@ -1,2 +1,7 @@
 export { CajuiProvider } from "./CajuiProvider";
-export type { CajuiGradient, CajuiProviderProps } from "./interface";
+export { useCajuiTheme } from "./context";
+export type {
+	CajuiGradient,
+	CajuiProviderProps,
+	CajuiTheme,
+} from "./interface";
