@@ -14,7 +14,7 @@ const preview: Preview = {
         ? context.globals.backgrounds
         : context.globals.backgrounds?.value;
 
-      const THEME_MAP: Record<string, { theme: 'cajui' | 'accessible-light' | 'accessible-dark', gradient: 'default' | 'warm' | 'cool' | 'midnight' | 'none' }> = {
+      const THEME_MAP: Record<string, { theme: 'cajui' | 'accessible-light' | 'accessible-dark' | 'amalli-light' | 'amalli-dark', gradient: 'default' | 'warm' | 'cool' | 'midnight' | 'none' }> = {
         'cajui':              { theme: 'cajui',            gradient: 'default'   },
         'cajui-warm':         { theme: 'cajui',            gradient: 'warm'      },
         'cajui-cool':         { theme: 'cajui',            gradient: 'cool'      },
@@ -22,6 +22,8 @@ const preview: Preview = {
         'cajui-none':         { theme: 'cajui',            gradient: 'none'      },
         'accessible-light':   { theme: 'accessible-light', gradient: 'none'      },
         'accessible-dark':    { theme: 'accessible-dark',  gradient: 'none'      },
+        'amalli-light':       { theme: 'amalli-light',     gradient: 'none'      },
+        'amalli-dark':        { theme: 'amalli-dark',      gradient: 'none'      },
       };
 
       const { theme: activeTheme = 'cajui', gradient: activeGradient = 'default' } = THEME_MAP[bgKey] ?? {};
@@ -48,6 +50,8 @@ const preview: Preview = {
         'cajui-none':      { name: 'cajui — sin fondo', value: 'hsl(220 35% 10%)' },
         'accessible-light': { name: 'accessible-light',  value: '#f3f2f1' },
         'accessible-dark':  { name: 'accessible-dark',   value: '#0b0c0c' },
+        'amalli-light':     { name: 'amalli — light',    value: '#F2EDE3' },
+        'amalli-dark':      { name: 'amalli — dark',     value: '#162318' },
       },
     },
     viewport: {

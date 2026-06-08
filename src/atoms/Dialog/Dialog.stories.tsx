@@ -27,8 +27,8 @@ function ConfirmationDemo() {
 	const [open, setOpen] = useState(false);
 
 	return (
-		<div className="p-8 bg-slate-900 rounded-xl flex flex-col items-center justify-center min-h-[200px] w-96 text-white border border-white/5">
-			<p className="text-sm text-white/60 mb-4 text-center">
+		<div className="p-8 caj-glass rounded-xl flex flex-col items-center justify-center min-h-[200px] w-96 border border-white/5">
+			<p className="text-sm opacity-60 mb-4 text-center">
 				Haz clic abajo para abrir un diálogo de confirmación básico.
 			</p>
 			<Button variant="primary" onClick={() => setOpen(true)}>
@@ -56,7 +56,7 @@ function ConfirmationDemo() {
 					</>
 				}
 			>
-				<p className="text-white/80">
+				<p className="opacity-80">
 					¿Estás seguro de que deseas eliminar este registro de venta? Esta
 					acción no se puede deshacer y quedará registrada en la bitácora de
 					auditoría.
@@ -103,8 +103,8 @@ function FormDialogDemo() {
 	};
 
 	return (
-		<div className="p-8 bg-slate-900 rounded-xl flex flex-col items-center justify-center min-h-[200px] w-96 text-white border border-white/5">
-			<p className="text-sm text-white/60 mb-4 text-center">
+		<div className="p-8 caj-glass rounded-xl flex flex-col items-center justify-center min-h-[200px] w-96 border border-white/5">
+			<p className="text-sm opacity-60 mb-4 text-center">
 				Haz clic abajo para abrir un diálogo de formulario de creación
 				(inspirado en Element UI).
 			</p>

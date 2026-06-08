@@ -3,6 +3,7 @@ import { useCallback, useEffect, useState } from "react";
 import { AlertBanner } from "@/atoms/AlertBanner";
 import { Button } from "@/atoms/Button";
 import { GlassPanel } from "@/atoms/GlassPanel";
+import { Icon } from "@/atoms/Icon";
 import { NumPad } from "@/atoms/NumPad";
 import { cn, formatCurrency } from "@/lib/utils";
 import type { LoginProps } from "./interface";
@@ -110,7 +111,7 @@ export function Login({
 			radius="xl"
 			shadow
 			className={cn(
-				"w-full max-w-[420px] p-8 flex flex-col items-center gap-6 border-white/10 bg-black/45 transition-transform duration-300",
+				"w-full max-w-[440px] py-10 px-10 flex flex-col items-center gap-8 border-white/10 bg-black/45 transition-transform duration-300",
 				isShaking && "animate-shake",
 				!isLockMode && "items-stretch", // Left-aligned in login form
 				className,
@@ -127,20 +128,11 @@ export function Login({
 					{/* Lock Icon */}
 					<div className="relative flex items-center justify-center w-20 h-20 rounded-full bg-white/5 border border-white/10 shadow-[0_0_24px_rgba(255,255,255,0.05)]">
 						<div className="absolute inset-0 rounded-full border border-caj-primary/20 animate-ping opacity-30" />
-						<svg
-							className="w-10 h-10 text-caj-primary filter drop-shadow-[0_0_8px_rgba(var(--caj-primary),0.5)]"
-							fill="none"
-							viewBox="0 0 24 24"
-							stroke="currentColor"
-							aria-hidden="true"
-						>
-							<path
-								strokeLinecap="round"
-								strokeLinejoin="round"
-								strokeWidth={1.5}
-								d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
-							/>
-						</svg>
+						<Icon
+							name="lock"
+							size={40}
+							className="text-caj-primary filter drop-shadow-[0_0_8px_rgba(var(--caj-primary),0.5)]"
+						/>
 					</div>
 
 					{/* Title Info */}
@@ -149,20 +141,7 @@ export function Login({
 							Terminal Bloqueada
 						</h2>
 						<div className="flex items-center justify-center gap-1.5 text-white/60">
-							<svg
-								className="w-4 h-4 text-white/40"
-								fill="none"
-								viewBox="0 0 24 24"
-								stroke="currentColor"
-								aria-hidden="true"
-							>
-								<path
-									strokeLinecap="round"
-									strokeLinejoin="round"
-									strokeWidth={2}
-									d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-								/>
-							</svg>
+							<Icon name="user" size="sm" className="text-white/40" />
 							<span className="font-semibold text-sm">{cashierName}</span>
 						</div>
 					</div>
@@ -171,16 +150,16 @@ export function Login({
 
 			{/* Default View: Tabs */}
 			{!isLockMode && allowPin && allowCredentials && (
-				<div className="grid grid-cols-2 p-1.5 bg-white/5 border border-white/10 rounded-xl w-full">
+				<div className="grid grid-cols-2 p-1 bg-black/5 dark:bg-white/5 border border-black/[0.03] dark:border-white/5 rounded-xl w-full relative">
 					<button
 						type="button"
 						disabled={activeLoading}
 						onClick={() => handleTabChange("pin")}
 						className={cn(
-							"py-2.5 text-sm font-semibold rounded-lg transition-all duration-150",
+							"py-2 text-sm font-medium rounded-lg transition-all duration-200 focus-visible:ring-2 focus-visible:ring-caj-primary/40 focus-visible:outline-none select-none",
 							activeTab === "pin"
-								? "bg-white/15 text-white shadow-md backdrop-blur-md border border-white/10"
-								: "text-white/60 hover:text-white hover:bg-white/5",
+								? "bg-white dark:bg-white/10 text-caj-primary dark:text-white shadow-sm font-semibold"
+								: "text-caj-text-muted hover:text-caj-text",
 						)}
 					>
 						PIN de Acceso
@@ -190,10 +169,10 @@ export function Login({
 						disabled={activeLoading}
 						onClick={() => handleTabChange("credentials")}
 						className={cn(
-							"py-2.5 text-sm font-semibold rounded-lg transition-all duration-150",
+							"py-2 text-sm font-medium rounded-lg transition-all duration-200 focus-visible:ring-2 focus-visible:ring-caj-primary/40 focus-visible:outline-none select-none",
 							activeTab === "credentials"
-								? "bg-white/15 text-white shadow-md backdrop-blur-md border border-white/10"
-								: "text-white/60 hover:text-white hover:bg-white/5",
+								? "bg-white dark:bg-white/10 text-caj-primary dark:text-white shadow-sm font-semibold"
+								: "text-caj-text-muted hover:text-caj-text",
 						)}
 					>
 						Credenciales
@@ -214,25 +193,25 @@ export function Login({
 			<div className="w-full flex-1 flex flex-col justify-center">
 				{/* PIN View (Always active in Lock Mode, or tab in default mode) */}
 				{(isLockMode || (activeTab === "pin" && allowPin)) && (
-					<div className="flex flex-col items-center gap-6 w-full">
+					<div className="flex flex-col items-center gap-8 w-full">
 						{!isLockMode && (
-							<span className="text-sm font-medium text-white/50 tracking-wide uppercase">
+							<span className="text-xs font-semibold text-caj-text-muted tracking-wider uppercase">
 								Ingrese su PIN de 4 dígitos
 							</span>
 						)}
 
 						{/* PIN Indicator Dots */}
-						<div className="flex gap-4 justify-center py-2">
+						<div className="flex gap-6 justify-center py-3">
 							{[0, 1, 2, 3].map((index) => {
 								const isActive = pin.length > index;
 								return (
 									<div
 										key={index}
 										className={cn(
-											"w-4.5 h-4.5 rounded-full border border-white/20 transition-all duration-150",
+											"w-4 h-4 rounded-full border-2 border-black/10 dark:border-white/20 bg-black/5 dark:bg-white/5 transition-all duration-150",
 											isActive
-												? "bg-caj-primary border-caj-primary scale-110 shadow-[0_0_12px_rgba(var(--caj-primary),0.8)]"
-												: "bg-white/5",
+												? "bg-caj-primary border-caj-primary scale-125 shadow-[0_0_12px_rgba(var(--caj-primary),0.4)]"
+												: "",
 										)}
 									/>
 								);
@@ -240,7 +219,7 @@ export function Login({
 						</div>
 
 						{/* NumPad */}
-						<div className="w-full mt-2">
+						<div className="w-full">
 							<NumPad
 								value={pin}
 								onChange={setPin}
@@ -248,6 +227,7 @@ export function Login({
 								maxLength={4}
 								allowDecimals={false}
 								disabled={activeLoading}
+								className="gap-3"
 							/>
 						</div>
 					</div>
@@ -257,32 +237,19 @@ export function Login({
 				{!isLockMode && activeTab === "credentials" && allowCredentials && (
 					<form
 						onSubmit={handleCredentialsSubmit}
-						className="flex flex-col gap-4 w-full"
+						className="flex flex-col gap-6 w-full"
 					>
 						{/* Email Field */}
-						<div className="flex flex-col gap-1.5 w-full">
+						<div className="flex flex-col gap-2 w-full">
 							<label
 								htmlFor="login-email"
-								className="text-xs font-semibold text-white/60"
+								className="text-xs font-semibold text-caj-text-muted tracking-wide"
 							>
 								Correo Electrónico
 							</label>
 							<div className="relative w-full">
-								<span className="absolute inset-y-0 left-3 flex items-center text-white/40 pointer-events-none">
-									<svg
-										className="w-4 h-4"
-										fill="none"
-										viewBox="0 0 24 24"
-										stroke="currentColor"
-										aria-hidden="true"
-									>
-										<path
-											strokeLinecap="round"
-											strokeLinejoin="round"
-											strokeWidth={2}
-											d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207"
-										/>
-									</svg>
+								<span className="absolute inset-y-0 left-3.5 flex items-center text-caj-text-muted pointer-events-none">
+									<Icon name="atSign" size="sm" />
 								</span>
 								<input
 									id="login-email"
@@ -292,35 +259,22 @@ export function Login({
 									disabled={activeLoading}
 									value={email}
 									onChange={(e) => setEmail(e.target.value)}
-									className="caj-input pl-10 w-full"
+									className="caj-input pl-11 py-3 text-base w-full focus:ring-2 focus:ring-caj-primary/20"
 								/>
 							</div>
 						</div>
 
 						{/* Password Field */}
-						<div className="flex flex-col gap-1.5 w-full">
+						<div className="flex flex-col gap-2 w-full">
 							<label
 								htmlFor="login-password"
-								className="text-xs font-semibold text-white/60"
+								className="text-xs font-semibold text-caj-text-muted tracking-wide"
 							>
 								Contraseña
 							</label>
 							<div className="relative w-full">
-								<span className="absolute inset-y-0 left-3 flex items-center text-white/40 pointer-events-none">
-									<svg
-										className="w-4 h-4"
-										fill="none"
-										viewBox="0 0 24 24"
-										stroke="currentColor"
-										aria-hidden="true"
-									>
-										<path
-											strokeLinecap="round"
-											strokeLinejoin="round"
-											strokeWidth={2}
-											d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
-										/>
-									</svg>
+								<span className="absolute inset-y-0 left-3.5 flex items-center text-caj-text-muted pointer-events-none">
+									<Icon name="lock" size="sm" />
 								</span>
 								<input
 									id="login-password"
@@ -330,7 +284,7 @@ export function Login({
 									disabled={activeLoading}
 									value={password}
 									onChange={(e) => setPassword(e.target.value)}
-									className="caj-input pl-10 w-full"
+									className="caj-input pl-11 py-3 text-base w-full focus:ring-2 focus:ring-caj-primary/20"
 								/>
 							</div>
 						</div>
@@ -339,10 +293,10 @@ export function Login({
 						<Button
 							type="submit"
 							variant="primary"
-							size="lg"
+							size="xl"
 							block
 							loading={activeLoading}
-							className="mt-4"
+							className="mt-2"
 						>
 							Iniciar Sesión
 						</Button>
@@ -360,44 +314,12 @@ export function Login({
 					>
 						{showSummary ? (
 							<>
-								<svg
-									className="w-4 h-4"
-									fill="none"
-									viewBox="0 0 24 24"
-									stroke="currentColor"
-									aria-hidden="true"
-								>
-									<path
-										strokeLinecap="round"
-										strokeLinejoin="round"
-										strokeWidth={2}
-										d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-									/>
-									<path
-										strokeLinecap="round"
-										strokeLinejoin="round"
-										strokeWidth={2}
-										d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
-									/>
-								</svg>
+								<Icon name="eye" size="sm" />
 								Ocultar Resumen de Turno
 							</>
 						) : (
 							<>
-								<svg
-									className="w-4 h-4"
-									fill="none"
-									viewBox="0 0 24 24"
-									stroke="currentColor"
-									aria-hidden="true"
-								>
-									<path
-										strokeLinecap="round"
-										strokeLinejoin="round"
-										strokeWidth={2}
-										d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.542-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l18 18"
-									/>
-								</svg>
+								<Icon name="eyeOff" size="sm" />
 								Ver Resumen de Turno
 							</>
 						)}

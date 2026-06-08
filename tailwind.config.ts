@@ -71,6 +71,10 @@ export default {
           '0%':   { opacity: '0', transform: 'scale(0.96) translateY(4px)', backdropFilter: 'blur(0px)' },
           '100%': { opacity: '1', transform: 'scale(1) translateY(0)', backdropFilter: 'blur(24px)' },
         },
+        'panel-in': {
+          '0%':   { opacity: '0', transform: 'scale(0.97) translateY(6px)' },
+          '100%': { opacity: '1', transform: 'scale(1) translateY(0)' },
+        },
         shake: {
           '0%, 100%': { transform: 'translateX(0)' },
           '20%, 60%': { transform: 'translateX(-8px)' },
@@ -82,6 +86,7 @@ export default {
         'scan-line': 'scan-line 1.5s ease-in-out infinite',
         shimmer:   'shimmer 2s infinite linear',
         'glass-in': 'glass-in 0.25s ease-out forwards',
+        'panel-in': 'panel-in 0.2s ease-out forwards',
         shake:     'shake 0.4s ease-in-out',
       },
     },

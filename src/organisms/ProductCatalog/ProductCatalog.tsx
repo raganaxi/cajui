@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+import { Icon } from "@/atoms/Icon";
 import { cn } from "@/lib/utils";
 import { ProductCard } from "@/molecules/ProductCard/ProductCard";
 import type { ProductCatalogProps } from "./interface";
@@ -16,7 +17,9 @@ export function ProductCatalog({
 	const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
 	// Sidebar filter states
-	const [selectedFilters, setSelectedFilters] = useState<Record<string, string[]>>({});
+	const [selectedFilters, setSelectedFilters] = useState<
+		Record<string, string[]>
+	>({});
 	const [priceRange, setPriceRange] = useState<[number, number]>([0, 0]);
 
 	// Mobile filter panel visibility
@@ -49,7 +52,13 @@ export function ProductCatalog({
 		if (selectedCategory !== null) return true;
 		if (priceRange[0] > 0 || priceRange[1] < maxPossiblePrice) return true;
 		return Object.values(selectedFilters).some((arr) => arr.length > 0);
-	}, [searchQuery, selectedCategory, priceRange, selectedFilters, maxPossiblePrice]);
+	}, [
+		searchQuery,
+		selectedCategory,
+		priceRange,
+		selectedFilters,
+		maxPossiblePrice,
+	]);
 
 	// Handle filter toggles
 	const handleFilterToggle = (groupId: string, value: string) => {
@@ -103,14 +112,14 @@ export function ProductCatalog({
 				// or if any of its variants matches the value.
 				const matchesVariant = p.variants?.some((v) =>
 					selectedVals.some((val) =>
-						v.name.toLowerCase().includes(val.toLowerCase())
-					)
+						v.name.toLowerCase().includes(val.toLowerCase()),
+					),
 				);
 
 				const matchesBase = selectedVals.some(
 					(val) =>
 						p.name.toLowerCase().includes(val.toLowerCase()) ||
-						p.description?.toLowerCase().includes(val.toLowerCase())
+						p.description?.toLowerCase().includes(val.toLowerCase()),
 				);
 
 				if (!matchesVariant && !matchesBase) return false;
@@ -121,14 +130,14 @@ export function ProductCatalog({
 	}, [products, searchQuery, selectedCategory, priceRange, selectedFilters]);
 
 	return (
-		<div className={cn("flex flex-col h-full gap-4 w-full text-white", className)}>
+		<div
+			className={cn("flex flex-col h-full gap-4 w-full text-white", className)}
+		>
 			{/* === Header & Search Bar === */}
 			<div className="flex flex-col md:flex-row gap-3 items-center justify-between">
 				<div className="relative w-full md:max-w-md">
 					<span className="absolute left-3 top-1/2 -translate-y-1/2 text-white/50">
-						<svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-							<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-						</svg>
+						<Icon name="search" size="sm" />
 					</span>
 					<input
 						type="search"
@@ -156,9 +165,7 @@ export function ProductCatalog({
 						onClick={() => setIsMobileFilterOpen(true)}
 						className="flex md:hidden items-center gap-2 px-4 py-2.5 rounded-xl border border-white/10 bg-white/[0.04] active:scale-95 text-sm font-semibold"
 					>
-						<svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-							<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
-						</svg>
+						<Icon name="filter" size="sm" />
 						Filtros
 					</button>
 
@@ -184,7 +191,7 @@ export function ProductCatalog({
 							"px-4 py-1.5 rounded-full text-xs font-bold transition-all whitespace-nowrap border",
 							selectedCategory === null
 								? "bg-caj-primary border-caj-primary text-white"
-								: "bg-white/[0.04] border-white/10 text-white/75 hover:bg-white/[0.1] hover:text-white"
+								: "bg-white/[0.04] border-white/10 text-white/75 hover:bg-white/[0.1] hover:text-white",
 						)}
 					>
 						Todos
@@ -198,7 +205,7 @@ export function ProductCatalog({
 								"px-4 py-1.5 rounded-full text-xs font-bold transition-all whitespace-nowrap border",
 								selectedCategory === cat
 									? "bg-caj-primary border-caj-primary text-white"
-									: "bg-white/[0.04] border-white/10 text-white/75 hover:bg-white/[0.1] hover:text-white"
+									: "bg-white/[0.04] border-white/10 text-white/75 hover:bg-white/[0.1] hover:text-white",
 							)}
 						>
 							{cat}
@@ -212,30 +219,42 @@ export function ProductCatalog({
 				{/* Sidebar (Desktop Only) */}
 				<aside className="hidden md:flex flex-col w-64 shrink-0 rounded-2xl border border-white/10 bg-white/[0.03] p-4 gap-5 self-stretch overflow-y-auto">
 					<div className="flex items-center justify-between border-b border-white/10 pb-2">
-						<h3 className="font-bold text-sm uppercase tracking-wider text-white/60">Filtros</h3>
+						<h3 className="font-bold text-sm uppercase tracking-wider text-white/60">
+							Filtros
+						</h3>
 					</div>
 
 					{/* Price Filter */}
 					<div className="space-y-2">
-						<span className="text-xs font-bold text-white/70">Rango de precio</span>
+						<span className="text-xs font-bold text-white/70">
+							Rango de precio
+						</span>
 						<div className="flex items-center gap-2">
 							<div className="relative flex-1">
-								<span className="absolute left-2.5 top-1/2 -translate-y-1/2 text-xs text-white/40">$</span>
+								<span className="absolute left-2.5 top-1/2 -translate-y-1/2 text-xs text-white/40">
+									$
+								</span>
 								<input
 									type="number"
 									value={priceRange[0]}
-									onChange={(e) => setPriceRange([Number(e.target.value), priceRange[1]])}
+									onChange={(e) =>
+										setPriceRange([Number(e.target.value), priceRange[1]])
+									}
 									className="caj-input pl-6 py-1 text-xs w-full"
 									placeholder="Min"
 								/>
 							</div>
 							<span className="text-white/40 text-xs">—</span>
 							<div className="relative flex-1">
-								<span className="absolute left-2.5 top-1/2 -translate-y-1/2 text-xs text-white/40">$</span>
+								<span className="absolute left-2.5 top-1/2 -translate-y-1/2 text-xs text-white/40">
+									$
+								</span>
 								<input
 									type="number"
 									value={priceRange[1]}
-									onChange={(e) => setPriceRange([priceRange[0], Number(e.target.value)])}
+									onChange={(e) =>
+										setPriceRange([priceRange[0], Number(e.target.value)])
+									}
 									className="caj-input pl-6 py-1 text-xs w-full"
 									placeholder="Max"
 								/>
@@ -251,9 +270,13 @@ export function ProductCatalog({
 							</span>
 							<div className="space-y-1.5 max-h-40 overflow-y-auto pr-1">
 								{group.options.map((opt) => {
-									const isChecked = selectedFilters[group.id]?.includes(opt.value) || false;
+									const isChecked =
+										selectedFilters[group.id]?.includes(opt.value) || false;
 									return (
-										<label key={opt.value} className="flex items-center gap-2 text-xs text-white/80 cursor-pointer select-none hover:text-white">
+										<label
+											key={opt.value}
+											className="flex items-center gap-2 text-xs text-white/80 cursor-pointer select-none hover:text-white"
+										>
 											<input
 												type="checkbox"
 												checked={isChecked}
@@ -262,7 +285,9 @@ export function ProductCatalog({
 											/>
 											<span className="flex-1 truncate">{opt.label}</span>
 											{opt.count !== undefined && (
-												<span className="text-[10px] text-white/40 font-mono">({opt.count})</span>
+												<span className="text-[10px] text-white/40 font-mono">
+													({opt.count})
+												</span>
 											)}
 										</label>
 									);
@@ -277,8 +302,12 @@ export function ProductCatalog({
 					{filteredProducts.length === 0 ? (
 						<div className="flex flex-col h-64 items-center justify-center text-white/60">
 							<p className="text-3xl">🔍</p>
-							<p className="mt-2 text-sm font-semibold">No se encontraron productos</p>
-							<p className="text-xs text-white/40 mt-1">Prueba quitando filtros o cambiando la búsqueda.</p>
+							<p className="mt-2 text-sm font-semibold">
+								No se encontraron productos
+							</p>
+							<p className="text-xs text-white/40 mt-1">
+								Prueba quitando filtros o cambiando la búsqueda.
+							</p>
 						</div>
 					) : (
 						<div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
@@ -319,25 +348,35 @@ export function ProductCatalog({
 
 						{/* Price Range */}
 						<div className="space-y-2">
-							<span className="text-xs font-bold text-white/70">Rango de precio</span>
+							<span className="text-xs font-bold text-white/70">
+								Rango de precio
+							</span>
 							<div className="flex items-center gap-2">
 								<div className="relative flex-1">
-									<span className="absolute left-2.5 top-1/2 -translate-y-1/2 text-xs text-white/40">$</span>
+									<span className="absolute left-2.5 top-1/2 -translate-y-1/2 text-xs text-white/40">
+										$
+									</span>
 									<input
 										type="number"
 										value={priceRange[0]}
-										onChange={(e) => setPriceRange([Number(e.target.value), priceRange[1]])}
+										onChange={(e) =>
+											setPriceRange([Number(e.target.value), priceRange[1]])
+										}
 										className="caj-input pl-6 py-1.5 text-xs w-full"
 										placeholder="Min"
 									/>
 								</div>
 								<span className="text-white/40 text-xs">—</span>
 								<div className="relative flex-1">
-									<span className="absolute left-2.5 top-1/2 -translate-y-1/2 text-xs text-white/40">$</span>
+									<span className="absolute left-2.5 top-1/2 -translate-y-1/2 text-xs text-white/40">
+										$
+									</span>
 									<input
 										type="number"
 										value={priceRange[1]}
-										onChange={(e) => setPriceRange([priceRange[0], Number(e.target.value)])}
+										onChange={(e) =>
+											setPriceRange([priceRange[0], Number(e.target.value)])
+										}
 										className="caj-input pl-6 py-1.5 text-xs w-full"
 										placeholder="Max"
 									/>
@@ -353,18 +392,26 @@ export function ProductCatalog({
 								</span>
 								<div className="space-y-2.5">
 									{group.options.map((opt) => {
-										const isChecked = selectedFilters[group.id]?.includes(opt.value) || false;
+										const isChecked =
+											selectedFilters[group.id]?.includes(opt.value) || false;
 										return (
-											<label key={opt.value} className="flex items-center gap-2 text-xs text-white/80 cursor-pointer select-none">
+											<label
+												key={opt.value}
+												className="flex items-center gap-2 text-xs text-white/80 cursor-pointer select-none"
+											>
 												<input
 													type="checkbox"
 													checked={isChecked}
-													onChange={() => handleFilterToggle(group.id, opt.value)}
+													onChange={() =>
+														handleFilterToggle(group.id, opt.value)
+													}
 													className="rounded border-white/20 bg-white/5 text-caj-primary focus:ring-caj-primary h-4 w-4"
 												/>
 												<span className="flex-1 truncate">{opt.label}</span>
 												{opt.count !== undefined && (
-													<span className="text-[10px] text-white/40 font-mono">({opt.count})</span>
+													<span className="text-[10px] text-white/40 font-mono">
+														({opt.count})
+													</span>
 												)}
 											</label>
 										);

@@ -20,6 +20,8 @@ export { Dialog } from "./atoms/Dialog";
 export type { GlassPanelProps } from "./atoms/GlassPanel";
 // ─── Atoms ───────────────────────────────────────────────────────────────────
 export { GlassPanel } from "./atoms/GlassPanel";
+export type { IconName, IconProps, IconSize } from "./atoms/Icon";
+export { Icon } from "./atoms/Icon";
 export type {
 	PaymentMethodGroupProps,
 	PaymentMethodProps,
@@ -57,34 +59,7 @@ export { TableCard } from "./atoms/TableCard";
 export type { ThemeVisualizerProps } from "./atoms/ThemeVisualizer";
 //
 export { ThemeVisualizer } from "./atoms/ThemeVisualizer";
-export type { Category, CategoryFilterProps } from "./molecules/CategoryFilter";
-//
-// // ─── Molecules ───────────────────────────────────────────────────────────────
-export { CategoryFilter } from "./molecules/CategoryFilter";
-export type { KPICardProps, KPITrend } from "./molecules/KPICard";
-export { KPICard } from "./molecules/KPICard";
-export type {
-	OrderStatusProps,
-	OrderStatusStepperProps,
-	OrderStatusValue,
-} from "./molecules/OrderStatus";
-export { OrderStatus, OrderStatusStepper } from "./molecules/OrderStatus";
-export type { QuantityControlProps } from "./molecules/QuantityControl";
-export { QuantityControl } from "./molecules/QuantityControl";
-export type { TablePaginationProps } from "./molecules/TablePagination";
-export { TablePagination } from "./molecules/TablePagination";
-export type { TableSearchProps } from "./molecules/TableSearch";
-export { TableSearch } from "./molecules/TableSearch";
-export type { Column, DataTableProps, SortDir } from "./organisms/DataTable";
-export { ProductCard } from "./molecules/ProductCard";
-export type { ProductCardProps, Product } from "./molecules/ProductCard";
-
-export { CartItem } from "./molecules/CartItem";
-export type { CartItemProps, CartItemData } from "./molecules/CartItem";
-
-export { CartSummary } from "./molecules/CartSummary";
-export type { CartSummaryProps } from "./molecules/CartSummary";
-
+export type { AlphaSearchProps } from "./molecules/AlphaSearch";
 // export { CashCalculator } from './molecules/CashCalculator'
 // export type { CashCalculatorProps } from './molecules/CashCalculator'
 //
@@ -98,7 +73,31 @@ export type { CartSummaryProps } from "./molecules/CartSummary";
 // export type { DiscountInputProps, DiscountType } from './molecules/DiscountInput'
 //
 export { AlphaSearch } from "./molecules/AlphaSearch";
-export type { AlphaSearchProps } from "./molecules/AlphaSearch";
+export type { CartItemData, CartItemProps } from "./molecules/CartItem";
+export { CartItem } from "./molecules/CartItem";
+export type { CartSummaryProps } from "./molecules/CartSummary";
+export { CartSummary } from "./molecules/CartSummary";
+export type { Category, CategoryFilterProps } from "./molecules/CategoryFilter";
+//
+// // ─── Molecules ───────────────────────────────────────────────────────────────
+export { CategoryFilter } from "./molecules/CategoryFilter";
+export type { KPICardProps, KPITrend } from "./molecules/KPICard";
+export { KPICard } from "./molecules/KPICard";
+export type {
+	OrderStatusProps,
+	OrderStatusStepperProps,
+	OrderStatusValue,
+} from "./molecules/OrderStatus";
+export { OrderStatus, OrderStatusStepper } from "./molecules/OrderStatus";
+export type { Product, ProductCardProps } from "./molecules/ProductCard";
+export { ProductCard } from "./molecules/ProductCard";
+export type { QuantityControlProps } from "./molecules/QuantityControl";
+export { QuantityControl } from "./molecules/QuantityControl";
+export type { TablePaginationProps } from "./molecules/TablePagination";
+export { TablePagination } from "./molecules/TablePagination";
+export type { TableSearchProps } from "./molecules/TableSearch";
+export { TableSearch } from "./molecules/TableSearch";
+export type { Column, DataTableProps, SortDir } from "./organisms/DataTable";
 //
 // export { TableMap } from './molecules/TableMap'
 // export type { TableMapProps, TableMapSection } from './molecules/TableMap'
@@ -108,6 +107,18 @@ export type { AlphaSearchProps } from "./molecules/AlphaSearch";
 // export type { ReceiptPreviewProps, ReceiptData } from './organisms/ReceiptPreview'
 //
 export { DataTable } from "./organisms/DataTable";
+export type {
+	CustomizerItemOption,
+	CustomizerModifierGroup,
+	ItemCustomizerProps,
+	ItemSizeOption,
+} from "./organisms/ItemCustomizer";
+export { ItemCustomizer } from "./organisms/ItemCustomizer";
+export type {
+	KioskPaymentOption,
+	KioskPaymentProps,
+	KioskPaymentStatus,
+} from "./organisms/KioskPayment";
 //
 // export { ShiftPanel } from './organisms/ShiftPanel'
 // export type { ShiftPanelProps, ShiftSummary, ShiftStatus } from './organisms/ShiftPanel'
@@ -120,31 +131,16 @@ export { DataTable } from "./organisms/DataTable";
 //
 export { KioskPayment } from "./organisms/KioskPayment";
 export type {
-	KioskPaymentProps,
-	KioskPaymentOption,
-	KioskPaymentStatus,
-} from "./organisms/KioskPayment";
-
-export { ItemCustomizer } from "./organisms/ItemCustomizer";
-export type {
-	ItemCustomizerProps,
-	ItemSizeOption,
-	CustomizerModifierGroup,
-	CustomizerItemOption,
-} from "./organisms/ItemCustomizer";
-
-// New E-commerce components
-export { ProductCatalog } from "./organisms/ProductCatalog";
-export type {
-	ProductCatalogProps,
-	CatalogFilterGroup,
-} from "./organisms/ProductCatalog";
-
-export { OnlineCheckout } from "./organisms/OnlineCheckout";
-export type {
 	OnlineCheckoutProps,
 	ShippingMethodOption,
 } from "./organisms/OnlineCheckout";
+export { OnlineCheckout } from "./organisms/OnlineCheckout";
+export type {
+	CatalogFilterGroup,
+	ProductCatalogProps,
+} from "./organisms/ProductCatalog";
+// New E-commerce components
+export { ProductCatalog } from "./organisms/ProductCatalog";
 //
 // export { RegisterLocked } from './organisms/RegisterLocked'
 // export type { RegisterLockedProps, ShiftSummaryData } from './organisms/RegisterLocked'

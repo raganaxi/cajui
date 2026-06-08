@@ -46,8 +46,12 @@ export function ProductCard({
 	className,
 	lowStockThreshold = 5,
 }: ProductCardProps) {
-	const [activeVariant, setActiveVariant] = useState<ProductVariant | undefined>(
-		product.variants && product.variants.length > 0 ? product.variants[0] : undefined
+	const [activeVariant, setActiveVariant] = useState<
+		ProductVariant | undefined
+	>(
+		product.variants && product.variants.length > 0
+			? product.variants[0]
+			: undefined,
 	);
 
 	const isOutOfStock = product.stock !== undefined && product.stock <= 0;
@@ -55,7 +59,8 @@ export function ProductCard({
 	const displayName = activeVariant
 		? `${product.name} - ${activeVariant.name}`
 		: product.name;
-	const displayPrice = activeVariant?.price !== undefined ? activeVariant.price : product.price;
+	const displayPrice =
+		activeVariant?.price !== undefined ? activeVariant.price : product.price;
 	const displayImage = activeVariant?.image || product.image;
 
 	if (layout === "list") {
@@ -104,11 +109,13 @@ export function ProductCard({
 									"h-6 w-6 rounded-full border transition-all duration-150 focus:outline-none",
 									activeVariant?.id === v.id
 										? "border-white ring-2 ring-caj-primary scale-110"
-										: "border-white/20 hover:border-white/50 hover:scale-105"
+										: "border-white/20 hover:border-white/50 hover:scale-105",
 								)}
 								style={{
 									backgroundColor: v.colorHex || "#333",
-									backgroundImage: v.textureUrl ? `url(${v.textureUrl})` : undefined,
+									backgroundImage: v.textureUrl
+										? `url(${v.textureUrl})`
+										: undefined,
 									backgroundSize: "cover",
 								}}
 								title={v.name}
@@ -176,11 +183,13 @@ export function ProductCard({
 										"h-5 w-5 rounded-full border transition-all duration-150 focus:outline-none",
 										activeVariant?.id === v.id
 											? "border-white ring-1 ring-caj-primary scale-110"
-											: "border-white/20 hover:border-white/50 hover:scale-105"
+											: "border-white/20 hover:border-white/50 hover:scale-105",
 									)}
 									style={{
 										backgroundColor: v.colorHex || "#333",
-										backgroundImage: v.textureUrl ? `url(${v.textureUrl})` : undefined,
+										backgroundImage: v.textureUrl
+											? `url(${v.textureUrl})`
+											: undefined,
 										backgroundSize: "cover",
 									}}
 									title={v.name}

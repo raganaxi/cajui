@@ -1,10 +1,13 @@
 import { useState } from "react";
+import { Icon } from "@/atoms/Icon";
 import { cn, formatCurrency } from "@/lib/utils";
 import { CartItem } from "@/molecules/CartItem/CartItem";
 import type { OnlineCheckoutProps, ShippingMethodOption } from "./interface";
 
 // Simple card brand detector
-function getCardBrand(number: string): "visa" | "mastercard" | "amex" | "unknown" {
+function getCardBrand(
+	number: string,
+): "visa" | "mastercard" | "amex" | "unknown" {
 	const cleanNumber = number.replace(/\D/g, "");
 	if (cleanNumber.startsWith("4")) return "visa";
 	if (/^(5[1-5]|2[2-7])/.test(cleanNumber)) return "mastercard";
@@ -60,9 +63,10 @@ export function OnlineCheckout({
 	const [zipCode, setZipCode] = useState("");
 
 	// Shipping selection
-	const [selectedShipping, setSelectedShipping] = useState<ShippingMethodOption | null>(
-		shippingMethods.length > 0 ? shippingMethods[0] : null
-	);
+	const [selectedShipping, setSelectedShipping] =
+		useState<ShippingMethodOption | null>(
+			shippingMethods.length > 0 ? shippingMethods[0] : null,
+		);
 
 	// Mock Stripe card states
 	const [cardNumber, setCardNumber] = useState("");
@@ -137,7 +141,10 @@ export function OnlineCheckout({
 	return (
 		<form
 			onSubmit={handleSubmit}
-			className={cn("grid grid-cols-1 lg:grid-cols-12 gap-6 w-full text-white max-w-6xl mx-auto", className)}
+			className={cn(
+				"grid grid-cols-1 lg:grid-cols-12 gap-6 w-full text-white max-w-6xl mx-auto",
+				className,
+			)}
 		>
 			{/* === LEFT COLUMN: Checkout details (Forms) === */}
 			<div className="lg:col-span-7 flex flex-col gap-5">
@@ -149,7 +156,12 @@ export function OnlineCheckout({
 
 					<div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
 						<div className="space-y-1">
-							<label htmlFor="email" className="text-xs font-semibold text-white/75">Correo electrónico</label>
+							<label
+								htmlFor="email"
+								className="text-xs font-semibold text-white/75"
+							>
+								Correo electrónico
+							</label>
 							<input
 								id="email"
 								type="email"
@@ -161,7 +173,12 @@ export function OnlineCheckout({
 							/>
 						</div>
 						<div className="space-y-1">
-							<label htmlFor="phone" className="text-xs font-semibold text-white/75">Teléfono de contacto</label>
+							<label
+								htmlFor="phone"
+								className="text-xs font-semibold text-white/75"
+							>
+								Teléfono de contacto
+							</label>
 							<input
 								id="phone"
 								type="tel"
@@ -173,7 +190,12 @@ export function OnlineCheckout({
 							/>
 						</div>
 						<div className="sm:col-span-2 space-y-1">
-							<label htmlFor="name" className="text-xs font-semibold text-white/75">Nombre completo de quien recibe</label>
+							<label
+								htmlFor="name"
+								className="text-xs font-semibold text-white/75"
+							>
+								Nombre completo de quien recibe
+							</label>
 							<input
 								id="name"
 								type="text"
@@ -185,7 +207,12 @@ export function OnlineCheckout({
 							/>
 						</div>
 						<div className="sm:col-span-2 space-y-1">
-							<label htmlFor="address" className="text-xs font-semibold text-white/75">Dirección (Calle, Número y Colonia)</label>
+							<label
+								htmlFor="address"
+								className="text-xs font-semibold text-white/75"
+							>
+								Dirección (Calle, Número y Colonia)
+							</label>
 							<input
 								id="address"
 								type="text"
@@ -197,7 +224,12 @@ export function OnlineCheckout({
 							/>
 						</div>
 						<div className="space-y-1">
-							<label htmlFor="city" className="text-xs font-semibold text-white/75">Ciudad</label>
+							<label
+								htmlFor="city"
+								className="text-xs font-semibold text-white/75"
+							>
+								Ciudad
+							</label>
 							<input
 								id="city"
 								type="text"
@@ -210,7 +242,12 @@ export function OnlineCheckout({
 						</div>
 						<div className="grid grid-cols-2 gap-2">
 							<div className="space-y-1">
-								<label htmlFor="state" className="text-xs font-semibold text-white/75">Estado</label>
+								<label
+									htmlFor="state"
+									className="text-xs font-semibold text-white/75"
+								>
+									Estado
+								</label>
 								<input
 									id="state"
 									type="text"
@@ -222,7 +259,12 @@ export function OnlineCheckout({
 								/>
 							</div>
 							<div className="space-y-1">
-								<label htmlFor="zipCode" className="text-xs font-semibold text-white/75">C.P.</label>
+								<label
+									htmlFor="zipCode"
+									className="text-xs font-semibold text-white/75"
+								>
+									C.P.
+								</label>
 								<input
 									id="zipCode"
 									type="text"
@@ -255,24 +297,36 @@ export function OnlineCheckout({
 											"flex items-center justify-between p-3.5 rounded-xl border text-left transition-all duration-150 active:scale-[0.99]",
 											isSelected
 												? "border-caj-primary/60 bg-caj-primary/10 [box-shadow:0_0_15px_rgba(var(--caj-primary-hover),0.1)]"
-												: "border-white/10 bg-white/[0.03] hover:border-white/20 hover:bg-white/[0.06]"
+												: "border-white/10 bg-white/[0.03] hover:border-white/20 hover:bg-white/[0.06]",
 										)}
 									>
 										<div className="flex items-center gap-3">
-											<div className={cn(
-												"h-4 w-4 rounded-full border flex items-center justify-center transition-colors",
-												isSelected ? "border-caj-primary bg-caj-primary" : "border-white/30"
-											)}>
-												{isSelected && <div className="h-1.5 w-1.5 rounded-full bg-white" />}
+											<div
+												className={cn(
+													"h-4 w-4 rounded-full border flex items-center justify-center transition-colors",
+													isSelected
+														? "border-caj-primary bg-caj-primary"
+														: "border-white/30",
+												)}
+											>
+												{isSelected && (
+													<div className="h-1.5 w-1.5 rounded-full bg-white" />
+												)}
 											</div>
 											<div>
-												<span className="font-semibold text-sm block">{method.label}</span>
+												<span className="font-semibold text-sm block">
+													{method.label}
+												</span>
 												{method.duration && (
-													<span className="text-xs text-white/50">{method.duration}</span>
+													<span className="text-xs text-white/50">
+														{method.duration}
+													</span>
 												)}
 											</div>
 										</div>
-										<span className="text-sm font-bold">{method.price === 0 ? "Gratis" : fmt(method.price)}</span>
+										<span className="text-sm font-bold">
+											{method.price === 0 ? "Gratis" : fmt(method.price)}
+										</span>
 									</button>
 								);
 							})}
@@ -287,7 +341,9 @@ export function OnlineCheckout({
 					</h3>
 
 					<div className="space-y-3">
-						<label className="text-xs font-semibold text-white/75">Tarjeta de Crédito o Débito</label>
+						<label className="text-xs font-semibold text-white/75">
+							Tarjeta de Crédito o Débito
+						</label>
 
 						{/* Mocked Stripe Card input */}
 						<div className="caj-glass flex flex-col sm:flex-row border border-white/15 rounded-xl overflow-hidden focus-within:ring-2 focus-within:ring-caj-primary/50 focus-within:border-caj-primary/60 transition-all">
@@ -295,16 +351,24 @@ export function OnlineCheckout({
 							<div className="flex flex-1 items-center px-3 gap-2 border-b sm:border-b-0 sm:border-r border-white/10">
 								{/* Card Brand icon indicator */}
 								<span className="flex-shrink-0 w-8 h-5 flex items-center justify-center bg-white/5 rounded border border-white/10 font-bold text-[10px] text-white/50 uppercase tracking-tight">
-									{cardBrand === "visa" && <span className="text-blue-400 font-extrabold">VISA</span>}
-									{cardBrand === "mastercard" && <span className="text-orange-400 font-extrabold">MC</span>}
-									{cardBrand === "amex" && <span className="text-green-400 font-extrabold">AMEX</span>}
+									{cardBrand === "visa" && (
+										<span className="text-blue-400 font-extrabold">VISA</span>
+									)}
+									{cardBrand === "mastercard" && (
+										<span className="text-orange-400 font-extrabold">MC</span>
+									)}
+									{cardBrand === "amex" && (
+										<span className="text-green-400 font-extrabold">AMEX</span>
+									)}
 									{cardBrand === "unknown" && <span>Card</span>}
 								</span>
 								<input
 									type="text"
 									required
 									value={cardNumber}
-									onChange={(e) => setCardNumber(formatCardNumber(e.target.value))}
+									onChange={(e) =>
+										setCardNumber(formatCardNumber(e.target.value))
+									}
 									placeholder="Número de tarjeta"
 									className="bg-transparent border-0 focus:ring-0 focus:outline-none w-full py-2.5 text-sm font-mono placeholder:text-white/30 text-white"
 									maxLength={19}
@@ -326,7 +390,9 @@ export function OnlineCheckout({
 									type="password"
 									required
 									value={cardCvc}
-									onChange={(e) => setCardCvc(e.target.value.replace(/\D/g, ""))}
+									onChange={(e) =>
+										setCardCvc(e.target.value.replace(/\D/g, ""))
+									}
 									placeholder="CVC"
 									className="bg-transparent border-0 focus:ring-0 focus:outline-none w-16 text-center py-2.5 text-sm font-mono placeholder:text-white/30 text-white"
 									maxLength={4}
@@ -335,7 +401,9 @@ export function OnlineCheckout({
 									type="text"
 									required
 									value={cardZip}
-									onChange={(e) => setCardZip(e.target.value.replace(/\D/g, ""))}
+									onChange={(e) =>
+										setCardZip(e.target.value.replace(/\D/g, ""))
+									}
 									placeholder="C.P."
 									className="bg-transparent border-0 focus:ring-0 focus:outline-none flex-1 sm:w-20 text-center py-2.5 text-sm font-mono placeholder:text-white/30 text-white"
 									maxLength={5}
@@ -373,13 +441,17 @@ export function OnlineCheckout({
 						</div>
 						{discount > 0 && (
 							<div className="flex justify-between text-red-300">
-								<span>Descuento {discountType === "percent" ? `(${discount}%)` : ""}</span>
+								<span>
+									Descuento {discountType === "percent" ? `(${discount}%)` : ""}
+								</span>
 								<span className="font-mono">-{fmt(discountAmount)}</span>
 							</div>
 						)}
 						<div className="flex justify-between text-white/60">
 							<span>Envío</span>
-							<span className="font-mono">{shippingCost === 0 ? "Gratis" : fmt(shippingCost)}</span>
+							<span className="font-mono">
+								{shippingCost === 0 ? "Gratis" : fmt(shippingCost)}
+							</span>
 						</div>
 						<div className="flex justify-between text-white/60">
 							<span>IVA ({taxRate}%)</span>
@@ -406,10 +478,11 @@ export function OnlineCheckout({
 						>
 							{isSubmitting ? (
 								<div className="flex items-center gap-2">
-									<svg className="animate-spin h-4 w-4 text-white" fill="none" viewBox="0 0 24 24">
-										<circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-										<path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
-									</svg>
+									<Icon
+										name="loading"
+										size="sm"
+										className="animate-spin text-white"
+									/>
 									Procesando Pago...
 								</div>
 							) : (

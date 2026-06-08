@@ -1,6 +1,11 @@
 export type CajuiGradient = "default" | "warm" | "cool" | "midnight" | "none";
 
-export type CajuiTheme = "cajui" | "accessible-light" | "accessible-dark";
+export type CajuiTheme =
+	| "cajui"
+	| "accessible-light"
+	| "accessible-dark"
+	| "amalli-light"
+	| "amalli-dark";
 
 export interface CajuiProviderProps {
 	children: React.ReactNode;

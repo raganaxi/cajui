@@ -126,6 +126,16 @@
 		border: 1px solid var(--caj-glass-border-subtle);
 	}
 
+	/* ── Panel — theme-adaptive elevated surface (glass in cajui, solid in others) ── */
+	.caj-panel {
+		background: var(--caj-glass-bg-strong);
+		backdrop-filter: var(--caj-glass-blur-strong);
+		-webkit-backdrop-filter: var(--caj-glass-blur-strong);
+		border: 1px solid var(--caj-glass-border-strong);
+		box-shadow: var(--caj-glass-shadow-strong), var(--caj-glass-inset-strong);
+		color: rgba(255, 255, 255, 0.9);
+	}
+
 	/* ── Card ── */
 	.caj-card {
 		@apply caj-glass;
@@ -449,6 +459,11 @@
 	.caj-kpi-icon-amber { @apply bg-amber-500/15 text-amber-300; }
 	.caj-kpi-icon-red { @apply bg-red-500/15 text-red-300; }
 	.caj-kpi-icon-purple { @apply bg-purple-500/15 text-purple-300; }
+
+	/* ── Icon ── */
+	.caj-icon {
+		@apply shrink-0 select-none transition-all duration-150;
+	}
 }
 
 /* ─── Accessible Themes — GOV.UK Design System ──────────────────────────── */
@@ -510,6 +525,23 @@
 	box-shadow: none;
 	backdrop-filter: none;
 	-webkit-backdrop-filter: none;
+}
+
+/* Panel — solid surface for accessible themes */
+[data-cajui-theme^="accessible"] .caj-panel {
+	backdrop-filter: none;
+	-webkit-backdrop-filter: none;
+	color: currentColor;
+}
+[data-cajui-theme="accessible-light"] .caj-panel {
+	background: #ffffff;
+	border: 2px solid #0b0c0c;
+	box-shadow: none;
+}
+[data-cajui-theme="accessible-dark"] .caj-panel {
+	background: #1d1d1b;
+	border: 2px solid #ffffff;
+	box-shadow: none;
 }
 
 /* GOV.UK universal focus ring — yellow on black, always visible */
@@ -741,7 +773,9 @@
 }
 
 [data-cajui-theme="accessible-light"] .text-white,
+[data-cajui-theme="accessible-light"] .text-white\/95,
 [data-cajui-theme="accessible-light"] .text-white\/90,
+[data-cajui-theme="accessible-light"] .text-white\/85,
 [data-cajui-theme="accessible-light"] .text-white\/80,
 [data-cajui-theme="accessible-light"] .text-white\/70,
 [data-cajui-theme="accessible-light"] .text-white\/60,
@@ -758,6 +792,13 @@
 [data-cajui-theme="accessible-light"] .border-white\/18 {
 	border-color: #0b0c0c;
 	border-width: 2px;
+}
+[data-cajui-theme="accessible-light"] .caj-dialog-overlay {
+	backdrop-filter: none;
+	-webkit-backdrop-filter: none;
+}
+[data-cajui-theme="accessible-light"] .bg-white\/\[0\.02\] {
+	background-color: transparent;
 }
 
 
@@ -947,7 +988,9 @@
 }
 
 [data-cajui-theme="accessible-dark"] .text-white,
+[data-cajui-theme="accessible-dark"] .text-white\/95,
 [data-cajui-theme="accessible-dark"] .text-white\/90,
+[data-cajui-theme="accessible-dark"] .text-white\/85,
 [data-cajui-theme="accessible-dark"] .text-white\/80,
 [data-cajui-theme="accessible-dark"] .text-white\/70,
 [data-cajui-theme="accessible-dark"] .text-white\/60,
@@ -965,6 +1008,13 @@
 	border-color: #ffffff;
 	border-width: 2px;
 }
+[data-cajui-theme="accessible-dark"] .caj-dialog-overlay {
+	backdrop-filter: none;
+	-webkit-backdrop-filter: none;
+}
+[data-cajui-theme="accessible-dark"] .bg-white\/\[0\.02\] {
+	background-color: transparent;
+}
 
 /* ─── Accessible theme overrides — Dialog ───────────────────────────────── */
 
@@ -975,8 +1025,12 @@
 	background: rgba(0, 0, 0, 0.75);
 }
 
-[data-cajui-theme^="accessible"] .caj-dialog-panel {
+[data-cajui-theme^="accessible"] .caj-dialog-panel,
+[data-cajui-theme^="accessible"] .caj-panel {
 	animation: none;
+}
+
+[data-cajui-theme^="accessible"] .caj-dialog-panel {
 	border-radius: 0;
 }
 
@@ -1439,5 +1493,888 @@
 
 [data-cajui-theme="accessible-dark"] .caj-age-verification-deny-btn:hover {
 	background: rgba(255, 255, 255, 0.08) !important;
+}
+
+/* ─── Amalli Themes — Sólido Moderno ────────────────────────────────────────
+   Paleta:
+     Verde Jade    #2A6B52  · Hueso/Amate   #F2EDE3
+     Penumbra      #162318  · Cenote        #4E8E7E
+   Sin glassmorphism: backdrop-filter none, fondos opacos.
+   Mantiene border-radius e Inter del tema base.
+─────────────────────────────────────────────────────────────────────────── */
+
+/* Shared — remove blur, replace with solid surface + soft shadow */
+[data-cajui-theme^="amalli"] .caj-glass,
+[data-cajui-theme^="amalli"] .caj-glass-strong,
+[data-cajui-theme^="amalli"] .caj-glass-subtle {
+	backdrop-filter: none;
+	-webkit-backdrop-filter: none;
+}
+
+/* Panel — solid elevated surface for Amalli */
+[data-cajui-theme^="amalli"] .caj-panel {
+	backdrop-filter: none;
+	-webkit-backdrop-filter: none;
+	color: currentColor;
+}
+[data-cajui-theme="amalli-light"] .caj-panel {
+	background: #FFFFFF;
+	border: 1px solid rgba(42, 107, 82, 0.15);
+	box-shadow: 0 8px 40px rgba(22, 35, 24, 0.14);
+}
+[data-cajui-theme="amalli-dark"] .caj-panel {
+	background: #1D2F20;
+	border: 1px solid rgba(78, 142, 126, 0.2);
+	box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5);
+}
+
+/* Shared — focus ring: cenote */
+[data-cajui-theme^="amalli"] :focus-visible {
+	outline: 2px solid #4E8E7E;
+	outline-offset: 2px;
+}
+
+/* Shared — buttons: keep radius, softer shadow, keep transition */
+[data-cajui-theme^="amalli"] .caj-btn {
+	box-shadow: 0 1px 3px rgba(22, 35, 24, 0.12);
+}
+[data-cajui-theme^="amalli"] .caj-btn:active {
+	transform: translateY(1px) scale(1);
+	box-shadow: none;
+}
+
+/* ── amalli-light — Orgánico y luminoso ──────────────────────────────────── */
+[data-cajui-theme="amalli-light"] {
+	color: #162318;
+	background: #F2EDE3;
+
+	--caj-primary: 42 107 82;       /* #2A6B52 Verde Jade */
+	--caj-primary-hover: 31 80 64;  /* #1F5040 */
+	--caj-danger: 185 45 30;        /* #B92D1E Arcilla */
+	--caj-warning: 182 100 25;      /* #B66419 Ámbar */
+	--caj-success: 42 107 82;
+	--caj-info: 78 142 126;         /* #4E8E7E Cenote */
+
+	--caj-text: 22 35 24;
+	--caj-text-muted: 100 124 108;
+	--caj-border: 200 195 185;
+
+	--caj-glass-bg: #FFFFFF;
+	--caj-glass-bg-hover: #F5F2EC;
+	--caj-glass-bg-active: #EBE7DE;
+	--caj-glass-border: rgba(42, 107, 82, 0.15);
+	--caj-glass-shadow: 0 2px 12px rgba(22, 35, 24, 0.08);
+	--caj-glass-blur: none;
+	--caj-glass-inset: none;
+	--caj-glass-radius: 16px;
+	--caj-btn-radius: 12px;
+}
+
+[data-cajui-theme="amalli-light"] .caj-glass,
+[data-cajui-theme="amalli-light"] .caj-glass-strong,
+[data-cajui-theme="amalli-light"] .caj-glass-subtle {
+	background: #FFFFFF;
+	border: 1px solid rgba(42, 107, 82, 0.15);
+	box-shadow: 0 2px 12px rgba(22, 35, 24, 0.08);
+}
+
+[data-cajui-theme="amalli-light"] .caj-btn {
+	border: 1px solid transparent;
+}
+[data-cajui-theme="amalli-light"] .caj-btn-default {
+	background: #FFFFFF;
+	color: #162318;
+	border-color: rgba(42, 107, 82, 0.25);
+}
+[data-cajui-theme="amalli-light"] .caj-btn-default:hover {
+	background: #F5F2EC;
+	border-color: rgba(42, 107, 82, 0.4);
+}
+[data-cajui-theme="amalli-light"] .caj-btn-primary {
+	background: #2A6B52;
+	color: #FFFFFF;
+	border-color: #2A6B52;
+	box-shadow: 0 1px 4px rgba(18, 48, 42, 0.35);
+}
+[data-cajui-theme="amalli-light"] .caj-btn-primary:hover {
+	background: #1F5040;
+}
+[data-cajui-theme="amalli-light"] .caj-btn-success {
+	background: #2A6B52;
+	color: #FFFFFF;
+	border-color: #2A6B52;
+	box-shadow: 0 1px 4px rgba(18, 48, 42, 0.35);
+}
+[data-cajui-theme="amalli-light"] .caj-btn-success:hover {
+	background: #1F5040;
+}
+[data-cajui-theme="amalli-light"] .caj-btn-danger {
+	background: #B92D1E;
+	color: #FFFFFF;
+	border-color: #B92D1E;
+	box-shadow: 0 1px 4px rgba(92, 22, 15, 0.35);
+}
+[data-cajui-theme="amalli-light"] .caj-btn-danger:hover {
+	background: #9A2519;
+}
+[data-cajui-theme="amalli-light"] .caj-btn-warning {
+	background: #B66419;
+	color: #FFFFFF;
+	border-color: #B66419;
+	box-shadow: 0 1px 4px rgba(92, 51, 9, 0.35);
+}
+[data-cajui-theme="amalli-light"] .caj-btn-warning:hover {
+	background: #9A5516;
+}
+[data-cajui-theme="amalli-light"] .caj-btn-info {
+	background: #4E8E7E;
+	color: #FFFFFF;
+	border-color: #4E8E7E;
+	box-shadow: 0 1px 4px rgba(37, 67, 61, 0.35);
+}
+[data-cajui-theme="amalli-light"] .caj-btn-info:hover {
+	background: #3D7065;
+}
+[data-cajui-theme="amalli-light"] .caj-btn-ghost {
+	background: transparent;
+	color: #162318;
+	border: 1px solid rgba(22, 35, 24, 0.35);
+	box-shadow: none;
+}
+[data-cajui-theme="amalli-light"] .caj-btn-ghost:hover {
+	background: rgba(42, 107, 82, 0.06);
+	border-color: rgba(42, 107, 82, 0.4);
+}
+[data-cajui-theme="amalli-light"] .caj-btn-chip {
+	background: #FFFFFF;
+	color: #162318;
+	border: 1px solid rgba(42, 107, 82, 0.25);
+	box-shadow: none;
+}
+[data-cajui-theme="amalli-light"] .caj-btn-chip:hover {
+	background: #F5F2EC;
+}
+[data-cajui-theme="amalli-light"] .caj-btn-chip.caj-btn--active {
+	background: #2A6B52;
+	color: #FFFFFF;
+	border-color: #2A6B52;
+	box-shadow: 0 1px 4px rgba(18, 48, 42, 0.3);
+}
+[data-cajui-theme="amalli-light"] .caj-btn-chip.caj-btn--active:hover {
+	background: #1F5040;
+}
+[data-cajui-theme="amalli-light"] .caj-btn-tab {
+	color: #647C6C;
+	border-bottom: 2px solid transparent;
+	padding: 10px 12px;
+}
+[data-cajui-theme="amalli-light"] .caj-btn-tab:hover {
+	color: #162318;
+}
+[data-cajui-theme="amalli-light"] .caj-btn-tab.caj-btn--active {
+	color: #2A6B52;
+	border-bottom-color: #2A6B52;
+	font-weight: 600;
+}
+[data-cajui-theme="amalli-light"] .caj-btn-dashed {
+	border: 1px dashed rgba(42, 107, 82, 0.4);
+	color: #2A6B52;
+	background: transparent;
+	box-shadow: none;
+}
+[data-cajui-theme="amalli-light"] .caj-btn-dashed:hover {
+	background: rgba(42, 107, 82, 0.06);
+}
+[data-cajui-theme="amalli-light"] .caj-btn-default.caj-btn--active {
+	background: rgba(42, 107, 82, 0.08);
+	border-color: rgba(42, 107, 82, 0.4);
+	color: #2A6B52;
+}
+
+[data-cajui-theme="amalli-light"] .caj-input {
+	background: #FFFFFF;
+	border: 1px solid rgba(42, 107, 82, 0.3);
+	color: #162318;
+	box-shadow: none;
+}
+[data-cajui-theme="amalli-light"] .caj-input::placeholder {
+	color: #647C6C;
+}
+[data-cajui-theme="amalli-light"] .caj-input:focus {
+	outline: 2px solid #4E8E7E;
+	outline-offset: 0;
+	box-shadow: none;
+	border-color: #4E8E7E;
+}
+
+[data-cajui-theme="amalli-light"] .caj-numkey {
+	background: #FFFFFF;
+	border: 1px solid rgba(42, 107, 82, 0.25);
+	color: #162318;
+	box-shadow: 0 1px 3px rgba(22, 35, 24, 0.1);
+}
+[data-cajui-theme="amalli-light"] .caj-numkey:hover {
+	background: #F5F2EC;
+}
+[data-cajui-theme="amalli-light"] .caj-numkey-action {
+	background: #F2EDE3;
+	color: #162318;
+	border: 1px solid rgba(42, 107, 82, 0.25);
+	box-shadow: 0 1px 3px rgba(22, 35, 24, 0.1);
+}
+[data-cajui-theme="amalli-light"] .caj-numkey-action:hover {
+	background: #EBE7DE;
+}
+[data-cajui-theme="amalli-light"] .caj-numkey-enter {
+	background: #2A6B52;
+	color: #FFFFFF;
+	border: 1px solid #2A6B52;
+	box-shadow: 0 1px 4px rgba(18, 48, 42, 0.35);
+}
+[data-cajui-theme="amalli-light"] .caj-numkey-enter:hover {
+	background: #1F5040;
+}
+
+[data-cajui-theme="amalli-light"] .text-white { color: #162318; }
+[data-cajui-theme="amalli-light"] .text-white\/95 { color: rgba(22, 35, 24, 0.95); }
+[data-cajui-theme="amalli-light"] .text-white\/90 { color: rgba(22, 35, 24, 0.90); }
+[data-cajui-theme="amalli-light"] .text-white\/85 { color: rgba(22, 35, 24, 0.85); }
+[data-cajui-theme="amalli-light"] .text-white\/80 { color: rgba(22, 35, 24, 0.80); }
+[data-cajui-theme="amalli-light"] .text-white\/70 { color: rgba(22, 35, 24, 0.70); }
+[data-cajui-theme="amalli-light"] .text-white\/60 { color: rgba(22, 35, 24, 0.60); }
+[data-cajui-theme="amalli-light"] .text-white\/50 { color: rgba(22, 35, 24, 0.50); }
+[data-cajui-theme="amalli-light"] .text-white\/40 { color: rgba(22, 35, 24, 0.40); }
+[data-cajui-theme="amalli-light"] .text-white\/30 { color: rgba(22, 35, 24, 0.30); }
+[data-cajui-theme="amalli-light"] .text-white\/20 { color: rgba(22, 35, 24, 0.20); }
+[data-cajui-theme="amalli-light"] .border-white\/10,
+[data-cajui-theme="amalli-light"] .border-white\/20,
+[data-cajui-theme="amalli-light"] .border-white\/30,
+[data-cajui-theme="amalli-light"] .border-white\/5,
+[data-cajui-theme="amalli-light"] .border-white\/18 {
+	border-color: rgba(42, 107, 82, 0.2);
+	border-width: 1px;
+}
+[data-cajui-theme="amalli-light"] .caj-dialog-overlay {
+	backdrop-filter: none;
+	-webkit-backdrop-filter: none;
+	background: rgba(22, 35, 24, 0.55);
+}
+[data-cajui-theme="amalli-light"] .bg-white\/\[0\.02\] {
+	background-color: rgba(242, 237, 227, 0.5);
+}
+
+
+/* ── amalli-dark — Bosque profundo ───────────────────────────────────────── */
+[data-cajui-theme="amalli-dark"] {
+	color: #F2EDE3;
+	background: #162318;
+
+	--caj-primary: 42 107 82;        /* #2A6B52 Verde Jade */
+	--caj-primary-hover: 52 130 100; /* #348264 */
+	--caj-danger: 224 90 72;         /* #E05A48 */
+	--caj-warning: 212 136 74;       /* #D4884A */
+	--caj-success: 42 107 82;
+	--caj-info: 78 142 126;          /* #4E8E7E Cenote */
+
+	--caj-text: 242 237 227;
+	--caj-text-muted: 150 175 170;
+	--caj-border: 52 75 58;
+
+	--caj-glass-bg: #1D2F20;
+	--caj-glass-bg-hover: #243828;
+	--caj-glass-bg-active: #2D4532;
+	--caj-glass-border: rgba(78, 142, 126, 0.2);
+	--caj-glass-shadow: 0 2px 16px rgba(0, 0, 0, 0.35);
+	--caj-glass-blur: none;
+	--caj-glass-inset: none;
+	--caj-glass-radius: 16px;
+	--caj-btn-radius: 12px;
+}
+
+[data-cajui-theme="amalli-dark"] :focus-visible {
+	outline-color: #F2EDE3;
+}
+
+[data-cajui-theme="amalli-dark"] .caj-glass,
+[data-cajui-theme="amalli-dark"] .caj-glass-strong,
+[data-cajui-theme="amalli-dark"] .caj-glass-subtle {
+	background: #1D2F20;
+	border: 1px solid rgba(78, 142, 126, 0.2);
+	box-shadow: 0 2px 16px rgba(0, 0, 0, 0.35);
+}
+
+[data-cajui-theme="amalli-dark"] .caj-btn {
+	border: 1px solid transparent;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+[data-cajui-theme="amalli-dark"] .caj-btn-default {
+	background: #1D2F20;
+	color: #F2EDE3;
+	border-color: rgba(78, 142, 126, 0.25);
+}
+[data-cajui-theme="amalli-dark"] .caj-btn-default:hover {
+	background: #243828;
+	border-color: rgba(78, 142, 126, 0.4);
+}
+[data-cajui-theme="amalli-dark"] .caj-btn-primary {
+	background: #2A6B52;
+	color: #F2EDE3;
+	border-color: #2A6B52;
+	box-shadow: 0 1px 6px rgba(0, 0, 0, 0.4);
+}
+[data-cajui-theme="amalli-dark"] .caj-btn-primary:hover {
+	background: #348264;
+}
+[data-cajui-theme="amalli-dark"] .caj-btn-success {
+	background: #2A6B52;
+	color: #F2EDE3;
+	border-color: #2A6B52;
+	box-shadow: 0 1px 6px rgba(0, 0, 0, 0.4);
+}
+[data-cajui-theme="amalli-dark"] .caj-btn-success:hover {
+	background: #348264;
+}
+[data-cajui-theme="amalli-dark"] .caj-btn-danger {
+	background: #E05A48;
+	color: #F2EDE3;
+	border-color: #E05A48;
+	box-shadow: 0 1px 6px rgba(0, 0, 0, 0.4);
+}
+[data-cajui-theme="amalli-dark"] .caj-btn-danger:hover {
+	background: #C94D3D;
+}
+[data-cajui-theme="amalli-dark"] .caj-btn-warning {
+	background: #D4884A;
+	color: #162318;
+	border-color: #D4884A;
+	box-shadow: 0 1px 6px rgba(0, 0, 0, 0.4);
+}
+[data-cajui-theme="amalli-dark"] .caj-btn-warning:hover {
+	background: #BC7840;
+}
+[data-cajui-theme="amalli-dark"] .caj-btn-info {
+	background: #4E8E7E;
+	color: #F2EDE3;
+	border-color: #4E8E7E;
+	box-shadow: 0 1px 6px rgba(0, 0, 0, 0.4);
+}
+[data-cajui-theme="amalli-dark"] .caj-btn-info:hover {
+	background: #60A897;
+}
+[data-cajui-theme="amalli-dark"] .caj-btn-ghost {
+	background: transparent;
+	color: #F2EDE3;
+	border: 1px solid rgba(242, 237, 227, 0.3);
+	box-shadow: none;
+}
+[data-cajui-theme="amalli-dark"] .caj-btn-ghost:hover {
+	background: rgba(78, 142, 126, 0.12);
+	border-color: rgba(78, 142, 126, 0.4);
+}
+[data-cajui-theme="amalli-dark"] .caj-btn-chip {
+	background: #1D2F20;
+	color: #F2EDE3;
+	border: 1px solid rgba(78, 142, 126, 0.25);
+	box-shadow: none;
+}
+[data-cajui-theme="amalli-dark"] .caj-btn-chip:hover {
+	background: #243828;
+}
+[data-cajui-theme="amalli-dark"] .caj-btn-chip.caj-btn--active {
+	background: #2A6B52;
+	color: #F2EDE3;
+	border-color: #2A6B52;
+	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
+}
+[data-cajui-theme="amalli-dark"] .caj-btn-chip.caj-btn--active:hover {
+	background: #348264;
+}
+[data-cajui-theme="amalli-dark"] .caj-btn-tab {
+	color: #96AFAA;
+	border-bottom: 2px solid transparent;
+	padding: 10px 12px;
+}
+[data-cajui-theme="amalli-dark"] .caj-btn-tab:hover {
+	color: #F2EDE3;
+}
+[data-cajui-theme="amalli-dark"] .caj-btn-tab.caj-btn--active {
+	color: #4E8E7E;
+	border-bottom-color: #4E8E7E;
+	font-weight: 600;
+}
+[data-cajui-theme="amalli-dark"] .caj-btn-dashed {
+	border: 1px dashed rgba(78, 142, 126, 0.4);
+	color: #4E8E7E;
+	background: transparent;
+	box-shadow: none;
+}
+[data-cajui-theme="amalli-dark"] .caj-btn-dashed:hover {
+	background: rgba(78, 142, 126, 0.1);
+}
+[data-cajui-theme="amalli-dark"] .caj-btn-default.caj-btn--active {
+	background: rgba(42, 107, 82, 0.2);
+	border-color: rgba(42, 107, 82, 0.5);
+	color: #4E8E7E;
+}
+
+[data-cajui-theme="amalli-dark"] .caj-input {
+	background: #1D2F20;
+	border: 1px solid rgba(78, 142, 126, 0.3);
+	color: #F2EDE3;
+	box-shadow: none;
+}
+[data-cajui-theme="amalli-dark"] .caj-input::placeholder {
+	color: #96AFAA;
+}
+[data-cajui-theme="amalli-dark"] .caj-input:focus {
+	outline: 2px solid #4E8E7E;
+	outline-offset: 0;
+	box-shadow: none;
+	border-color: #4E8E7E;
+}
+
+[data-cajui-theme="amalli-dark"] .caj-numkey {
+	background: #1D2F20;
+	border: 1px solid rgba(78, 142, 126, 0.25);
+	color: #F2EDE3;
+	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+}
+[data-cajui-theme="amalli-dark"] .caj-numkey:hover {
+	background: #243828;
+}
+[data-cajui-theme="amalli-dark"] .caj-numkey-action {
+	background: #243828;
+	color: #F2EDE3;
+	border: 1px solid rgba(78, 142, 126, 0.25);
+	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+}
+[data-cajui-theme="amalli-dark"] .caj-numkey-action:hover {
+	background: #2D4532;
+}
+[data-cajui-theme="amalli-dark"] .caj-numkey-enter {
+	background: #2A6B52;
+	color: #F2EDE3;
+	border: 1px solid #2A6B52;
+	box-shadow: 0 1px 6px rgba(0, 0, 0, 0.4);
+}
+[data-cajui-theme="amalli-dark"] .caj-numkey-enter:hover {
+	background: #348264;
+}
+
+[data-cajui-theme="amalli-dark"] .text-white { color: #F2EDE3; }
+[data-cajui-theme="amalli-dark"] .text-white\/95 { color: rgba(242, 237, 227, 0.95); }
+[data-cajui-theme="amalli-dark"] .text-white\/90 { color: rgba(242, 237, 227, 0.90); }
+[data-cajui-theme="amalli-dark"] .text-white\/85 { color: rgba(242, 237, 227, 0.85); }
+[data-cajui-theme="amalli-dark"] .text-white\/80 { color: rgba(242, 237, 227, 0.80); }
+[data-cajui-theme="amalli-dark"] .text-white\/70 { color: rgba(242, 237, 227, 0.70); }
+[data-cajui-theme="amalli-dark"] .text-white\/60 { color: rgba(242, 237, 227, 0.60); }
+[data-cajui-theme="amalli-dark"] .text-white\/50 { color: rgba(242, 237, 227, 0.50); }
+[data-cajui-theme="amalli-dark"] .text-white\/40 { color: rgba(242, 237, 227, 0.40); }
+[data-cajui-theme="amalli-dark"] .text-white\/30 { color: rgba(242, 237, 227, 0.30); }
+[data-cajui-theme="amalli-dark"] .text-white\/20 { color: rgba(242, 237, 227, 0.20); }
+[data-cajui-theme="amalli-dark"] .border-white\/10,
+[data-cajui-theme="amalli-dark"] .border-white\/20,
+[data-cajui-theme="amalli-dark"] .border-white\/30,
+[data-cajui-theme="amalli-dark"] .border-white\/5,
+[data-cajui-theme="amalli-dark"] .border-white\/18 {
+	border-color: rgba(78, 142, 126, 0.2);
+	border-width: 1px;
+}
+[data-cajui-theme="amalli-dark"] .caj-dialog-overlay {
+	backdrop-filter: none;
+	-webkit-backdrop-filter: none;
+	background: rgba(22, 35, 24, 0.7);
+}
+[data-cajui-theme="amalli-dark"] .bg-white\/\[0\.02\] {
+	background-color: rgba(29, 47, 32, 0.8);
+}
+
+
+/* ─── Amalli — Dialog ────────────────────────────────────────────────────── */
+/* caj-panel handles background/border/shadow for the panel itself.
+   We only need to override the overlay backdrop and the header/footer dividers. */
+
+[data-cajui-theme="amalli-light"] .caj-dialog-header {
+	border-bottom: 1px solid rgba(42, 107, 82, 0.12);
+}
+[data-cajui-theme="amalli-dark"] .caj-dialog-header {
+	border-bottom: 1px solid rgba(78, 142, 126, 0.15);
+}
+
+[data-cajui-theme="amalli-light"] .caj-dialog-footer {
+	border-top: 1px solid rgba(42, 107, 82, 0.12);
+	background: transparent;
+}
+[data-cajui-theme="amalli-dark"] .caj-dialog-footer {
+	border-top: 1px solid rgba(78, 142, 126, 0.15);
+	background: transparent;
+}
+
+
+/* ─── Amalli — AlertBanner ───────────────────────────────────────────────── */
+
+[data-cajui-theme^="amalli"] .caj-alert {
+	backdrop-filter: none;
+	-webkit-backdrop-filter: none;
+	border-left-width: 4px;
+	border-radius: 8px;
+}
+[data-cajui-theme="amalli-light"] .caj-alert-info {
+	background: #F0F8F6;
+	border-color: #4E8E7E;
+	color: #162318;
+}
+[data-cajui-theme="amalli-light"] .caj-alert-success {
+	background: #F0F8F4;
+	border-color: #2A6B52;
+	color: #162318;
+}
+[data-cajui-theme="amalli-light"] .caj-alert-warning {
+	background: #FDF4E7;
+	border-color: #B66419;
+	color: #162318;
+}
+[data-cajui-theme="amalli-light"] .caj-alert-low_stock {
+	background: #FDF4E7;
+	border-color: #B66419;
+	color: #162318;
+}
+[data-cajui-theme="amalli-light"] .caj-alert-danger {
+	background: #FDF0EE;
+	border-color: #B92D1E;
+	color: #162318;
+}
+[data-cajui-theme="amalli-dark"] .caj-alert-info {
+	background: rgba(78, 142, 126, 0.12);
+	border-color: #4E8E7E;
+	color: #F2EDE3;
+}
+[data-cajui-theme="amalli-dark"] .caj-alert-success {
+	background: rgba(42, 107, 82, 0.15);
+	border-color: #2A6B52;
+	color: #F2EDE3;
+}
+[data-cajui-theme="amalli-dark"] .caj-alert-warning {
+	background: rgba(212, 136, 74, 0.12);
+	border-color: #D4884A;
+	color: #F2EDE3;
+}
+[data-cajui-theme="amalli-dark"] .caj-alert-low_stock {
+	background: rgba(212, 136, 74, 0.12);
+	border-color: #D4884A;
+	color: #F2EDE3;
+}
+[data-cajui-theme="amalli-dark"] .caj-alert-danger {
+	background: rgba(224, 90, 72, 0.12);
+	border-color: #E05A48;
+	color: #F2EDE3;
+}
+
+
+/* ─── Amalli — StockBadge ────────────────────────────────────────────────── */
+
+[data-cajui-theme^="amalli"] .caj-stock-badge {
+	backdrop-filter: none;
+	-webkit-backdrop-filter: none;
+	border-width: 1px;
+}
+[data-cajui-theme="amalli-light"] .caj-stock-in-stock {
+	background: #F0F8F4;
+	border-color: #2A6B52;
+	color: #2A6B52;
+}
+[data-cajui-theme="amalli-light"] .caj-stock-low-stock {
+	background: #FDF4E7;
+	border-color: #B66419;
+	color: #B66419;
+}
+[data-cajui-theme="amalli-light"] .caj-stock-out-of-stock {
+	background: #FDF0EE;
+	border-color: #B92D1E;
+	color: #B92D1E;
+}
+[data-cajui-theme="amalli-dark"] .caj-stock-in-stock {
+	background: rgba(42, 107, 82, 0.15);
+	border-color: #2A6B52;
+	color: #4E8E7E;
+}
+[data-cajui-theme="amalli-dark"] .caj-stock-low-stock {
+	background: rgba(212, 136, 74, 0.12);
+	border-color: #D4884A;
+	color: #D4884A;
+}
+[data-cajui-theme="amalli-dark"] .caj-stock-out-of-stock {
+	background: rgba(224, 90, 72, 0.12);
+	border-color: #E05A48;
+	color: #E05A48;
+}
+
+
+/* ─── Amalli — PaymentMethod ─────────────────────────────────────────────── */
+
+[data-cajui-theme^="amalli"] .caj-payment-btn {
+	backdrop-filter: none;
+	-webkit-backdrop-filter: none;
+}
+[data-cajui-theme="amalli-light"] .caj-payment-btn {
+	border: 1px solid rgba(42, 107, 82, 0.25);
+	background: #FFFFFF;
+	color: #162318;
+	box-shadow: 0 1px 3px rgba(22, 35, 24, 0.1);
+}
+[data-cajui-theme="amalli-light"] .caj-payment-btn:hover {
+	background: #F5F2EC;
+}
+[data-cajui-theme="amalli-light"] .caj-payment-btn[aria-pressed="true"] {
+	background: #2A6B52;
+	border-color: #2A6B52;
+	color: #FFFFFF;
+	box-shadow: 0 1px 4px rgba(18, 48, 42, 0.35);
+}
+[data-cajui-theme="amalli-dark"] .caj-payment-btn {
+	border: 1px solid rgba(78, 142, 126, 0.25);
+	background: #1D2F20;
+	color: #F2EDE3;
+	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+}
+[data-cajui-theme="amalli-dark"] .caj-payment-btn:hover {
+	background: #243828;
+}
+[data-cajui-theme="amalli-dark"] .caj-payment-btn[aria-pressed="true"] {
+	background: #2A6B52;
+	border-color: #2A6B52;
+	color: #F2EDE3;
+	box-shadow: 0 1px 6px rgba(0, 0, 0, 0.4);
+}
+
+
+/* ─── Amalli — NumPad danger key ─────────────────────────────────────────── */
+
+[data-cajui-theme="amalli-light"] .caj-numkey-danger {
+	background: #B92D1E;
+	color: #FFFFFF;
+	border: 1px solid #B92D1E;
+	box-shadow: 0 1px 4px rgba(92, 22, 15, 0.35);
+}
+[data-cajui-theme="amalli-light"] .caj-numkey-danger:hover {
+	background: #9A2519;
+}
+[data-cajui-theme="amalli-dark"] .caj-numkey-danger {
+	background: #E05A48;
+	color: #F2EDE3;
+	border: 1px solid #E05A48;
+	box-shadow: 0 1px 6px rgba(0, 0, 0, 0.4);
+}
+[data-cajui-theme="amalli-dark"] .caj-numkey-danger:hover {
+	background: #C94D3D;
+}
+
+
+/* ─── Amalli — Table ─────────────────────────────────────────────────────── */
+
+[data-cajui-theme="amalli-light"] .caj-table-thead {
+	background: #F5F2EC;
+	border-bottom: 1px solid rgba(42, 107, 82, 0.2);
+}
+[data-cajui-theme="amalli-dark"] .caj-table-thead {
+	background: #1D2F20;
+	border-bottom: 1px solid rgba(78, 142, 126, 0.2);
+}
+[data-cajui-theme^="amalli"] .caj-table-tr {
+	border-bottom: 1px solid currentColor;
+	border-bottom-color: rgba(128, 128, 128, 0.1);
+}
+[data-cajui-theme="amalli-light"] .caj-table-tr-striped:nth-child(even) {
+	background: rgba(42, 107, 82, 0.03);
+}
+[data-cajui-theme="amalli-dark"] .caj-table-tr-striped:nth-child(even) {
+	background: rgba(78, 142, 126, 0.04);
+}
+[data-cajui-theme="amalli-light"] .caj-table-tr-active {
+	background: rgba(42, 107, 82, 0.08) !important;
+	color: #2A6B52 !important;
+}
+[data-cajui-theme="amalli-dark"] .caj-table-tr-active {
+	background: rgba(78, 142, 126, 0.15) !important;
+	color: #4E8E7E !important;
+}
+
+
+/* ─── Amalli — KPI ───────────────────────────────────────────────────────── */
+
+[data-cajui-theme^="amalli"] .caj-kpi-card {
+	box-shadow: 0 2px 12px rgba(22, 35, 24, 0.08) !important;
+}
+[data-cajui-theme="amalli-dark"] .caj-kpi-card {
+	box-shadow: 0 2px 16px rgba(0, 0, 0, 0.35) !important;
+}
+
+[data-cajui-theme="amalli-light"] .caj-kpi-trend-up {
+	background: rgba(42, 107, 82, 0.12) !important;
+	color: #2A6B52 !important;
+}
+[data-cajui-theme="amalli-light"] .caj-kpi-trend-down {
+	background: rgba(185, 45, 30, 0.1) !important;
+	color: #B92D1E !important;
+}
+[data-cajui-theme="amalli-light"] .caj-kpi-trend-neutral {
+	background: rgba(100, 124, 108, 0.12) !important;
+	color: #647C6C !important;
+}
+
+[data-cajui-theme="amalli-light"] .caj-kpi-icon {
+	background: #F5F2EC !important;
+	border: 1px solid rgba(42, 107, 82, 0.15) !important;
+}
+[data-cajui-theme="amalli-light"] .caj-kpi-icon-default { color: #647C6C !important; }
+[data-cajui-theme="amalli-light"] .caj-kpi-icon-green   { color: #2A6B52 !important; }
+[data-cajui-theme="amalli-light"] .caj-kpi-icon-blue    { color: #4E8E7E !important; }
+[data-cajui-theme="amalli-light"] .caj-kpi-icon-amber   { color: #B66419 !important; }
+[data-cajui-theme="amalli-light"] .caj-kpi-icon-red     { color: #B92D1E !important; }
+[data-cajui-theme="amalli-light"] .caj-kpi-icon-purple  { color: #6B4E8E !important; }
+
+[data-cajui-theme="amalli-dark"] .caj-kpi-trend-up {
+	background: rgba(42, 107, 82, 0.2) !important;
+	color: #4E8E7E !important;
+}
+[data-cajui-theme="amalli-dark"] .caj-kpi-trend-down {
+	background: rgba(224, 90, 72, 0.15) !important;
+	color: #E05A48 !important;
+}
+[data-cajui-theme="amalli-dark"] .caj-kpi-trend-neutral {
+	background: rgba(150, 175, 170, 0.15) !important;
+	color: #96AFAA !important;
+}
+
+[data-cajui-theme="amalli-dark"] .caj-kpi-icon {
+	background: #243828 !important;
+	border: 1px solid rgba(78, 142, 126, 0.2) !important;
+}
+[data-cajui-theme="amalli-dark"] .caj-kpi-icon-default { color: #96AFAA !important; }
+[data-cajui-theme="amalli-dark"] .caj-kpi-icon-green   { color: #4E8E7E !important; }
+[data-cajui-theme="amalli-dark"] .caj-kpi-icon-blue    { color: #60A897 !important; }
+[data-cajui-theme="amalli-dark"] .caj-kpi-icon-amber   { color: #D4884A !important; }
+[data-cajui-theme="amalli-dark"] .caj-kpi-icon-red     { color: #E05A48 !important; }
+[data-cajui-theme="amalli-dark"] .caj-kpi-icon-purple  { color: #A480CF !important; }
+
+
+/* ─── Amalli — AgeVerification ───────────────────────────────────────────── */
+
+[data-cajui-theme^="amalli"] .caj-age-verification {
+	backdrop-filter: none !important;
+	-webkit-backdrop-filter: none !important;
+}
+
+[data-cajui-theme="amalli-light"] .caj-age-verification {
+	background: #FFFFFF !important;
+	border: 1px solid rgba(42, 107, 82, 0.15) !important;
+	color: #162318 !important;
+	box-shadow: 0 8px 40px rgba(22, 35, 24, 0.16) !important;
+}
+[data-cajui-theme="amalli-light"] .caj-age-verification h2,
+[data-cajui-theme="amalli-light"] .caj-age-verification p,
+[data-cajui-theme="amalli-light"] .caj-age-verification span,
+[data-cajui-theme="amalli-light"] .caj-age-verification label {
+	color: #162318 !important;
+}
+
+[data-cajui-theme="amalli-dark"] .caj-age-verification {
+	background: #1D2F20 !important;
+	border: 1px solid rgba(78, 142, 126, 0.2) !important;
+	color: #F2EDE3 !important;
+	box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5) !important;
+}
+[data-cajui-theme="amalli-dark"] .caj-age-verification h2,
+[data-cajui-theme="amalli-dark"] .caj-age-verification p,
+[data-cajui-theme="amalli-dark"] .caj-age-verification span,
+[data-cajui-theme="amalli-dark"] .caj-age-verification label {
+	color: #F2EDE3 !important;
+}
+[data-cajui-theme="amalli-dark"] .caj-age-verification-title {
+	color: #4E8E7E !important;
+}
+
+[data-cajui-theme="amalli-light"] .caj-age-verification-icon {
+	border-color: rgba(42, 107, 82, 0.25) !important;
+	background: #F5F2EC !important;
+}
+[data-cajui-theme="amalli-dark"] .caj-age-verification-icon {
+	border-color: rgba(78, 142, 126, 0.3) !important;
+	background: #243828 !important;
+}
+
+[data-cajui-theme="amalli-light"] .caj-age-verification-staff-alert {
+	background: #FDF4E7 !important;
+	border-color: #B66419 !important;
+}
+[data-cajui-theme="amalli-light"] .caj-age-verification-staff-alert p,
+[data-cajui-theme="amalli-light"] .caj-age-verification-staff-alert svg {
+	color: #162318 !important;
+}
+
+[data-cajui-theme="amalli-dark"] .caj-age-verification-staff-alert {
+	background: rgba(212, 136, 74, 0.12) !important;
+	border-color: #D4884A !important;
+}
+[data-cajui-theme="amalli-dark"] .caj-age-verification-staff-alert p,
+[data-cajui-theme="amalli-dark"] .caj-age-verification-staff-alert svg {
+	color: #D4884A !important;
+}
+
+[data-cajui-theme="amalli-light"] .caj-age-verification-checkbox-label {
+	background: #F5F2EC !important;
+	border-color: rgba(42, 107, 82, 0.3) !important;
+}
+[data-cajui-theme="amalli-dark"] .caj-age-verification-checkbox-label {
+	background: #243828 !important;
+	border-color: rgba(78, 142, 126, 0.3) !important;
+}
+
+[data-cajui-theme^="amalli"] .caj-age-verification-checkbox {
+	accent-color: #2A6B52 !important;
+}
+
+[data-cajui-theme="amalli-light"] .caj-age-verification-cancel-btn {
+	color: #4E8E7E !important;
+	text-decoration: underline !important;
+	background: transparent !important;
+	border: none !important;
+	box-shadow: none !important;
+}
+[data-cajui-theme="amalli-light"] .caj-age-verification-cancel-btn:hover {
+	color: #2A6B52 !important;
+	text-decoration: none !important;
+}
+
+[data-cajui-theme="amalli-dark"] .caj-age-verification-cancel-btn {
+	color: #4E8E7E !important;
+	text-decoration: underline !important;
+	background: transparent !important;
+	border: none !important;
+	box-shadow: none !important;
+}
+[data-cajui-theme="amalli-dark"] .caj-age-verification-cancel-btn:hover {
+	color: #60A897 !important;
+	text-decoration: none !important;
+}
+
+[data-cajui-theme="amalli-light"] .caj-age-verification-deny-btn {
+	border: 1px solid rgba(22, 35, 24, 0.3) !important;
+	background: transparent !important;
+	color: #162318 !important;
+	box-shadow: none !important;
+}
+[data-cajui-theme="amalli-light"] .caj-age-verification-deny-btn:hover {
+	background: rgba(42, 107, 82, 0.06) !important;
+}
+
+[data-cajui-theme="amalli-dark"] .caj-age-verification-deny-btn {
+	border: 1px solid rgba(242, 237, 227, 0.3) !important;
+	background: transparent !important;
+	color: #F2EDE3 !important;
+	box-shadow: none !important;
+}
+[data-cajui-theme="amalli-dark"] .caj-age-verification-deny-btn:hover {
+	background: rgba(78, 142, 126, 0.1) !important;
 }
 

@@ -1,4 +1,7 @@
-import type { Product, ProductVariant } from "@/molecules/ProductCard/ProductCard";
+import type {
+	Product,
+	ProductVariant,
+} from "@/molecules/ProductCard/ProductCard";
 
 export interface CatalogFilterGroup {
 	id: string;

@@ -70,7 +70,9 @@ export const Default: Story = {
 		discountType: "percent",
 		onSubmitPayment: (data) => {
 			console.log("Pago completado con éxito:", data);
-			alert(`¡Pago exitoso! Marca tarjeta: ${data.paymentMock.cardBrand.toUpperCase()} | Últimos 4 dígitos: ${data.paymentMock.last4}`);
+			alert(
+				`¡Pago exitoso! Marca tarjeta: ${data.paymentMock.cardBrand.toUpperCase()} | Últimos 4 dígitos: ${data.paymentMock.last4}`,
+			);
 		},
 		onCancel: () => {
 			console.log("Checkout cancelado");

@@ -1,5 +1,6 @@
 import { cn } from "@/lib/utils";
 import { designTokens } from "@/tokens";
+import { CajuiContext } from "./context";
 import type { CajuiProviderProps } from "./interface";
 
 const GRADIENTS: Record<string, string> = {
@@ -31,23 +32,28 @@ export function CajuiProvider({
 }: CajuiProviderProps) {
 	const activeTheme = theme;
 
-	// Accessible themes do not use backgrounds gradients
-	const activeGradient = activeTheme.startsWith("accessible")
-		? "none"
-		: gradient;
+	// Accessible and Amalli themes use solid backgrounds — no gradient
+	const activeGradient =
+		activeTheme.startsWith("accessible") || activeTheme.startsWith("amalli")
+			? "none"
+			: gradient;
 	const bg = GRADIENTS[activeGradient] ?? "";
 
 	return (
-		<div
-			data-cajui-root
-			data-cajui-theme={activeTheme}
-			className={cn("min-h-dvh w-full font-pos", className)}
-			style={{
-				...(bg ? { background: bg } : {}),
-				...style,
-			}}
+		<CajuiContext.Provider
+			value={{ theme: activeTheme, gradient: activeGradient }}
 		>
-			{children}
-		</div>
+			<div
+				data-cajui-root
+				data-cajui-theme={activeTheme}
+				className={cn("min-h-dvh w-full font-pos", className)}
+				style={{
+					...(bg ? { background: bg } : {}),
+					...style,
+				}}
+			>
+				{children}
+			</div>
+		</CajuiContext.Provider>
 	);
 }
