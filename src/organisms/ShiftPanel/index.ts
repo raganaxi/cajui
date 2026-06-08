@@ -1,1 +1,1 @@
-export * from './ShiftPanel'
+export * from "./ShiftPanel";

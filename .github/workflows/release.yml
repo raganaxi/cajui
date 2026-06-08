@@ -1,0 +1,105 @@
+name: Automated Release on Merge
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+  packages: write
+  id-token: write
+
+jobs:
+  release:
+    name: Build, Version & Release
+    runs-on: ubuntu-latest
+    # Loop prevention: Do not run if the push commit was an automated release commit
+    if: "!contains(github.event.head_commit.message, 'chore(release):') && !contains(github.event.head_commit.message, '[skip ci]')"
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          # Uses RELEASE_PAT if configured (to bypass branch protection), else GITHUB_TOKEN
+          token: ${{ secrets.RELEASE_PAT || secrets.GITHUB_TOKEN }}
+
+      - name: Configure Git User
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 11
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Run type check
+        run: pnpm run type-check
+
+      - name: Determine Version Bump Type
+        id: bump
+        run: |
+          COMMIT_MSG="${{ github.event.head_commit.message }}"
+          BUMP_TYPE="patch"
+          if echo "$COMMIT_MSG" | grep -iqF "#minor"; then
+            BUMP_TYPE="minor"
+          elif echo "$COMMIT_MSG" | grep -iqF "#major"; then
+            BUMP_TYPE="major"
+          fi
+          echo "bump_type=${BUMP_TYPE}" >> $GITHUB_OUTPUT
+          echo "Determined version bump type: ${BUMP_TYPE}"
+        shell: bash
+
+      - name: Bump Version
+        run: |
+          pnpm version ${{ steps.bump.outputs.bump_type }} -m "chore(release): v%s [skip ci]"
+
+      - name: Extract package version and tarball name
+        id: pkg_info
+        run: |
+          VERSION=$(node -p "require('./package.json').version")
+          TARBALL_NAME="cajui-${VERSION}.tgz"
+          echo "version=${VERSION}" >> $GITHUB_OUTPUT
+          echo "tarball=${TARBALL_NAME}" >> $GITHUB_OUTPUT
+        shell: bash
+
+      - name: Build library
+        run: pnpm run build
+
+      - name: Package tarball
+        run: pnpm pack
+
+      - name: Push version commit and tag to GitHub
+        run: |
+          git push origin main --follow-tags
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ steps.pkg_info.outputs.version }}
+          files: ${{ steps.pkg_info.outputs.tarball }}
+          generate_release_notes: true
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Publish to NPM Registry
+        if: env.NPM_TOKEN != ''
+        run: |
+          pnpm publish --no-git-checks --provenance
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

@@ -1,1 +1,1 @@
-export * from './BarcodeInput'
+export * from "./BarcodeInput";

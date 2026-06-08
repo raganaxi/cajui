@@ -40,8 +40,11 @@
     "build": "tsc -p tsconfig.build.json && vite build",
     "build:storybook": "storybook build",
     "preview": "vite preview",
-    "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "type-check": "tsc --noEmit"
+    "lint": "biome lint ./src",
+    "format": "biome format --write ./src",
+    "check": "biome check ./src",
+    "type-check": "tsc --noEmit",
+    "prepare": "npm run build"
   },
   "peerDependencies": {
     "react": ">=18.0.0",
@@ -53,6 +56,8 @@
     "tailwind-merge": "^2.5.4"
   },
   "devDependencies": {
+    "@biomejs/biome": "2.4.16",
+    "@playwright/test": "^1.60.0",
     "@storybook/addon-a11y": "^10.4.1",
     "@storybook/addon-docs": "^10.4.1",
     "@storybook/react": "^10.4.1",

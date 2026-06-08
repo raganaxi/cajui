@@ -1,2 +1,2 @@
-export * from './KioskPayment'
-export * from './interface'
+export * from "./interface";
+export * from "./KioskPayment";

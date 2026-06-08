@@ -1,1 +1,1 @@
-export * from './AgeVerification'
+export * from "./AgeVerification";

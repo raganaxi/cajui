@@ -1,2 +1,2 @@
-export { RegisterLocked } from './RegisterLocked';
-export type { RegisterLockedProps, ShiftSummaryData } from './interface';
+export type { RegisterLockedProps, ShiftSummaryData } from "./interface";
+export { RegisterLocked } from "./RegisterLocked";

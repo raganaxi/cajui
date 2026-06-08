@@ -1,1 +1,1 @@
-export * from './AttendantCall'
+export * from "./AttendantCall";

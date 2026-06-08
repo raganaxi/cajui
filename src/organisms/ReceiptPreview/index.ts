@@ -1,1 +1,1 @@
-export * from './ReceiptPreview'
+export * from "./ReceiptPreview";

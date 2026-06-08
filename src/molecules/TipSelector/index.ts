@@ -1,1 +1,1 @@
-export * from './TipSelector'
+export * from "./TipSelector";

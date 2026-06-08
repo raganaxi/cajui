@@ -1,10 +1,10 @@
-import type { Product } from '@/molecules/ProductCard/ProductCard'
+import type { Product } from "@/molecules/ProductCard/ProductCard";
 
 export interface SelfCheckoutLayoutProps {
-  catalog?: Product[]
-  alcoholSkus?: string[]
-  taxRate?: number
-  currency?: string
-  locale?: string
-  className?: string
+	catalog?: Product[];
+	alcoholSkus?: string[];
+	taxRate?: number;
+	currency?: string;
+	locale?: string;
+	className?: string;
 }

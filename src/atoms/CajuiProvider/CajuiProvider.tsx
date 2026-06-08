@@ -1,14 +1,14 @@
-import { cn } from '@/lib/utils'
-import { designTokens } from '@/tokens'
-import type { CajuiProviderProps } from './interface'
+import { cn } from "@/lib/utils";
+import { designTokens } from "@/tokens";
+import type { CajuiProviderProps } from "./interface";
 
 const GRADIENTS: Record<string, string> = {
-  default:  designTokens.gradients.default,
-  warm:     designTokens.gradients.warm,
-  cool:     designTokens.gradients.cool,
-  midnight: designTokens.gradients.midnight,
-  none:     '',
-}
+	default: designTokens.gradients.default,
+	warm: designTokens.gradients.warm,
+	cool: designTokens.gradients.cool,
+	midnight: designTokens.gradients.midnight,
+	none: "",
+};
 
 /**
  * Root wrapper for cajui apps.
@@ -23,30 +23,31 @@ const GRADIENTS: Record<string, string> = {
  * ```
  */
 export function CajuiProvider({
-  children,
-  gradient = 'default',
-  className,
-  style,
-  theme = 'cajui',
+	children,
+	gradient = "default",
+	className,
+	style,
+	theme = "cajui",
 }: CajuiProviderProps) {
-  // Normalize theme for data-attributes and styling compat
-  const activeTheme = theme === 'dark' ? 'cajui' : theme === 'light' ? 'cajuiOS' : theme
+	const activeTheme = theme;
 
-  // Accessible themes do not use backgrounds gradients
-  const activeGradient = activeTheme.startsWith('accessible') ? 'none' : gradient
-  const bg = GRADIENTS[activeGradient] ?? ''
+	// Accessible themes do not use backgrounds gradients
+	const activeGradient = activeTheme.startsWith("accessible")
+		? "none"
+		: gradient;
+	const bg = GRADIENTS[activeGradient] ?? "";
 
-  return (
-    <div
-      data-cajui-root
-      data-cajui-theme={activeTheme}
-      className={cn('min-h-dvh w-full font-pos', className)}
-      style={{
-        ...(bg ? { background: bg } : {}),
-        ...style,
-      }}
-    >
-      {children}
-    </div>
-  )
+	return (
+		<div
+			data-cajui-root
+			data-cajui-theme={activeTheme}
+			className={cn("min-h-dvh w-full font-pos", className)}
+			style={{
+				...(bg ? { background: bg } : {}),
+				...style,
+			}}
+		>
+			{children}
+		</div>
+	);
 }

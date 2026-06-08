@@ -1,2 +1,2 @@
-export { CajuiProvider } from './CajuiProvider'
-export type { CajuiProviderProps, CajuiGradient } from './interface'
+export { CajuiProvider } from "./CajuiProvider";
+export type { CajuiGradient, CajuiProviderProps } from "./interface";

@@ -1,3 +1,3 @@
-export { seedTokens } from './seed'
-export { designTokens } from './design'
-export { componentTokens } from './components'
+export { componentTokens } from "./components";
+export { designTokens } from "./design";
+export { seedTokens } from "./seed";

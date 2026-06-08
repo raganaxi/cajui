@@ -1,2 +1,2 @@
-export * from './POSLayout'
-export * from './interface'
+export * from "./interface";
+export * from "./POSLayout";

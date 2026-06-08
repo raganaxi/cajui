@@ -1,2 +1,2 @@
-export { Login } from './Login';
-export type { LoginProps, LoginCredentials } from './interface';
+export type { LoginCredentials, LoginProps } from "./interface";
+export { Login } from "./Login";

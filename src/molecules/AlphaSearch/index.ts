@@ -1,1 +1,1 @@
-export * from './AlphaSearch'
+export * from "./AlphaSearch";

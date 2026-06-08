@@ -1,1 +1,1 @@
-export * from './DiscountInput'
+export * from "./DiscountInput";

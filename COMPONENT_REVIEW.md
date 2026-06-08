@@ -263,11 +263,11 @@ Tabla de datos con ordenamiento, paginación y búsqueda.
 
 ---
 
-### AgeVerification `⬜ Pendiente`
+### AgeVerification `✅ OK`
 Modal de verificación de edad para productos restringidos.
 - 👤 **Observaciones**:
-- 🤖 **Notas**: Glass pendiente de aplicar.
-- 🔧 **Fix propuesto**:
+- 🤖 **Notas**: Refactorizado para usar clases semánticas `caj-` y tokens de color `caj-warning`. Soporta el tema Liquid Glass (warning frosted glass) y los temas accesibles GOV.UK `accessible-light` y `accessible-dark` (diseño plano sin bordes redondeados ni transiciones, de alto contraste).
+- 🔧 **Fix propuesto**: Completado refactor y agregados estilos y overrides en `cajui.css`.
 
 ---
 

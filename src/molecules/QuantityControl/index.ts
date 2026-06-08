@@ -1,1 +1,1 @@
-export * from './QuantityControl'
+export * from "./QuantityControl";
