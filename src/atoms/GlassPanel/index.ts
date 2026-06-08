@@ -1,2 +1,8 @@
-export { GlassPanel } from './GlassPanel'
-export type { GlassPanelProps, GlassPanelBlur, GlassPanelTint, GlassPanelStrength, GlassPanelRadius } from './interface'
+export { GlassPanel } from "./GlassPanel";
+export type {
+	GlassPanelBlur,
+	GlassPanelProps,
+	GlassPanelRadius,
+	GlassPanelStrength,
+	GlassPanelTint,
+} from "./interface";

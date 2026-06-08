@@ -1,2 +1,2 @@
-export * from './SelfCheckoutLayout'
-export * from './interface'
+export * from "./interface";
+export * from "./SelfCheckoutLayout";

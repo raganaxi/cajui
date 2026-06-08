@@ -14,12 +14,14 @@ const preview: Preview = {
         ? context.globals.backgrounds
         : context.globals.backgrounds?.value;
 
-      const THEME_MAP: Record<string, { theme: 'cajui' | 'cajuiOS' | 'accessible' | 'accessible-blue' | 'accessible-dark', gradient: 'default' | 'none' }> = {
-        'cajui':              { theme: 'cajui',           gradient: 'default' },
-        'cajuiOS':            { theme: 'cajuiOS',         gradient: 'none' },
-        'accessible':         { theme: 'accessible',      gradient: 'none' },
-        'accessible-blue':    { theme: 'accessible-blue', gradient: 'none' },
-        'accessible-dark':    { theme: 'accessible-dark', gradient: 'none' },
+      const THEME_MAP: Record<string, { theme: 'cajui' | 'accessible-light' | 'accessible-dark', gradient: 'default' | 'warm' | 'cool' | 'midnight' | 'none' }> = {
+        'cajui':              { theme: 'cajui',            gradient: 'default'   },
+        'cajui-warm':         { theme: 'cajui',            gradient: 'warm'      },
+        'cajui-cool':         { theme: 'cajui',            gradient: 'cool'      },
+        'cajui-midnight':     { theme: 'cajui',            gradient: 'midnight'  },
+        'cajui-none':         { theme: 'cajui',            gradient: 'none'      },
+        'accessible-light':   { theme: 'accessible-light', gradient: 'none'      },
+        'accessible-dark':    { theme: 'accessible-dark',  gradient: 'none'      },
       };
 
       const { theme: activeTheme = 'cajui', gradient: activeGradient = 'default' } = THEME_MAP[bgKey] ?? {};
@@ -39,11 +41,13 @@ const preview: Preview = {
   parameters: {
     backgrounds: {
       options: {
-        'cajui':           { name: 'cajui',            value: 'linear-gradient(135deg, hsl(215 60% 12%), hsl(250 45% 16%), hsl(195 55% 14%))' },
-        'cajuiOS':         { name: 'cajuiOS',          value: 'linear-gradient(135deg, #f5f3ff 0%, #e0e7ff 50%, #dbeafe 100%)' },
-        'accessible':      { name: 'accessible',       value: '#ffffff' },
-        'accessible-blue': { name: 'accessible-blue',  value: '#1e3a8a' },
-        'accessible-dark': { name: 'accessible-dark',  value: '#121212' },
+        'cajui':           { name: 'cajui — default',   value: 'linear-gradient(135deg, hsl(215 60% 12%) 0%, hsl(250 45% 16%) 50%, hsl(195 55% 14%) 100%)' },
+        'cajui-warm':      { name: 'cajui — warm',      value: 'linear-gradient(135deg, hsl(220 40% 12%) 0%, hsl(340 45% 16%) 50%, hsl(25 50% 14%) 100%)' },
+        'cajui-cool':      { name: 'cajui — cool',      value: 'linear-gradient(135deg, hsl(220 50% 12%) 0%, hsl(220 60% 18%) 50%, hsl(190 60% 14%) 100%)' },
+        'cajui-midnight':  { name: 'cajui — midnight',  value: 'linear-gradient(135deg, hsl(240 15% 5%) 0%, hsl(240 20% 8%) 50%, hsl(240 15% 5%) 100%)' },
+        'cajui-none':      { name: 'cajui — sin fondo', value: 'hsl(220 35% 10%)' },
+        'accessible-light': { name: 'accessible-light',  value: '#f3f2f1' },
+        'accessible-dark':  { name: 'accessible-dark',   value: '#0b0c0c' },
       },
     },
     viewport: {
@@ -90,7 +94,7 @@ const preview: Preview = {
 
   initialGlobals: {
     backgrounds: 'cajui',
-  }
+  },
 }
 
 export default preview

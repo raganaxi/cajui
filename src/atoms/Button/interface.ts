@@ -1,36 +1,28 @@
-import { ButtonHTMLAttributes, ReactNode } from 'react';
+import type { ButtonHTMLAttributes, ReactNode } from "react";
 
-export type ButtonVariant = 'default' | 'primary' | 'success' | 'warning' | 'danger' | 'ghost' | 'text';
-export type ButtonSize = 'sm' | 'md' | 'lg';
+export type ButtonVariant =
+	| "default" // glass morphism — the standard cajui button
+	| "primary" // solid primary with glow
+	| "success" // solid success
+	| "warning" // solid warning
+	| "danger" // solid danger
+	| "ghost" // transparent border, hover fills glass
+	| "text" // text-only, primary color
+	| "chip" // pill-shaped filter toggle
+	| "tab" // underline navigation tab
+	| "dashed"; // dashed border secondary CTA
+
+export type ButtonSize = "xs" | "sm" | "md" | "lg" | "xl";
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  /**
-   * Style variant of the button
-   * @default 'default'
-   */
-  variant?: ButtonVariant;
-  /**
-   * Size of the button
-   * @default 'md'
-   */
-  size?: ButtonSize;
-  /**
-   * Whether the button is in a loading state
-   * @default false
-   */
-  loading?: boolean;
-  /**
-   * Whether the button takes up the full width of its container
-   * @default false
-   */
-  block?: boolean;
-  /**
-   * Optional icon to render
-   */
-  icon?: ReactNode;
-  /**
-   * Position of the icon relative to the children text
-   * @default 'left'
-   */
-  iconPosition?: 'left' | 'right';
+	variant?: ButtonVariant;
+	size?: ButtonSize;
+	/** Toggleable selected state — works with default, chip and tab */
+	active?: boolean;
+	loading?: boolean;
+	block?: boolean;
+	/** Square aspect ratio for icon-only buttons */
+	iconOnly?: boolean;
+	icon?: ReactNode;
+	iconPosition?: "left" | "right";
 }

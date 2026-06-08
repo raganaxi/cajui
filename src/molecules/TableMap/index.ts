@@ -1,1 +1,1 @@
-export * from './TableMap'
+export * from "./TableMap";

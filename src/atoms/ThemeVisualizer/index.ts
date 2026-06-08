@@ -1,2 +1,2 @@
-export { ThemeVisualizer } from './ThemeVisualizer';
-export type { ThemeVisualizerProps } from './interface';
+export type { ThemeVisualizerProps } from "./interface";
+export { ThemeVisualizer } from "./ThemeVisualizer";
