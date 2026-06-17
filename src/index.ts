@@ -1,6 +1,8 @@
 // Styles — consumers: import 'cajui/style.css'
 import "./styles/cajui.css";
 
+export type { CourierChipProps, CourierConfig } from "./atoms/CourierChip";
+export { CourierChip } from "./atoms/CourierChip";
 export type { AlertBannerProps } from "./atoms/AlertBanner";
 //
 export { AlertBanner } from "./atoms/AlertBanner";
@@ -34,9 +36,13 @@ export type { PriceDisplayProps } from "./atoms/PriceDisplay";
 export { PriceDisplay } from "./atoms/PriceDisplay";
 export type { StockBadgeProps, StockStatus } from "./atoms/StockBadge";
 //
-// export { NumPad } from './atoms/NumPad'
-// export type { NumPadProps } from './atoms/NumPad'
-//
+export { NumPad } from "./atoms/NumPad";
+export type { NumPadProps } from "./atoms/NumPad";
+export { SoftKeyboard } from "./atoms/SoftKeyboard";
+export type {
+	SoftKeyboardCharset,
+	SoftKeyboardProps,
+} from "./atoms/SoftKeyboard";
 export { StockBadge } from "./atoms/StockBadge";
 export type {
 	TableBodyProps,
@@ -93,10 +99,14 @@ export type { Product, ProductCardProps } from "./molecules/ProductCard";
 export { ProductCard } from "./molecules/ProductCard";
 export type { QuantityControlProps } from "./molecules/QuantityControl";
 export { QuantityControl } from "./molecules/QuantityControl";
+export type { ScannerInputProps } from "./molecules/ScannerInput";
+export { ScannerInput } from "./molecules/ScannerInput";
 export type { TablePaginationProps } from "./molecules/TablePagination";
 export { TablePagination } from "./molecules/TablePagination";
 export type { TableSearchProps } from "./molecules/TableSearch";
 export { TableSearch } from "./molecules/TableSearch";
+export type { RowAction, RowActionsProps } from "./molecules/RowActions";
+export { RowActions } from "./molecules/RowActions";
 export type { Column, DataTableProps, SortDir } from "./organisms/DataTable";
 //
 // export { TableMap } from './molecules/TableMap'
@@ -130,6 +140,13 @@ export type {
 // export type { AttendantCallProps, AttendantReason } from './organisms/AttendantCall'
 //
 export { KioskPayment } from "./organisms/KioskPayment";
+export type {
+	CourierConfig as ShippingCourierConfig,
+	ShippingGuia,
+	ShippingKioskProps,
+	ShippingOrder,
+} from "./organisms/ShippingKiosk";
+export { ShippingKiosk } from "./organisms/ShippingKiosk";
 export type {
 	OnlineCheckoutProps,
 	ShippingMethodOption,

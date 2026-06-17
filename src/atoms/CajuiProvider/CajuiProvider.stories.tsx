@@ -21,7 +21,13 @@ const meta: Meta<typeof CajuiProvider> = {
 		},
 		theme: {
 			control: "select",
-			options: ["cajui", "accessible-light", "accessible-dark"],
+			options: [
+				"cajui",
+				"accessible-light",
+				"accessible-dark",
+				"amalli-light",
+				"amalli-dark",
+			],
 		},
 	},
 };
@@ -75,6 +81,28 @@ export const AccessibleDark: Story = {
 		<CajuiProvider {...args}>
 			<div className="flex items-center justify-center h-48 text-white/80 text-sm font-pos m-6 border border-white/10 rounded-2xl">
 				Tema accesible oscuro — sin gradiente
+			</div>
+		</CajuiProvider>
+	),
+};
+
+export const AmalliLight: Story = {
+	args: { theme: "amalli-light" },
+	render: (args) => (
+		<CajuiProvider {...args}>
+			<div className="flex items-center justify-center h-48 text-sm font-pos m-6 border border-black/10 rounded-2xl">
+				Tema Amalli Claro — Sólido y Orgánico
+			</div>
+		</CajuiProvider>
+	),
+};
+
+export const AmalliDark: Story = {
+	args: { theme: "amalli-dark" },
+	render: (args) => (
+		<CajuiProvider {...args}>
+			<div className="flex items-center justify-center h-48 text-sm font-pos m-6 border border-white/10 rounded-2xl">
+				Tema Amalli Oscuro — Sólido y Profundo
 			</div>
 		</CajuiProvider>
 	),

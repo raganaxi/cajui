@@ -35,7 +35,7 @@ export const Default: Story = {
 
 export const AllStatuses: Story = {
 	render: () => (
-		<div className="p-6 rounded-3xl bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex flex-wrap gap-4">
+		<div className="p-6 rounded-3xl caj-panel flex flex-wrap gap-4">
 			<TableCard
 				table={{ id: "t1", number: 1, capacity: 4, status: "available" }}
 			/>
@@ -64,7 +64,7 @@ export const AllStatuses: Story = {
 
 export const Shapes: Story = {
 	render: () => (
-		<div className="p-6 rounded-3xl bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex gap-4 items-center">
+		<div className="p-6 rounded-3xl caj-panel flex gap-4 items-center">
 			<TableCard table={{ ...sampleTable, id: "s1" }} shape="square" />
 			<TableCard table={{ ...sampleTable, id: "s2" }} shape="round" />
 			<TableCard table={{ ...sampleTable, id: "s3" }} shape="rectangle" />
@@ -74,7 +74,7 @@ export const Shapes: Story = {
 
 export const Sizes: Story = {
 	render: () => (
-		<div className="p-6 rounded-3xl bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex gap-4 items-end">
+		<div className="p-6 rounded-3xl caj-panel flex gap-4 items-end">
 			<TableCard table={{ ...sampleTable, id: "sm" }} size="sm" />
 			<TableCard table={{ ...sampleTable, id: "md" }} size="md" />
 			<TableCard table={{ ...sampleTable, id: "lg" }} size="lg" />
@@ -85,7 +85,7 @@ export const Sizes: Story = {
 export const SalonGrid: Story = {
 	name: "Salón completo",
 	render: () => (
-		<div className="p-6 rounded-3xl bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+		<div className="p-6 rounded-3xl caj-panel">
 			<p className="text-white/50 text-xs font-pos mb-4">Sección A</p>
 			<div className="grid grid-cols-4 gap-3">
 				<TableCard

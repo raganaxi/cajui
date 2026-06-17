@@ -30,7 +30,7 @@ export const Default: Story = {
 
 export const Sizes: Story = {
 	render: () => (
-		<div className="flex items-end gap-6 p-6 bg-slate-900 rounded-xl text-white">
+		<div className="caj-panel flex items-end gap-6 p-6 rounded-xl">
 			<div className="text-center">
 				<Icon name="settings" size="xs" />
 				<span className="text-[10px] text-slate-400 block mt-2">xs (12px)</span>
@@ -63,7 +63,7 @@ export const Sizes: Story = {
 
 export const Colors: Story = {
 	render: () => (
-		<div className="flex gap-6 p-6 bg-slate-900 rounded-xl">
+		<div className="caj-panel flex gap-6 p-6 rounded-xl">
 			<Icon name="info" className="text-blue-400" />
 			<Icon name="success" className="text-green-400" />
 			<Icon name="warning" className="text-amber-400" />
@@ -83,11 +83,11 @@ export const CustomLucideIcon: Story = {
 
 export const PresetCatalog: Story = {
 	render: () => (
-		<div className="p-6 bg-slate-900 rounded-xl text-white max-w-4xl">
+		<div className="caj-panel p-6 rounded-xl max-w-4xl">
 			<h3 className="text-lg font-bold mb-4">
 				Catálogo de Iconos Predefinidos
 			</h3>
-			<p className="text-sm text-slate-400 mb-6">
+			<p className="text-sm text-white/50 mb-6">
 				Usa la propiedad <code>name="..."</code> con cualquiera de estos
 				identificadores:
 			</p>
@@ -97,10 +97,10 @@ export const PresetCatalog: Story = {
 					return (
 						<div
 							key={iconKey}
-							className="flex flex-col items-center justify-center p-3 rounded-lg border border-slate-800 bg-slate-950/50 hover:bg-slate-950 transition-colors"
+							className="caj-glass-subtle flex flex-col items-center justify-center p-3 rounded-lg transition-colors hover:bg-white/10"
 						>
-							<Icon name={iconKey} size="md" className="text-slate-200" />
-							<span className="text-[11px] text-slate-400 text-center mt-2 break-all font-mono select-all">
+							<Icon name={iconKey} size="md" />
+							<span className="text-[11px] text-white/50 text-center mt-2 break-all font-mono select-all">
 								{iconKey}
 							</span>
 						</div>

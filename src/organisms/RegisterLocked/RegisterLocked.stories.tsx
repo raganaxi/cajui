@@ -31,7 +31,7 @@ export const Default: Story = {
 		onLogout: () => alert("Cerrando sesión del cajero..."),
 	},
 	render: (args) => (
-		<div className="w-screen h-screen bg-slate-900 flex items-center justify-center relative">
+		<div className="w-screen h-screen flex items-center justify-center relative">
 			<div className="absolute inset-0 flex flex-col justify-between p-6 opacity-30 pointer-events-none">
 				<header className="flex justify-between border-b border-white/10 pb-4">
 					<div className="font-bold">CAJUI POS TERMINAL</div>
@@ -69,7 +69,7 @@ export const WithShiftSummary: Story = {
 		onLogout: () => alert("Cerrando sesión..."),
 	},
 	render: (args) => (
-		<div className="w-screen h-screen bg-slate-900 flex items-center justify-center relative">
+		<div className="w-screen h-screen flex items-center justify-center relative">
 			<div className="absolute inset-0 flex flex-col justify-between p-6 opacity-30 pointer-events-none">
 				<header className="flex justify-between border-b border-white/10 pb-4">
 					<div className="font-bold">SUPERMARKET TERMINAL</div>

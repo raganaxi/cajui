@@ -80,7 +80,7 @@ export const Default: Story = {
 	},
 	decorators: [
 		(S) => (
-			<div className="w-full p-6 bg-[#111827] rounded-3xl min-h-[700px] overflow-y-auto">
+			<div className="caj-panel w-full p-6 rounded-3xl min-h-[700px] overflow-y-auto">
 				<S />
 			</div>
 		),

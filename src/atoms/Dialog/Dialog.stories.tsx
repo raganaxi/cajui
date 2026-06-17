@@ -188,17 +188,17 @@ function FormDialogDemo() {
 							<select
 								id="tipoCliente"
 								name="tipoCliente"
-								className="caj-input bg-slate-900/60"
+								className="caj-input"
 								value={formData.tipoCliente}
 								onChange={handleInputChange}
 							>
-								<option value="General" className="bg-slate-950 text-white">
+								<option value="General" className="">
 									General / Mostrador
 								</option>
-								<option value="Frecuente" className="bg-slate-950 text-white">
+								<option value="Frecuente" className="">
 									Cliente Frecuente (VIP)
 								</option>
-								<option value="Mayorista" className="bg-slate-950 text-white">
+								<option value="Mayorista" className="">
 									Distribuidor / Mayorista
 								</option>
 							</select>

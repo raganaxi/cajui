@@ -52,11 +52,8 @@ export function QuantityControl({
 				onClick={decrement}
 				disabled={disabled || !canDecrement}
 				className={cn(
+					"caj-btn-default flex items-center justify-center rounded-xl font-bold transition-all active:scale-95",
 					s.btn,
-					"flex items-center justify-center rounded-xl",
-					"bg-white/[0.08] backdrop-blur-sm border border-white/[0.18]",
-					"font-bold text-white transition-all",
-					"hover:bg-white/[0.15] active:scale-95",
 					"disabled:pointer-events-none disabled:opacity-40",
 				)}
 				aria-label="Disminuir"
@@ -73,10 +70,8 @@ export function QuantityControl({
 				step={step}
 				disabled={disabled}
 				className={cn(
+					"caj-input text-center font-semibold tabular-nums",
 					s.input,
-					"rounded-xl border border-white/[0.18] bg-white/[0.08] backdrop-blur-sm text-center",
-					"font-semibold tabular-nums text-white",
-					"focus:border-white/[0.45] focus:outline-none focus:ring-2 focus:ring-white/10",
 					"disabled:pointer-events-none disabled:opacity-40",
 					"[appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none",
 				)}
@@ -88,11 +83,9 @@ export function QuantityControl({
 				onClick={increment}
 				disabled={disabled || !canIncrement}
 				className={cn(
+					"caj-btn-primary flex items-center justify-center rounded-xl font-bold transition-all active:scale-95",
 					s.btn,
-					"flex items-center justify-center rounded-xl",
-					"font-bold text-white transition-all active:scale-95",
 					"disabled:pointer-events-none disabled:opacity-40",
-					"caj-btn-primary",
 				)}
 				aria-label="Aumentar"
 			>

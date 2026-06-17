@@ -134,7 +134,7 @@ const CheckIcon = (
 	</svg>
 );
 
-// ── Canvas wrapper con fondo glass ───────────────────────────────────────────
+// ── Canvas wrapper — adapts to the active theme via caj-panel ────────────────
 const Canvas = ({
 	children,
 	className = "",
@@ -142,11 +142,7 @@ const Canvas = ({
 	children: React.ReactNode;
 	className?: string;
 }) => (
-	<div
-		className={`p-6 rounded-2xl bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 ${className}`}
-	>
-		{children}
-	</div>
+	<div className={`caj-panel p-6 rounded-2xl ${className}`}>{children}</div>
 );
 
 // ── Todas las variantes ──────────────────────────────────────────────────────
@@ -276,7 +272,7 @@ export const TabNavigation: Story = {
 		const [active, setActive] = useState("Resumen");
 		return (
 			<Canvas className="min-w-[420px]">
-				<div className="flex border-b border-white/[0.10]">
+				<div className="flex border-b border-white/10">
 					{TABS.map((tab) => (
 						<Button
 							key={tab}
@@ -374,7 +370,7 @@ export const TableActions: Story = {
 				].map((row) => (
 					<div
 						key={row}
-						className="flex items-center justify-between rounded-xl border border-white/[0.10] bg-white/[0.04] px-4 py-3"
+						className="flex items-center justify-between rounded-xl caj-glass-subtle px-4 py-3"
 					>
 						<span className="text-sm text-white/80 font-pos">{row}</span>
 						<div className="flex gap-1">

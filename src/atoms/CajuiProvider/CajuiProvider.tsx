@@ -32,9 +32,11 @@ export function CajuiProvider({
 }: CajuiProviderProps) {
 	const activeTheme = theme;
 
-	// Accessible and Amalli themes use solid backgrounds — no gradient
+	// Solid-background themes override any gradient passed by the consumer
 	const activeGradient =
-		activeTheme.startsWith("accessible") || activeTheme.startsWith("amalli")
+		activeTheme.startsWith("accessible") ||
+		activeTheme.startsWith("amalli") ||
+		activeTheme === "novera"
 			? "none"
 			: gradient;
 	const bg = GRADIENTS[activeGradient] ?? "";
