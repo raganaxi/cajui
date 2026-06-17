@@ -35,19 +35,19 @@ export const GlassTinted: Story = {
 
 export const Sizes: Story = {
 	render: () => (
-		<div className="flex flex-col gap-8 items-start p-6 bg-slate-950 rounded-xl text-white">
+		<div className="caj-panel flex flex-col gap-8 items-start p-6 rounded-xl">
 			<div>
-				<span className="text-xs text-slate-500 block mb-2">Pequeño (sm)</span>
+				<span className="text-xs text-white/50 block mb-2">Pequeño (sm)</span>
 				<Branding companyName="MiniMarket" size="sm" glassTint />
 			</div>
 			<div>
-				<span className="text-xs text-slate-500 block mb-2">
+				<span className="text-xs text-white/50 block mb-2">
 					Mediano (md - Default)
 				</span>
 				<Branding companyName="SuperMercado" size="md" glassTint />
 			</div>
 			<div>
-				<span className="text-xs text-slate-500 block mb-2">Grande (lg)</span>
+				<span className="text-xs text-white/50 block mb-2">Grande (lg)</span>
 				<Branding companyName="MegaStore" size="lg" glassTint />
 			</div>
 		</div>
@@ -56,29 +56,25 @@ export const Sizes: Story = {
 
 export const ThemeOverrides: Story = {
 	render: () => (
-		<div className="flex flex-col gap-6 p-6 bg-slate-950 rounded-xl text-white">
+		<div className="caj-panel flex flex-col gap-6 p-6 rounded-xl">
 			<div>
-				<span className="text-xs text-slate-500 block mb-2">
+				<span className="text-xs text-white/50 block mb-2">
 					Violeta (#8b5cf6)
 				</span>
 				<Branding companyName="Violet POS" themeColor="#8b5cf6" glassTint />
 			</div>
 			<div>
-				<span className="text-xs text-slate-500 block mb-2">
-					Rosa (#ec4899)
-				</span>
+				<span className="text-xs text-white/50 block mb-2">Rosa (#ec4899)</span>
 				<Branding companyName="Pink Retail" themeColor="#ec4899" glassTint />
 			</div>
 			<div>
-				<span className="text-xs text-slate-500 block mb-2">
+				<span className="text-xs text-white/50 block mb-2">
 					Naranja (#f97316)
 				</span>
 				<Branding companyName="Orange Food" themeColor="#f97316" glassTint />
 			</div>
 			<div>
-				<span className="text-xs text-slate-500 block mb-2">
-					Cian (#06b6d4)
-				</span>
+				<span className="text-xs text-white/50 block mb-2">Cian (#06b6d4)</span>
 				<Branding companyName="Cyan Pharmacy" themeColor="#06b6d4" glassTint />
 			</div>
 		</div>

@@ -73,6 +73,9 @@
 	--caj-border: 229 231 235;
 	--caj-text: 17 24 39;
 	--caj-text-muted: 107 114 128;
+
+	/* ─── Page background — theme-adaptive ─────────────────────────────── */
+	--caj-page-bg: var(--caj-gradient-default);
 }
 
 /* ─── Base layer ─────────────────────────────────────────────────────────── */
@@ -317,6 +320,19 @@
 		aspect-ratio: 1;
 	}
 
+	/* ── Dropdown menu items — RowActions and similar ── */
+	.caj-menu-item {
+		transition: background-color 0.1s ease;
+	}
+	.caj-menu-item:hover {
+		background: var(--caj-glass-bg-hover);
+	}
+	.caj-menu-separator {
+		height: 1px;
+		background: var(--caj-glass-border);
+		margin: 4px 8px;
+	}
+
 	/* ── Input ── */
 	.caj-input {
 		@apply block w-full text-sm text-white placeholder-white/40
@@ -527,6 +543,23 @@
 	-webkit-backdrop-filter: none;
 }
 
+/* Remove residual glassmorphism from solid-themed buttons and inputs */
+[data-cajui-theme^="accessible"] .caj-btn-default,
+[data-cajui-theme^="accessible"] .caj-btn-primary,
+[data-cajui-theme^="accessible"] .caj-btn-success,
+[data-cajui-theme^="accessible"] .caj-btn-danger,
+[data-cajui-theme^="accessible"] .caj-btn-warning,
+[data-cajui-theme^="accessible"] .caj-btn-info,
+[data-cajui-theme^="accessible"] .caj-btn-ghost,
+[data-cajui-theme^="accessible"] .caj-btn-chip,
+[data-cajui-theme^="accessible"] .caj-input,
+[data-cajui-theme^="accessible"] .caj-numkey,
+[data-cajui-theme^="accessible"] .caj-numkey-action,
+[data-cajui-theme^="accessible"] .caj-numkey-enter {
+	backdrop-filter: none;
+	-webkit-backdrop-filter: none;
+}
+
 /* Panel — solid surface for accessible themes */
 [data-cajui-theme^="accessible"] .caj-panel {
 	backdrop-filter: none;
@@ -608,6 +641,7 @@
 	--caj-glass-bg-active: #e8e9ea;
 	--caj-glass-border: #0b0c0c;
 	--caj-glass-radius: 0px;
+	--caj-page-bg: #f3f2f1;
 }
 
 [data-cajui-theme="accessible-light"] .caj-glass,
@@ -782,7 +816,8 @@
 [data-cajui-theme="accessible-light"] .text-white\/50,
 [data-cajui-theme="accessible-light"] .text-white\/40,
 [data-cajui-theme="accessible-light"] .text-white\/30,
-[data-cajui-theme="accessible-light"] .text-white\/20 {
+[data-cajui-theme="accessible-light"] .text-white\/20,
+[data-cajui-theme="accessible-light"] .hover\:text-white:hover {
 	color: #0b0c0c;
 }
 [data-cajui-theme="accessible-light"] .border-white\/10,
@@ -823,6 +858,7 @@
 	--caj-glass-bg-active: #3d3d3a;
 	--caj-glass-border: #ffffff;
 	--caj-glass-radius: 0px;
+	--caj-page-bg: #0b0c0c;
 }
 
 [data-cajui-theme="accessible-dark"] .caj-glass,
@@ -1511,6 +1547,23 @@
 	-webkit-backdrop-filter: none;
 }
 
+/* Remove residual glassmorphism from solid-themed buttons and inputs */
+[data-cajui-theme^="amalli"] .caj-btn-default,
+[data-cajui-theme^="amalli"] .caj-btn-primary,
+[data-cajui-theme^="amalli"] .caj-btn-success,
+[data-cajui-theme^="amalli"] .caj-btn-danger,
+[data-cajui-theme^="amalli"] .caj-btn-warning,
+[data-cajui-theme^="amalli"] .caj-btn-info,
+[data-cajui-theme^="amalli"] .caj-btn-ghost,
+[data-cajui-theme^="amalli"] .caj-btn-chip,
+[data-cajui-theme^="amalli"] .caj-input,
+[data-cajui-theme^="amalli"] .caj-numkey,
+[data-cajui-theme^="amalli"] .caj-numkey-action,
+[data-cajui-theme^="amalli"] .caj-numkey-enter {
+	backdrop-filter: none;
+	-webkit-backdrop-filter: none;
+}
+
 /* Panel — solid elevated surface for Amalli */
 [data-cajui-theme^="amalli"] .caj-panel {
 	backdrop-filter: none;
@@ -1568,6 +1621,7 @@
 	--caj-glass-inset: none;
 	--caj-glass-radius: 16px;
 	--caj-btn-radius: 12px;
+	--caj-page-bg: #F2EDE3;
 }
 
 [data-cajui-theme="amalli-light"] .caj-glass,
@@ -1746,6 +1800,7 @@
 [data-cajui-theme="amalli-light"] .text-white\/40 { color: rgba(22, 35, 24, 0.40); }
 [data-cajui-theme="amalli-light"] .text-white\/30 { color: rgba(22, 35, 24, 0.30); }
 [data-cajui-theme="amalli-light"] .text-white\/20 { color: rgba(22, 35, 24, 0.20); }
+[data-cajui-theme="amalli-light"] .hover\:text-white:hover { color: #162318; }
 [data-cajui-theme="amalli-light"] .border-white\/10,
 [data-cajui-theme="amalli-light"] .border-white\/20,
 [data-cajui-theme="amalli-light"] .border-white\/30,
@@ -1789,6 +1844,7 @@
 	--caj-glass-inset: none;
 	--caj-glass-radius: 16px;
 	--caj-btn-radius: 12px;
+	--caj-page-bg: #162318;
 }
 
 [data-cajui-theme="amalli-dark"] :focus-visible {
@@ -2376,5 +2432,785 @@
 }
 [data-cajui-theme="amalli-dark"] .caj-age-verification-deny-btn:hover {
 	background: rgba(78, 142, 126, 0.1) !important;
+}
+
+/* ─── Kiosk components ────────────────────────────────────────────────── */
+
+/* Status Pill */
+.caj-kiosk-status-pill {
+	@apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-sm font-bold whitespace-nowrap;
+}
+.caj-kiosk-status-pill--done {
+	background: rgb(var(--caj-success) / 0.2);
+	color: rgb(var(--caj-success));
+}
+.caj-kiosk-status-pill--none {
+	background: rgba(255, 255, 255, 0.08);
+	border: 1px solid rgba(255, 255, 255, 0.18);
+	color: rgba(255, 255, 255, 0.5);
+}
+.caj-kiosk-status-pill--pending {
+	background: rgb(var(--caj-warning) / 0.2);
+	color: rgb(var(--caj-warning));
+}
+
+/* Box Tile */
+.caj-kiosk-box-tile {
+	@apply text-left p-4 border transition-all duration-150 active:scale-95 flex flex-col gap-2 min-h-[100px];
+	border-radius: var(--caj-glass-radius);
+}
+.caj-kiosk-box-tile--default {
+	background: rgba(255, 255, 255, 0.06);
+	border-color: rgba(255, 255, 255, 0.12);
+}
+.caj-kiosk-box-tile--default:hover {
+	background: rgba(255, 255, 255, 0.1);
+}
+.caj-kiosk-box-tile--confirmed {
+	background: rgba(255, 255, 255, 0.04);
+	border-color: rgba(255, 255, 255, 0.1);
+	opacity: 0.85;
+}
+.caj-kiosk-box-tile--pending {
+	background: rgb(var(--caj-warning) / 0.06);
+	border-color: rgb(var(--caj-warning) / 0.3);
+}
+.caj-kiosk-box-tile--pending:hover {
+	background: rgb(var(--caj-warning) / 0.1);
+}
+.caj-kiosk-box-tile--pending.caj-kiosk-box-tile--selected {
+	border-color: rgb(var(--caj-warning));
+	background: rgb(var(--caj-warning) / 0.1);
+	box-shadow: 0 0 0 2px rgb(var(--caj-warning));
+}
+.caj-kiosk-box-tile--selected {
+	border-color: rgb(var(--caj-primary));
+	background: rgb(var(--caj-primary) / 0.1);
+	box-shadow: 0 0 0 2px rgb(var(--caj-primary));
+}
+
+/* Add Box Button */
+.caj-kiosk-add-box-btn {
+	@apply caj-btn-dashed flex flex-col items-center justify-center gap-2 min-h-[100px] text-sm font-bold active:scale-95 transition-transform;
+	border-radius: var(--caj-glass-radius);
+	border-width: 2px;
+}
+
+/* ─── Kiosk components overrides — Accessible Light ── */
+[data-cajui-theme="accessible-light"] .caj-kiosk-status-pill {
+	border-radius: 0 !important;
+	border-width: 2px;
+	border-style: solid;
+}
+[data-cajui-theme="accessible-light"] .caj-kiosk-status-pill--done {
+	background: #ffffff;
+	border-color: #00703c;
+	color: #00703c;
+}
+[data-cajui-theme="accessible-light"] .caj-kiosk-status-pill--none {
+	background: #ffffff;
+	border-color: #0b0c0c;
+	color: #505a5f;
+}
+[data-cajui-theme="accessible-light"] .caj-kiosk-status-pill--pending {
+	background: #ffffff;
+	border-color: #f47738;
+	color: #6e3619;
+}
+
+[data-cajui-theme="accessible-light"] .caj-kiosk-box-tile {
+	border-radius: 0 !important;
+	border-width: 2px;
+	border-style: solid;
+}
+[data-cajui-theme="accessible-light"] .caj-kiosk-box-tile--default {
+	background: #ffffff;
+	border-color: #0b0c0c;
+	color: #0b0c0c;
+}
+[data-cajui-theme="accessible-light"] .caj-kiosk-box-tile--default:hover {
+	background: #f3f2f1;
+}
+[data-cajui-theme="accessible-light"] .caj-kiosk-box-tile--confirmed {
+	background: #f3f2f1;
+	border-color: #505a5f;
+	color: #505a5f;
+	opacity: 0.7;
+}
+
+/* ─── Kiosk components overrides — Accessible Dark ── */
+[data-cajui-theme="accessible-dark"] .caj-kiosk-status-pill {
+	border-radius: 0 !important;
+	border-width: 2px;
+	border-style: solid;
+}
+[data-cajui-theme="accessible-dark"] .caj-kiosk-status-pill--done {
+	background: #1d1d1b;
+	border-color: #00703c;
+	color: #00703c;
+}
+[data-cajui-theme="accessible-dark"] .caj-kiosk-status-pill--none {
+	background: #1d1d1b;
+	border-color: #ffffff;
+	color: #b1b4b6;
+}
+[data-cajui-theme="accessible-dark"] .caj-kiosk-status-pill--pending {
+	background: #1d1d1b;
+	border-color: #f47738;
+	color: #f47738;
+}
+
+[data-cajui-theme="accessible-dark"] .caj-kiosk-box-tile {
+	border-radius: 0 !important;
+	border-width: 2px;
+	border-style: solid;
+}
+[data-cajui-theme="accessible-dark"] .caj-kiosk-box-tile--default {
+	background: #1d1d1b;
+	border-color: #ffffff;
+	color: #ffffff;
+}
+[data-cajui-theme="accessible-dark"] .caj-kiosk-box-tile--default:hover {
+	background: #2e2e2c;
+}
+[data-cajui-theme="accessible-dark"] .caj-kiosk-box-tile--confirmed {
+	background: #0b0c0c;
+	border-color: #b1b4b6;
+	color: #b1b4b6;
+	opacity: 0.7;
+}
+
+/* ─── Kiosk components overrides — Amalli Light ── */
+[data-cajui-theme="amalli-light"] .caj-kiosk-status-pill {
+	backdrop-filter: none;
+	-webkit-backdrop-filter: none;
+	border-width: 1px;
+	border-style: solid;
+}
+[data-cajui-theme="amalli-light"] .caj-kiosk-status-pill--done {
+	background: #F0F8F4;
+	border-color: #2A6B52;
+	color: #2A6B52;
+}
+[data-cajui-theme="amalli-light"] .caj-kiosk-status-pill--none {
+	background: #ffffff;
+	border-color: rgba(42, 107, 82, 0.15);
+	color: #647c6c;
+}
+[data-cajui-theme="amalli-light"] .caj-kiosk-status-pill--pending {
+	background: #FDF4E7;
+	border-color: #B66419;
+	color: #B66419;
+}
+
+[data-cajui-theme="amalli-light"] .caj-kiosk-box-tile--default {
+	background: #ffffff;
+	border-color: rgba(42, 107, 82, 0.2);
+	color: #162318;
+}
+[data-cajui-theme="amalli-light"] .caj-kiosk-box-tile--default:hover {
+	background: #F5F2EC;
+}
+[data-cajui-theme="amalli-light"] .caj-kiosk-box-tile--confirmed {
+	background: #EBE7DE;
+	border-color: rgba(42, 107, 82, 0.15);
+	color: #647c6c;
+	opacity: 0.75;
+}
+
+/* ─── Kiosk components overrides — Amalli Dark ── */
+[data-cajui-theme="amalli-dark"] .caj-kiosk-status-pill {
+	backdrop-filter: none;
+	-webkit-backdrop-filter: none;
+	border-width: 1px;
+	border-style: solid;
+}
+[data-cajui-theme="amalli-dark"] .caj-kiosk-status-pill--done {
+	background: rgba(42, 107, 82, 0.15);
+	border-color: #2A6B52;
+	color: #4E8E7E;
+}
+[data-cajui-theme="amalli-dark"] .caj-kiosk-status-pill--none {
+	background: rgba(255, 255, 255, 0.05);
+	border-color: rgba(255, 255, 255, 0.1);
+	color: rgba(255, 255, 255, 0.5);
+}
+[data-cajui-theme="amalli-dark"] .caj-kiosk-status-pill--pending {
+	background: rgba(212, 136, 74, 0.12);
+	border-color: #D4884A;
+	color: #D4884A;
+}
+
+[data-cajui-theme="amalli-dark"] .caj-kiosk-box-tile--default {
+	background: rgba(255, 255, 255, 0.05);
+	border-color: rgba(255, 255, 255, 0.1);
+	color: rgba(255, 255, 255, 0.9);
+}
+[data-cajui-theme="amalli-dark"] .caj-kiosk-box-tile--default:hover {
+	background: rgba(255, 255, 255, 0.1);
+}
+[data-cajui-theme="amalli-dark"] .caj-kiosk-box-tile--confirmed {
+	background: rgba(0, 0, 0, 0.2);
+	border-color: rgba(255, 255, 255, 0.08);
+	color: rgba(255, 255, 255, 0.5);
+	opacity: 0.75;
+}
+
+/* ─── Kiosk — background blobs hidden in non-glass themes ───────────────── */
+[data-cajui-theme^="accessible"] .caj-kiosk-blobs,
+[data-cajui-theme^="amalli"] .caj-kiosk-blobs {
+	display: none;
+}
+
+
+/* ─── Novera Theme — Arquitectónico y Técnico ──────────────────────────────
+   Paleta:
+     Grafito        #22313B (34 49 59)
+     Marfil Arena   #F4EFE7 (244 239 231)
+     Arcilla        #C56C43 (197 108 67)
+     Verde Vidrio   #788D80 (120 141 128)
+     Arena Técnica  #D7CABB (215 202 187)
+   Tipografía: Sora (headings) · Manrope (body) · IBM Plex Mono (técnico)
+─────────────────────────────────────────────────────────────────────────── */
+
+[data-cajui-theme="novera"] [data-cajui-root],
+[data-cajui-theme="novera"] {
+	font-family: 'Manrope', system-ui, sans-serif;
+}
+
+[data-cajui-theme="novera"] {
+	color: #22313B;
+	background: #F4EFE7;
+
+	--caj-primary: 197 108 67;       /* Arcilla Comercial */
+	--caj-primary-hover: 175 90 55;
+	--caj-danger: 185 45 30;
+	--caj-warning: 181 134 26;       /* Ámbar técnico — distinto de Arcilla */
+	--caj-success: 120 141 128;      /* Verde Vidrio */
+	--caj-info: 120 141 128;
+
+	--caj-text: 34 49 59;
+	--caj-text-muted: 120 141 128;
+	--caj-border: 215 202 187;
+
+	--caj-glass-bg: #FFFFFF;
+	--caj-glass-bg-hover: #F9F7F4;
+	--caj-glass-bg-active: #EFEBE5;
+	--caj-glass-border: rgba(34, 49, 59, 0.15);
+	--caj-glass-shadow: 0 4px 12px rgba(34, 49, 59, 0.08);
+	--caj-glass-blur: none;
+	--caj-glass-inset: none;
+	--caj-glass-radius: 4px; /* Más técnico y recto */
+	--caj-btn-radius: 2px;
+	--caj-page-bg: #F4EFE7;
+}
+
+[data-cajui-theme="novera"] .caj-glass,
+[data-cajui-theme="novera"] .caj-glass-strong,
+[data-cajui-theme="novera"] .caj-glass-subtle {
+	background: #FFFFFF;
+	backdrop-filter: none;
+	-webkit-backdrop-filter: none;
+	border: 1px solid rgba(34, 49, 59, 0.15);
+	box-shadow: 0 4px 12px rgba(34, 49, 59, 0.08);
+	border-radius: var(--caj-glass-radius);
+}
+
+[data-cajui-theme="novera"] .caj-panel {
+	background: #FFFFFF;
+	border: 1px solid #D7CABB;
+	backdrop-filter: none;
+	-webkit-backdrop-filter: none;
+	color: #22313B;
+	box-shadow: 0 8px 32px rgba(34, 49, 59, 0.1);
+}
+
+[data-cajui-theme="novera"] .caj-btn {
+	border-radius: var(--caj-btn-radius);
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+	font-weight: 700;
+	transition: all 0.2s ease;
+}
+
+[data-cajui-theme="novera"] .caj-btn-default {
+	background: #FFFFFF;
+	color: #22313B;
+	border: 1px solid #D7CABB;
+}
+
+[data-cajui-theme="novera"] .caj-btn-default:hover {
+	background: #22313B;
+	color: #F4EFE7;
+	border-color: #22313B;
+}
+
+[data-cajui-theme="novera"] .caj-btn-primary {
+	background: #C56C43;
+	color: #FFFFFF;
+	border: 1px solid #C56C43;
+	box-shadow: none;
+}
+
+[data-cajui-theme="novera"] .caj-btn-primary:hover {
+	background: #22313B;
+	border-color: #22313B;
+}
+
+[data-cajui-theme="novera"] .caj-input {
+	background: #FFFFFF;
+	border: 1px solid #D7CABB;
+	border-radius: var(--caj-btn-radius);
+	color: #22313B;
+	backdrop-filter: none;
+	-webkit-backdrop-filter: none;
+}
+
+[data-cajui-theme="novera"] .caj-input:focus {
+	border-color: #C56C43;
+	outline: 2px solid #C56C43;
+	outline-offset: 0;
+	box-shadow: none;
+}
+
+[data-cajui-theme="novera"] .caj-numkey {
+	background: #FFFFFF;
+	border: 1px solid #D7CABB;
+	color: #22313B;
+	border-radius: var(--caj-btn-radius);
+	backdrop-filter: none;
+	-webkit-backdrop-filter: none;
+}
+
+[data-cajui-theme="novera"] .caj-numkey:hover {
+	background: #22313B;
+	color: #F4EFE7;
+	border-color: #22313B;
+}
+
+[data-cajui-theme="novera"] .caj-numkey-enter {
+	background: #C56C43;
+	color: #FFFFFF;
+	border-color: #C56C43;
+}
+
+[data-cajui-theme="novera"] .caj-table-thead {
+	background: #22313B;
+}
+
+[data-cajui-theme="novera"] .caj-table-th {
+	color: #F4EFE7;
+	font-family: 'IBM Plex Mono', monospace;
+	letter-spacing: 0.06em;
+}
+
+[data-cajui-theme="novera"] .caj-table-td {
+	color: #22313B;
+	border-bottom: 1px solid #D7CABB;
+	font-family: 'IBM Plex Mono', monospace;
+}
+
+
+/* ─── Novera — Tipografía: headings con Sora ─────────────────────────────── */
+
+[data-cajui-theme="novera"] h1,
+[data-cajui-theme="novera"] h2,
+[data-cajui-theme="novera"] h3,
+[data-cajui-theme="novera"] h4,
+[data-cajui-theme="novera"] h5,
+[data-cajui-theme="novera"] h6 {
+	font-family: 'Sora', system-ui, sans-serif;
+	font-weight: 600;
+}
+
+
+/* ─── Novera — Focus ring ─────────────────────────────────────────────────── */
+
+[data-cajui-theme="novera"] :focus-visible {
+	outline: 2px solid #C56C43;
+	outline-offset: 2px;
+}
+
+
+/* ─── Novera — Botones (cobertura completa) ──────────────────────────────── */
+
+[data-cajui-theme="novera"] .caj-btn-success {
+	background: #788D80;
+	color: #FFFFFF;
+	border: 1px solid #788D80;
+	box-shadow: none;
+}
+[data-cajui-theme="novera"] .caj-btn-success:hover {
+	background: #5E7066;
+	border-color: #5E7066;
+}
+
+[data-cajui-theme="novera"] .caj-btn-danger {
+	background: #B92D1E;
+	color: #FFFFFF;
+	border: 1px solid #B92D1E;
+	box-shadow: none;
+}
+[data-cajui-theme="novera"] .caj-btn-danger:hover {
+	background: #9A2519;
+	border-color: #9A2519;
+}
+
+[data-cajui-theme="novera"] .caj-btn-warning {
+	background: #B5861A;
+	color: #FFFFFF;
+	border: 1px solid #B5861A;
+	box-shadow: none;
+}
+[data-cajui-theme="novera"] .caj-btn-warning:hover {
+	background: #966E14;
+	border-color: #966E14;
+}
+
+[data-cajui-theme="novera"] .caj-btn-info {
+	background: #788D80;
+	color: #FFFFFF;
+	border: 1px solid #788D80;
+	box-shadow: none;
+}
+[data-cajui-theme="novera"] .caj-btn-info:hover {
+	background: #5E7066;
+	border-color: #5E7066;
+}
+
+[data-cajui-theme="novera"] .caj-btn-ghost {
+	background: transparent;
+	color: #22313B;
+	border: 1px solid #D7CABB;
+	box-shadow: none;
+}
+[data-cajui-theme="novera"] .caj-btn-ghost:hover {
+	background: #F4EFE7;
+	border-color: #22313B;
+}
+
+[data-cajui-theme="novera"] .caj-btn-chip {
+	background: #FFFFFF;
+	color: #22313B;
+	border: 1px solid #D7CABB;
+	border-radius: 2px;
+	box-shadow: none;
+}
+[data-cajui-theme="novera"] .caj-btn-chip:hover {
+	background: #F4EFE7;
+	border-color: #22313B;
+}
+[data-cajui-theme="novera"] .caj-btn-chip.caj-btn--active {
+	background: #C56C43;
+	color: #FFFFFF;
+	border-color: #C56C43;
+}
+[data-cajui-theme="novera"] .caj-btn-chip.caj-btn--active:hover {
+	background: #22313B;
+	border-color: #22313B;
+}
+
+[data-cajui-theme="novera"] .caj-btn-tab {
+	color: #788D80;
+	border-bottom: 2px solid transparent;
+	padding: 10px 12px;
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+	font-size: 0.75rem;
+}
+[data-cajui-theme="novera"] .caj-btn-tab:hover {
+	color: #22313B;
+}
+[data-cajui-theme="novera"] .caj-btn-tab.caj-btn--active {
+	color: #22313B;
+	border-bottom-color: #C56C43;
+	font-weight: 700;
+}
+
+[data-cajui-theme="novera"] .caj-btn-dashed {
+	border: 1px dashed #D7CABB;
+	color: #788D80;
+	background: transparent;
+	box-shadow: none;
+}
+[data-cajui-theme="novera"] .caj-btn-dashed:hover {
+	background: #F4EFE7;
+	border-color: #22313B;
+	color: #22313B;
+}
+
+[data-cajui-theme="novera"] .caj-btn-default.caj-btn--active {
+	background: rgba(197, 108, 67, 0.08);
+	border-color: #C56C43;
+	color: #C56C43;
+}
+
+
+/* ─── Novera — NumPad (cobertura completa) ───────────────────────────────── */
+
+[data-cajui-theme="novera"] .caj-numkey:hover {
+	background: #22313B;
+	color: #F4EFE7;
+	border-color: #22313B;
+}
+
+[data-cajui-theme="novera"] .caj-numkey-action {
+	background: #F4EFE7;
+	border: 1px solid #D7CABB;
+	color: #22313B;
+	border-radius: var(--caj-btn-radius);
+	backdrop-filter: none;
+	-webkit-backdrop-filter: none;
+}
+[data-cajui-theme="novera"] .caj-numkey-action:hover {
+	background: #22313B;
+	color: #F4EFE7;
+	border-color: #22313B;
+}
+
+[data-cajui-theme="novera"] .caj-numkey-enter:hover {
+	background: #22313B;
+	border-color: #22313B;
+}
+
+[data-cajui-theme="novera"] .caj-numkey-danger {
+	background: #B92D1E;
+	color: #FFFFFF;
+	border: 1px solid #B92D1E;
+	border-radius: var(--caj-btn-radius);
+	box-shadow: none;
+	backdrop-filter: none;
+	-webkit-backdrop-filter: none;
+}
+[data-cajui-theme="novera"] .caj-numkey-danger:hover {
+	background: #9A2519;
+}
+
+
+/* ─── Novera — Tabla (cobertura completa) ────────────────────────────────── */
+
+[data-cajui-theme="novera"] .caj-table-tr-hover:hover {
+	background: rgba(34, 49, 59, 0.04);
+}
+
+[data-cajui-theme="novera"] .caj-table-tr-striped:nth-child(even) {
+	background: rgba(34, 49, 59, 0.03);
+}
+
+[data-cajui-theme="novera"] .caj-table-tr-active {
+	background: rgba(197, 108, 67, 0.1) !important;
+	color: #C56C43 !important;
+}
+
+
+/* ─── Novera — Dialog ─────────────────────────────────────────────────────── */
+
+[data-cajui-theme="novera"] .caj-dialog-overlay {
+	backdrop-filter: none;
+	-webkit-backdrop-filter: none;
+	background: rgba(34, 49, 59, 0.55);
+}
+
+[data-cajui-theme="novera"] .caj-dialog-header {
+	border-bottom: 1px solid #D7CABB;
+}
+
+[data-cajui-theme="novera"] .caj-dialog-footer {
+	border-top: 1px solid #D7CABB;
+	background: transparent;
+}
+
+
+/* ─── Novera — AlertBanner ────────────────────────────────────────────────── */
+
+[data-cajui-theme="novera"] .caj-alert {
+	backdrop-filter: none;
+	-webkit-backdrop-filter: none;
+	border-left-width: 4px;
+	border-radius: 0;
+}
+[data-cajui-theme="novera"] .caj-alert-info {
+	background: rgba(120, 141, 128, 0.08);
+	border-color: #788D80;
+	color: #22313B;
+}
+[data-cajui-theme="novera"] .caj-alert-success {
+	background: rgba(120, 141, 128, 0.08);
+	border-color: #788D80;
+	color: #22313B;
+}
+[data-cajui-theme="novera"] .caj-alert-warning {
+	background: rgba(181, 134, 26, 0.08);
+	border-color: #B5861A;
+	color: #22313B;
+}
+[data-cajui-theme="novera"] .caj-alert-low_stock {
+	background: rgba(181, 134, 26, 0.08);
+	border-color: #B5861A;
+	color: #22313B;
+}
+[data-cajui-theme="novera"] .caj-alert-danger {
+	background: rgba(185, 45, 30, 0.06);
+	border-color: #B92D1E;
+	color: #22313B;
+}
+
+
+/* ─── Novera — StockBadge ─────────────────────────────────────────────────── */
+
+[data-cajui-theme="novera"] .caj-stock-badge {
+	backdrop-filter: none;
+	-webkit-backdrop-filter: none;
+	border-width: 1px;
+	border-radius: 2px;
+}
+[data-cajui-theme="novera"] .caj-stock-in-stock {
+	background: rgba(120, 141, 128, 0.1);
+	border-color: #788D80;
+	color: #788D80;
+}
+[data-cajui-theme="novera"] .caj-stock-low-stock {
+	background: rgba(181, 134, 26, 0.08);
+	border-color: #B5861A;
+	color: #B5861A;
+}
+[data-cajui-theme="novera"] .caj-stock-out-of-stock {
+	background: rgba(185, 45, 30, 0.08);
+	border-color: #B92D1E;
+	color: #B92D1E;
+}
+
+
+/* ─── Novera — PaymentMethod ──────────────────────────────────────────────── */
+
+[data-cajui-theme="novera"] .caj-payment-btn {
+	backdrop-filter: none;
+	-webkit-backdrop-filter: none;
+	border: 1px solid #D7CABB;
+	background: #FFFFFF;
+	color: #22313B;
+	box-shadow: none;
+	border-radius: 2px;
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+	font-weight: 700;
+}
+[data-cajui-theme="novera"] .caj-payment-btn:hover {
+	background: #F4EFE7;
+	border-color: #22313B;
+}
+[data-cajui-theme="novera"] .caj-payment-btn[aria-pressed="true"] {
+	background: #C56C43;
+	border-color: #C56C43;
+	color: #FFFFFF;
+}
+
+
+/* ─── Novera — KPI ────────────────────────────────────────────────────────── */
+
+[data-cajui-theme="novera"] .caj-kpi-card {
+	box-shadow: 0 2px 12px rgba(34, 49, 59, 0.08) !important;
+	border-radius: 4px !important;
+}
+
+[data-cajui-theme="novera"] .caj-kpi-trend-up {
+	background: rgba(120, 141, 128, 0.12) !important;
+	color: #5E7066 !important;
+	border-color: rgba(120, 141, 128, 0.3) !important;
+}
+[data-cajui-theme="novera"] .caj-kpi-trend-down {
+	background: rgba(185, 45, 30, 0.08) !important;
+	color: #B92D1E !important;
+	border-color: rgba(185, 45, 30, 0.2) !important;
+}
+[data-cajui-theme="novera"] .caj-kpi-trend-neutral {
+	background: rgba(34, 49, 59, 0.08) !important;
+	color: #788D80 !important;
+	border-color: rgba(34, 49, 59, 0.15) !important;
+}
+
+[data-cajui-theme="novera"] .caj-kpi-icon {
+	background: #F4EFE7 !important;
+	border: 1px solid #D7CABB !important;
+	border-radius: 2px !important;
+}
+[data-cajui-theme="novera"] .caj-kpi-icon-default { color: #788D80 !important; }
+[data-cajui-theme="novera"] .caj-kpi-icon-green   { color: #788D80 !important; }
+[data-cajui-theme="novera"] .caj-kpi-icon-blue    { color: #788D80 !important; }
+[data-cajui-theme="novera"] .caj-kpi-icon-amber   { color: #B5861A !important; }
+[data-cajui-theme="novera"] .caj-kpi-icon-red     { color: #B92D1E !important; }
+[data-cajui-theme="novera"] .caj-kpi-icon-purple  { color: #6B4E8E !important; }
+
+
+/* ─── Novera — Kiosk ──────────────────────────────────────────────────────── */
+
+[data-cajui-theme="novera"] .caj-kiosk-blobs {
+	display: none;
+}
+
+[data-cajui-theme="novera"] .caj-kiosk-status-pill {
+	backdrop-filter: none;
+	-webkit-backdrop-filter: none;
+	border-width: 1px;
+	border-style: solid;
+	border-radius: 2px !important;
+}
+[data-cajui-theme="novera"] .caj-kiosk-status-pill--done {
+	background: rgba(120, 141, 128, 0.1);
+	border-color: #788D80;
+	color: #788D80;
+}
+[data-cajui-theme="novera"] .caj-kiosk-status-pill--none {
+	background: #FFFFFF;
+	border-color: #D7CABB;
+	color: #788D80;
+}
+[data-cajui-theme="novera"] .caj-kiosk-status-pill--pending {
+	background: rgba(181, 134, 26, 0.08);
+	border-color: #B5861A;
+	color: #B5861A;
+}
+
+[data-cajui-theme="novera"] .caj-kiosk-box-tile--default {
+	background: #FFFFFF;
+	border-color: #D7CABB;
+	color: #22313B;
+}
+[data-cajui-theme="novera"] .caj-kiosk-box-tile--default:hover {
+	background: #F4EFE7;
+	border-color: #22313B;
+}
+[data-cajui-theme="novera"] .caj-kiosk-box-tile--confirmed {
+	background: #F4EFE7;
+	border-color: #D7CABB;
+	color: #788D80;
+	opacity: 0.75;
+}
+
+
+/* ─── Novera — text-white remapping (fondo claro) ────────────────────────── */
+
+[data-cajui-theme="novera"] .text-white { color: #22313B; }
+[data-cajui-theme="novera"] .text-white\/95 { color: rgba(34, 49, 59, 0.95); }
+[data-cajui-theme="novera"] .text-white\/90 { color: rgba(34, 49, 59, 0.90); }
+[data-cajui-theme="novera"] .text-white\/85 { color: rgba(34, 49, 59, 0.85); }
+[data-cajui-theme="novera"] .text-white\/80 { color: rgba(34, 49, 59, 0.80); }
+[data-cajui-theme="novera"] .text-white\/70 { color: rgba(34, 49, 59, 0.70); }
+[data-cajui-theme="novera"] .text-white\/60 { color: rgba(34, 49, 59, 0.60); }
+[data-cajui-theme="novera"] .text-white\/50 { color: rgba(34, 49, 59, 0.50); }
+[data-cajui-theme="novera"] .text-white\/40 { color: rgba(34, 49, 59, 0.40); }
+[data-cajui-theme="novera"] .text-white\/30 { color: rgba(34, 49, 59, 0.30); }
+[data-cajui-theme="novera"] .text-white\/20 { color: rgba(34, 49, 59, 0.20); }
+[data-cajui-theme="novera"] .hover\:text-white:hover { color: #22313B; }
+[data-cajui-theme="novera"] .border-white\/10,
+[data-cajui-theme="novera"] .border-white\/20,
+[data-cajui-theme="novera"] .border-white\/30,
+[data-cajui-theme="novera"] .border-white\/5,
+[data-cajui-theme="novera"] .border-white\/18 {
+	border-color: rgba(34, 49, 59, 0.15);
+	border-width: 1px;
+}
+[data-cajui-theme="novera"] .bg-white\/\[0\.02\] {
+	background-color: rgba(244, 239, 231, 0.6);
 }
 

@@ -24,6 +24,7 @@ const preview: Preview = {
         'accessible-dark':    { theme: 'accessible-dark',  gradient: 'none'      },
         'amalli-light':       { theme: 'amalli-light',     gradient: 'none'      },
         'amalli-dark':        { theme: 'amalli-dark',      gradient: 'none'      },
+        'novera':             { theme: 'novera',           gradient: 'none'      },
       };
 
       const { theme: activeTheme = 'cajui', gradient: activeGradient = 'default' } = THEME_MAP[bgKey] ?? {};
@@ -52,6 +53,7 @@ const preview: Preview = {
         'accessible-dark':  { name: 'accessible-dark',   value: '#0b0c0c' },
         'amalli-light':     { name: 'amalli — light',    value: '#F2EDE3' },
         'amalli-dark':      { name: 'amalli — dark',     value: '#162318' },
+        'novera':           { name: 'novera',            value: '#F4EFE7' },
       },
     },
     viewport: {

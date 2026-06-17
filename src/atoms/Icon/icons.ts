@@ -6,6 +6,7 @@ import {
 	ArrowRightLeft,
 	AtSign,
 	Barcode,
+	Camera,
 	Check,
 	CheckCircle,
 	ChevronDown,
@@ -13,6 +14,7 @@ import {
 	ChevronRight,
 	ChevronUp,
 	CircleDollarSign,
+	Clock,
 	CreditCard,
 	Database,
 	DollarSign,
@@ -23,8 +25,10 @@ import {
 	HelpCircle,
 	Info,
 	Key,
+	Keyboard,
 	Loader2,
 	Lock,
+	MapPin,
 	Menu,
 	Minus,
 	MinusCircle,
@@ -46,6 +50,7 @@ import {
 	Trash2,
 	User,
 	X,
+	Zap,
 } from "lucide-react";
 
 export const iconMap = {
@@ -97,6 +102,11 @@ export const iconMap = {
 	eyeOff: EyeOff,
 	star: Star,
 	nfc: Nfc,
+	clock: Clock,
+	pin: MapPin,
+	zap: Zap,
+	camera: Camera,
+	keyboard: Keyboard,
 } as const;
 
 export type IconName = keyof typeof iconMap;

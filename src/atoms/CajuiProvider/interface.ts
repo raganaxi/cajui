@@ -5,7 +5,8 @@ export type CajuiTheme =
 	| "accessible-light"
 	| "accessible-dark"
 	| "amalli-light"
-	| "amalli-dark";
+	| "amalli-dark"
+	| "novera";
 
 export interface CajuiProviderProps {
 	children: React.ReactNode;

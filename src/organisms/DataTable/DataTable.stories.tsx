@@ -163,7 +163,7 @@ const B2B_CLIENTS_DATA: ClientRow[] = [
 export const B2BClientManagement = {
 	name: "B2B - Gestión de Clientes",
 	render: () => (
-		<div className="p-4 space-y-3 bg-[#111827] rounded-2xl border border-white/10 text-white">
+		<div className="caj-panel p-4 space-y-3 rounded-2xl">
 			<div className="flex justify-between items-center px-2">
 				<div>
 					<h3 className="text-lg font-bold">Clientes Registrados (B2B/B2C)</h3>
@@ -325,7 +325,7 @@ const PENDING_REQUESTS_DATA: RequestRow[] = [
 export const PendingAccessRequests = {
 	name: "B2B - Aprobación de Solicitudes",
 	render: () => (
-		<div className="p-4 space-y-3 bg-[#111827] rounded-2xl border border-white/10 text-white">
+		<div className="caj-panel p-4 space-y-3 rounded-2xl">
 			<div>
 				<h3 className="text-lg font-bold">Solicitudes de Acceso Pendientes</h3>
 				<p className="text-xs text-white/50">

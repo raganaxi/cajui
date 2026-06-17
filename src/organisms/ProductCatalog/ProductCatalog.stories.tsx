@@ -148,7 +148,7 @@ export const Default: Story = {
 	},
 	decorators: [
 		(S) => (
-			<div className="h-[650px] w-full p-4 bg-[#111827] rounded-3xl overflow-hidden flex flex-col">
+			<div className="caj-panel h-[650px] w-full p-4 rounded-3xl overflow-hidden flex flex-col">
 				<S />
 			</div>
 		),
