@@ -9,7 +9,7 @@ export default create({
 
   // Brand
   brandTitle: 'cajui POS Component Library',
-  brandUrl: 'https://github.com/cajui/cajui',
+  brandUrl: 'https://github.com/raganaxi/cajui',
   brandImage: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 40" width="120" height="40"><defs><linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="%2322c55e"/><stop offset="100%" stop-color="%2310b981"/></linearGradient></defs><text x="10" y="28" font-family="system-ui" font-weight="900" font-size="28" fill="url(%23g)">cajui</text><circle cx="95" cy="16" r="4" fill="%233b82f6"/></svg>',
   brandTarget: '_self',
 

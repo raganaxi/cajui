@@ -1,6 +1,6 @@
 {
   "name": "cajui",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Bootstrap your Point of Sale frontend in minutes. React components built for POS & ERP.",
   "keywords": [
     "react",
@@ -16,7 +16,7 @@
   "author": "cajui contributors",
   "repository": {
     "type": "git",
-    "url": "https://github.com/cajui/cajui"
+    "url": "https://github.com/raganaxi/cajui"
   },
   "type": "module",
   "files": [

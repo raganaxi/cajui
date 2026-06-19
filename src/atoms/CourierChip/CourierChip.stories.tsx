@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { CourierChip } from "./CourierChip";
 import type { CourierConfig } from "./CourierChip";
+import { CourierChip } from "./CourierChip";
 
 const DHL: CourierConfig = {
 	id: "dhl",

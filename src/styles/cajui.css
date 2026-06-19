@@ -601,7 +601,6 @@
 /* Inputs */
 [data-cajui-theme^="accessible"] .caj-input {
 	font-size: 1.1875rem;
-	padding: 10px 12px;
 	border-radius: 0;
 	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
 	transition: none;
@@ -2663,7 +2662,7 @@
 }
 
 
-/* ─── Novera Theme — Arquitectónico y Técnico ──────────────────────────────
+/* ─── Novera Theme — Arquitectónico y Técnico ───────────────────────────────
    Paleta:
      Grafito        #22313B (34 49 59)
      Marfil Arena   #F4EFE7 (244 239 231)
@@ -3106,7 +3105,7 @@
 }
 
 
-/* ─── Novera — KPI ────────────────────────────────────────────────────────── */
+/* ─── Novera — KPI ───────────────────────────────────────────────────────── */
 
 [data-cajui-theme="novera"] .caj-kpi-card {
 	box-shadow: 0 2px 12px rgba(34, 49, 59, 0.08) !important;
@@ -3213,4 +3212,3 @@
 [data-cajui-theme="novera"] .bg-white\/\[0\.02\] {
 	background-color: rgba(244, 239, 231, 0.6);
 }
-

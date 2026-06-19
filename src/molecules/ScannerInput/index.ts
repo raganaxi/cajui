@@ -1,2 +1,2 @@
-export { ScannerInput } from "./ScannerInput";
 export type { ScannerInputProps } from "./interface";
+export { ScannerInput } from "./ScannerInput";

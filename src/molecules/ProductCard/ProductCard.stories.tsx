@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { useState } from "react";
 import { type Product, ProductCard } from "./ProductCard";
 
 const SAMPLE: Product = {
@@ -103,6 +104,177 @@ export const WithVariantsList: Story = {
 			</div>
 		),
 	],
+};
+
+const Canvas = ({
+	children,
+	className = "",
+}: {
+	children: React.ReactNode;
+	className?: string;
+}) => (
+	<div className={`caj-panel p-6 rounded-2xl ${className}`}>{children}</div>
+);
+
+const SHOP_PRODUCT: Product = {
+	id: "shop-1",
+	name: "Persiana Roller Blackout",
+	price: 890,
+	description:
+		"Persiana enrollable de alta calidad con tela blackout. Bloquea 100% la luz exterior.",
+	category: "Persianas",
+	stock: 12,
+	features: ["Blackout 100%", "Instalación incluida"],
+	variants: [
+		{
+			id: "s1",
+			name: "Blanco Perla",
+			colorHex: "#F5F0E8",
+			price: 890,
+		},
+		{
+			id: "s2",
+			name: "Gris Plata",
+			colorHex: "#8C8C8C",
+			price: 920,
+		},
+		{
+			id: "s3",
+			name: "Negro Ónix",
+			colorHex: "#1A1A1A",
+			price: 960,
+		},
+		{
+			id: "s4",
+			name: "Beige Duna",
+			colorHex: "#D4B896",
+			price: 890,
+		},
+	],
+};
+
+export const ShopBasico: Story = {
+	name: "Shop — Básico",
+	render: () => (
+		<Canvas className="w-72">
+			<ProductCard
+				product={SHOP_PRODUCT}
+				layout="shop"
+				onAdd={(p, v) => console.log("add", p.name, v?.name)}
+			/>
+		</Canvas>
+	),
+};
+
+export const ShopConCalculadora: Story = {
+	name: "Shop — Con Calculadora",
+	render: () => {
+		const [qty, setQty] = useState(2);
+		const unitPrice = 890;
+		return (
+			<Canvas className="w-72 flex flex-col gap-4">
+				<div className="flex items-center gap-3">
+					<span className="text-sm text-white/60">Cantidad:</span>
+					<div className="flex items-center gap-2">
+						<button
+							type="button"
+							onClick={() => setQty(Math.max(1, qty - 1))}
+							className="caj-btn-default w-8 h-8 rounded-lg font-bold text-lg flex items-center justify-center"
+						>
+							−
+						</button>
+						<span className="font-bold text-white w-8 text-center">{qty}</span>
+						<button
+							type="button"
+							onClick={() => setQty(qty + 1)}
+							className="caj-btn-primary w-8 h-8 rounded-lg font-bold text-lg flex items-center justify-center"
+						>
+							+
+						</button>
+					</div>
+				</div>
+				<ProductCard
+					product={SHOP_PRODUCT}
+					layout="shop"
+					unitPrice={unitPrice}
+					quantity={qty}
+					onAdd={(p, v) => console.log("add", p.name, v?.name, "qty:", qty)}
+				/>
+			</Canvas>
+		);
+	},
+};
+
+export const ShopSinImagen: Story = {
+	name: "Shop — Sin Imagen",
+	render: () => (
+		<Canvas className="w-72">
+			<ProductCard
+				product={{
+					...SHOP_PRODUCT,
+					image: undefined,
+					name: "Cortina Plisada Premium",
+					description:
+						"Cortina plisada con acabado premium y sistema de guías.",
+				}}
+				layout="shop"
+				onAdd={(p) => console.log("add", p.name)}
+			/>
+		</Canvas>
+	),
+};
+
+export const ShopConVariantes: Story = {
+	name: "Shop — Con Variantes de Tela",
+	render: () => {
+		const [selectedVariant, setSelectedVariant] = useState<string | undefined>(
+			undefined,
+		);
+		return (
+			<Canvas className="w-72 flex flex-col gap-3">
+				<ProductCard
+					product={{
+						...SHOP_PRODUCT,
+						name: "Cortina Sheer Voile",
+						description:
+							"Cortina translúcida de voile con múltiples opciones de tela.",
+						features: ["Translúcida", "Lavable"],
+						variants: [
+							{
+								id: "t1",
+								name: "Blanco Lino",
+								colorHex: "#F5F0E8",
+								price: 650,
+							},
+							{
+								id: "t2",
+								name: "Gris Perla",
+								colorHex: "#BDBDBD",
+								price: 680,
+							},
+							{
+								id: "t3",
+								name: "Azul Cielo",
+								colorHex: "#90CAF9",
+								price: 700,
+							},
+							{ id: "t4", name: "Rosa Nude", colorHex: "#F8BBD9", price: 650 },
+							{ id: "t5", name: "Verde Sage", colorHex: "#A5D6A7", price: 670 },
+						],
+					}}
+					layout="shop"
+					onVariantChange={setSelectedVariant}
+					onAdd={(p, v) => console.log("add", p.name, v?.name)}
+				/>
+				{selectedVariant && (
+					<p className="text-xs text-white/40 text-center">
+						Variante activa:{" "}
+						<span className="text-white/70">{selectedVariant}</span>
+					</p>
+				)}
+			</Canvas>
+		);
+	},
 };
 
 export const ProductGrid: Story = {
