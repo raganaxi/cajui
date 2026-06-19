@@ -1,6 +1,6 @@
 {
   "name": "cajui",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Bootstrap your Point of Sale frontend in minutes. React components built for POS & ERP.",
   "keywords": [
     "react",
