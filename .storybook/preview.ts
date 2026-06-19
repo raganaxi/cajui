@@ -14,7 +14,7 @@ const preview: Preview = {
         ? context.globals.backgrounds
         : context.globals.backgrounds?.value;
 
-      const THEME_MAP: Record<string, { theme: 'cajui' | 'accessible-light' | 'accessible-dark' | 'amalli-light' | 'amalli-dark', gradient: 'default' | 'warm' | 'cool' | 'midnight' | 'none' }> = {
+      const THEME_MAP: Record<string, { theme: 'cajui' | 'accessible-light' | 'accessible-dark' | 'amalli-light' | 'amalli-dark' | 'novera', gradient: 'default' | 'warm' | 'cool' | 'midnight' | 'none' }> = {
         'cajui':              { theme: 'cajui',            gradient: 'default'   },
         'cajui-warm':         { theme: 'cajui',            gradient: 'warm'      },
         'cajui-cool':         { theme: 'cajui',            gradient: 'cool'      },

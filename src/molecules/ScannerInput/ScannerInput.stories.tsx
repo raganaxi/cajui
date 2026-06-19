@@ -1,5 +1,5 @@
-import { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { useState } from "react";
 import { ScannerInput } from "./ScannerInput";
 
 const meta: Meta<typeof ScannerInput> = {

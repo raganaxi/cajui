@@ -1,7 +1,7 @@
-import { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { ShippingKiosk } from "./ShippingKiosk";
+import { useState } from "react";
 import type { CourierConfig, ShippingGuia, ShippingOrder } from "./interface";
+import { ShippingKiosk } from "./ShippingKiosk";
 
 // ── Courier configs ──────────────────────────────────────
 

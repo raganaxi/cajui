@@ -1,8 +1,6 @@
 // Styles — consumers: import 'cajui/style.css'
 import "./styles/cajui.css";
 
-export type { CourierChipProps, CourierConfig } from "./atoms/CourierChip";
-export { CourierChip } from "./atoms/CourierChip";
 export type { AlertBannerProps } from "./atoms/AlertBanner";
 //
 export { AlertBanner } from "./atoms/AlertBanner";
@@ -16,6 +14,8 @@ export type { ButtonProps, ButtonSize, ButtonVariant } from "./atoms/Button";
 export { Button } from "./atoms/Button";
 export type { CajuiProviderProps } from "./atoms/CajuiProvider";
 export { CajuiProvider } from "./atoms/CajuiProvider";
+export type { CourierChipProps, CourierConfig } from "./atoms/CourierChip";
+export { CourierChip } from "./atoms/CourierChip";
 export type { DialogProps, DialogSize } from "./atoms/Dialog";
 //
 export { Dialog } from "./atoms/Dialog";
@@ -24,6 +24,9 @@ export type { GlassPanelProps } from "./atoms/GlassPanel";
 export { GlassPanel } from "./atoms/GlassPanel";
 export type { IconName, IconProps, IconSize } from "./atoms/Icon";
 export { Icon } from "./atoms/Icon";
+export type { NumPadProps } from "./atoms/NumPad";
+//
+export { NumPad } from "./atoms/NumPad";
 export type {
 	PaymentMethodGroupProps,
 	PaymentMethodProps,
@@ -34,15 +37,12 @@ export { PaymentMethod, PaymentMethodGroup } from "./atoms/PaymentMethod";
 export type { PriceDisplayProps } from "./atoms/PriceDisplay";
 //
 export { PriceDisplay } from "./atoms/PriceDisplay";
-export type { StockBadgeProps, StockStatus } from "./atoms/StockBadge";
-//
-export { NumPad } from "./atoms/NumPad";
-export type { NumPadProps } from "./atoms/NumPad";
-export { SoftKeyboard } from "./atoms/SoftKeyboard";
 export type {
 	SoftKeyboardCharset,
 	SoftKeyboardProps,
 } from "./atoms/SoftKeyboard";
+export { SoftKeyboard } from "./atoms/SoftKeyboard";
+export type { StockBadgeProps, StockStatus } from "./atoms/StockBadge";
 export { StockBadge } from "./atoms/StockBadge";
 export type {
 	TableBodyProps,
@@ -95,18 +95,23 @@ export type {
 	OrderStatusValue,
 } from "./molecules/OrderStatus";
 export { OrderStatus, OrderStatusStepper } from "./molecules/OrderStatus";
-export type { Product, ProductCardProps } from "./molecules/ProductCard";
+export type {
+	ColorSwatch,
+	ColorSwatchPickerProps,
+} from "./molecules/ColorSwatchPicker";
+export { ColorSwatchPicker } from "./molecules/ColorSwatchPicker";
+export type { Product, ProductCardProps, ProductVariant } from "./molecules/ProductCard";
 export { ProductCard } from "./molecules/ProductCard";
 export type { QuantityControlProps } from "./molecules/QuantityControl";
 export { QuantityControl } from "./molecules/QuantityControl";
+export type { RowAction, RowActionsProps } from "./molecules/RowActions";
+export { RowActions } from "./molecules/RowActions";
 export type { ScannerInputProps } from "./molecules/ScannerInput";
 export { ScannerInput } from "./molecules/ScannerInput";
 export type { TablePaginationProps } from "./molecules/TablePagination";
 export { TablePagination } from "./molecules/TablePagination";
 export type { TableSearchProps } from "./molecules/TableSearch";
 export { TableSearch } from "./molecules/TableSearch";
-export type { RowAction, RowActionsProps } from "./molecules/RowActions";
-export { RowActions } from "./molecules/RowActions";
 export type { Column, DataTableProps, SortDir } from "./organisms/DataTable";
 //
 // export { TableMap } from './molecules/TableMap'
@@ -141,13 +146,6 @@ export type {
 //
 export { KioskPayment } from "./organisms/KioskPayment";
 export type {
-	CourierConfig as ShippingCourierConfig,
-	ShippingGuia,
-	ShippingKioskProps,
-	ShippingOrder,
-} from "./organisms/ShippingKiosk";
-export { ShippingKiosk } from "./organisms/ShippingKiosk";
-export type {
 	OnlineCheckoutProps,
 	ShippingMethodOption,
 } from "./organisms/OnlineCheckout";
@@ -158,6 +156,18 @@ export type {
 } from "./organisms/ProductCatalog";
 // New E-commerce components
 export { ProductCatalog } from "./organisms/ProductCatalog";
+export type {
+	CourierConfig as ShippingCourierConfig,
+	ShippingGuia,
+	ShippingKioskProps,
+	ShippingOrder,
+} from "./organisms/ShippingKiosk";
+export { ShippingKiosk } from "./organisms/ShippingKiosk";
+export type {
+	CartDrawerItem,
+	CartDrawerProps,
+} from "./organisms/CartDrawer";
+export { CartDrawer } from "./organisms/CartDrawer";
 //
 // export { RegisterLocked } from './organisms/RegisterLocked'
 // export type { RegisterLockedProps, ShiftSummaryData } from './organisms/RegisterLocked'

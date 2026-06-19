@@ -4,9 +4,9 @@ import { Button } from "@/atoms/Button";
 import { CourierChip } from "@/atoms/CourierChip";
 import { GlassPanel } from "@/atoms/GlassPanel";
 import { Icon } from "@/atoms/Icon";
-import { ScannerInput } from "@/molecules/ScannerInput";
-import { QuantityControl } from "@/molecules/QuantityControl";
 import { cn } from "@/lib/utils";
+import { QuantityControl } from "@/molecules/QuantityControl";
+import { ScannerInput } from "@/molecules/ScannerInput";
 import type {
 	ShippingGuia,
 	ShippingKioskProps,
